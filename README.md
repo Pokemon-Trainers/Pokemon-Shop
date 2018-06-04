@@ -1,1 +1,3 @@
 # Pokemon-Shop
+
+Sheri Kwong
