@@ -1,7 +1,7 @@
 {
   "name": "pokemon",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Adopt a pokemon",
   "engines": {
     "node": ">= 7.0.0"
   },
