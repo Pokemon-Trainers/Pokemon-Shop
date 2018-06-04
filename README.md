@@ -1,6 +1,6 @@
 # Pokemon-Shop
 
-Sheri Kwong
+Sheri Kwong :)
 Marisa Oppenheim
 Ganchimeg Ganzorig
 Linda Morales
