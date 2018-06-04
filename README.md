@@ -1,2 +1,4 @@
 # Pokemon-Shop
-# Linda
+
+Sheri Kwong
+Linda Morales
