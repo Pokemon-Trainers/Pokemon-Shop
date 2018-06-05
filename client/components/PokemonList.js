@@ -9,7 +9,8 @@ class PokemonList extends Component {
     this.state = {
       pokemon: props.pokemon || []
     };
-    this.handleFilter = this.handleFilter.bind(this);
+    this.handleTypeFilter = this.handleTypeFilter.bind(this);
+    this.handlePriceFilter = this.handlePriceFilter.bind(this);
   }
 
   componentDidMount() {
@@ -18,7 +19,7 @@ class PokemonList extends Component {
     });
   }
 
-  handleFilter(type) {
+  handleTypeFilter(type) {
     this.setState({
       pokemon:
         type === "Reset Filter"
@@ -28,13 +29,30 @@ class PokemonList extends Component {
             )
     });
   }
+  handlePriceFilter(priceRange) {
+    let arr = priceRange.split(/[\s-]+/);
+    this.setState({
+      pokemon:
+        priceRange === "Reset Filter"
+          ? this.props.pokemon
+          : this.props.pokemon.filter(
+              pokemon =>
+                pokemon.price >= Number(arr[0]) &&
+                pokemon.price <= Number(arr[1])
+            )
+    });
+  }
 
   render() {
     const { pokemon } = this.state || this.props;
     return (
       <div className="container">
         <div className="row">
-          <Sidebar handleFilter={this.handleFilter} pokemon={pokemon} />
+          <Sidebar
+            handleTypeFilter={this.handleTypeFilter}
+            handlePriceFilter={this.handlePriceFilter}
+            pokemon={pokemon}
+          />
           {/* <div className="col-9 d-flex justify-content-between flex-wrap"> */}{" "}
           {pokemon.length === 0 ? (
             <div className="col-9 d-flex justify-content-start flex-wrap">

@@ -20,13 +20,14 @@ const typeArray = [
 ];
 
 const Type = props => {
-  const { handleFilter } = props;
+  console.log(props);
+  const { handleTypeFilter } = props;
   return (
     <div>
       {typeArray.map(singleType => (
         <li key={singleType}>
           <button
-            onClick={() => handleFilter(singleType)}
+            onClick={() => handleTypeFilter(singleType)}
             className="btn btn-outline-primary"
           >
             {" "}
