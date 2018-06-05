@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Action types
-const GET_POKEMON = 'GET_POKEMON';
-const GET_ONE_POKEMON = 'GET_ONE_POKEMON'
+const GET_POKEMON = "GET_POKEMON";
+const GET_ONE_POKEMON = "GET_ONE_POKEMON";
 
 // Action creators
 const getPokemon = pokemon => ({
   type: GET_POKEMON,
-  pokemon,
+  pokemon
 });
 
 // Thunk
 export const fetchPokemon = () => {
   return async dispatch => {
-    const { data } = await axios.get('/api/pokemon');
+    const { data } = await axios.get("/api/pokemon");
     dispatch(getPokemon(data));
   };
 };
