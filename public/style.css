@@ -19,7 +19,6 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
 .pokeCard {
   border: 5px solid gold;
   border-radius: 15px;
@@ -118,4 +117,7 @@ img.poke {
 
 .currency {
   width: 20px;
+}
+.sidebar {
+  justify-items: center;
 }

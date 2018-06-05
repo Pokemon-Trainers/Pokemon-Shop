@@ -4,7 +4,9 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
 import { me } from './store';
+
 import PokemonList from './components/PokemonList';
+import IndividualPokemon from './components/IndividualPokemon'
 
 /**
  * COMPONENT
@@ -21,6 +23,7 @@ class Routes extends Component {
       <Switch>
         {/* All Pokemon */}
         <Route exact path="/pokemon" component={PokemonList} />
+        <Route path='/pokemon/:id' component={IndividualPokemon}/>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

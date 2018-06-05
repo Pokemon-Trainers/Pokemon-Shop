@@ -4,14 +4,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 
+
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <h1>Gotta Adopt 'Em All</h1>
     <nav>
+    <Link to="/home">Home</Link>
+    <Link to="/pokemon">Pokemon</Link>
+
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+
           <a href="#" onClick={handleClick}>
             Logout
           </a>
