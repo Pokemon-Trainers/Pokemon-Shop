@@ -10,6 +10,7 @@ const Order = require('./order')
  */
 
 Order.belongsToMany(Pokemon, {as: 'item', through: 'itemsInOrder'});
+Order.belongsTo(User);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
