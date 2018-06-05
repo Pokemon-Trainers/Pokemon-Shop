@@ -14,10 +14,7 @@ class PokemonList extends Component {
           <div className="col-3">SideBar</div>
           <div className="col-9 d-flex justify-content-between flex-wrap">
             {pokemon.map(poke => (
-              <div
-                className="col-4 bg-light p-2 border border-white mb-1"
-                key={poke.id}
-              >
+              <div className="col-4 p-0" key={poke.id}>
                 <PokemonCard pokemon={poke} />
               </div>
             ))}
