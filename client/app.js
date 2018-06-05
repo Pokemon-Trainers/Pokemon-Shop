@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { Navbar } from "./components";
+import Routes from "./routes";
 
-import { Navbar } from './components';
-import Routes from './routes';
-
-import { fetchPokemon } from './store/pokemon';
+import { fetchPokemon } from "./store/pokemon";
 
 class App extends Component {
   componentDidMount() {
@@ -23,11 +22,13 @@ class App extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    fetchPokemon: () => dispatch(fetchPokemon()),
+    fetchPokemon: () => dispatch(fetchPokemon())
   };
 };
 
-export default withRouter(connect(
-  null,
-  mapDispatch
-)(App));
+export default withRouter(
+  connect(
+    null,
+    mapDispatch
+  )(App)
+);
