@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PokemonCard from './PokemonCard';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PokemonCard from "./PokemonCard";
+import Sidebar from "./Sidebar";
 
 class PokemonList extends Component {
   render() {
@@ -11,7 +12,7 @@ class PokemonList extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-3">SideBar</div>
+          <Sidebar />
           <div className="col-9 d-flex justify-content-between flex-wrap">
             {pokemon.map(poke => (
               <div
@@ -30,7 +31,7 @@ class PokemonList extends Component {
 
 const mapState = state => {
   return {
-    pokemon: state.pokemon,
+    pokemon: state.pokemon
   };
 };
 
