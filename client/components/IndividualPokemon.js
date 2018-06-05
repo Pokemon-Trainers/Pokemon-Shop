@@ -16,6 +16,12 @@ const IndividualPokemon = props => {
       <h3>Level: {pokemon.level}</h3>
       <h3>Price: {pokemon.price} Poké Balls</h3>
       <p>{pokemon.description}</p>
+      <div>
+        <form>
+          <input type="number" />
+          <button type="button">Add To Cart</button>
+        </form>
+      </div>
     </div>
   );
   return <div>{pokemon.id ? loaded : loading}</div>;
