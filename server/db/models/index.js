@@ -1,5 +1,6 @@
 const User = require('./user')
 const Pokemon = require('./pokemon')
+const Order = require('./order')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -7,6 +8,8 @@ const Pokemon = require('./pokemon')
  *
  *    BlogPost.belongsTo(User)
  */
+
+Order.belongsToMany(Pokemon, {as: 'item', through: 'itemsInOrder'});
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -17,4 +20,5 @@ const Pokemon = require('./pokemon')
 module.exports = {
   User,
   Pokemon,
+  Order
 }
