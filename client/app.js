@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom'
 
 import { Navbar } from './components';
 import Routes from './routes';
@@ -26,7 +27,7 @@ const mapDispatch = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatch
-)(App);
+)(App));
