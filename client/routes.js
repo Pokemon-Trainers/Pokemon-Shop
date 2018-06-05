@@ -7,7 +7,6 @@ import { me } from "./store";
 
 import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
-import Electric from "./components/categories/Electric";
 
 /**
  * COMPONENT

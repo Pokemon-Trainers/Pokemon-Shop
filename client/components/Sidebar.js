@@ -4,7 +4,7 @@ import Price from "./categories/Price";
 import Level from "./categories/Level";
 
 const Sidebar = props => {
-  const { pokemon, handleFilter } = props;
+  const { pokemon, handleTypeFilter, handlePriceFilter } = props;
 
   return (
     <div className="col-1 ">
@@ -17,15 +17,15 @@ const Sidebar = props => {
                 <a href="#">Overview</a>
               </li> */}
               <h3>Type</h3>
-              <Type handleFilter={handleFilter} pokemon={pokemon} />
+              <Type handleTypeFilter={handleTypeFilter} pokemon={pokemon} />
 
               <h3>Price</h3>
 
-              <Price handleFilter={handleFilter} pokemon={pokemon} />
+              <Price handlePriceFilter={handlePriceFilter} pokemon={pokemon} />
 
               <h3>Level</h3>
 
-              <Level handleFilter={handleFilter} pokemon={pokemon} />
+              <Level pokemon={pokemon} />
             </ul>
           </div>
         </div>
