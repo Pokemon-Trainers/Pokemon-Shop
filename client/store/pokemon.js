@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // Action types
 const GET_POKEMON = 'GET_POKEMON';
+const GET_ONE_POKEMON = 'GET_ONE_POKEMON'
 
 // Action creators
 const getPokemon = pokemon => ({
@@ -13,7 +14,6 @@ const getPokemon = pokemon => ({
 export const fetchPokemon = () => {
   return async dispatch => {
     const { data } = await axios.get('/api/pokemon');
-    console.log('pokemon', data);
     dispatch(getPokemon(data));
   };
 };
@@ -22,7 +22,6 @@ export const fetchPokemon = () => {
 const pokemonReducer = (state = [], action) => {
   switch (action.type) {
     case GET_POKEMON:
-      console.log('reducer pokemon', action.pokemon);
       return action.pokemon;
     default:
       return state;
