@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 
+import Searchbar from './Searchbar';
+
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
 
@@ -31,9 +33,8 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
       )}
 
       <div>
-        <form>
-          <input type="text" onChange={handleSearchChange}/>
-        </form>
+        <Searchbar handleSearchChange={handleSearchChange}/>
+
       </div>
     </nav>
     <hr />

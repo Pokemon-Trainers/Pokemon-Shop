@@ -9,7 +9,7 @@ class Searchbar extends React.Component {
     return (
       <div>
         <form>
-        <input type="text" />
+        <input type="text" onChange={this.props.handleSearchChange}/>
         <button type="submit">Search</button>
         </form>
       </div>
