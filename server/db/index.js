@@ -1,6 +1,6 @@
-const db = require('./db');
+const db = require("./db");
 
 // register models
-const { Pokemon, Order } = require('./models');
+require("./models");
 
-module.exports = { db, Pokemon, Order };
+module.exports = db;
