@@ -22,7 +22,7 @@ class Routes extends Component {
 
   MyPokemonList(props) {
     return (
-      <PokemonList search={this.props.search} {...props} />
+      <PokemonList filteredPokemon={this.props.filteredPokemon} {...props} />
     )
   }
 
