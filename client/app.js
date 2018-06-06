@@ -1,29 +1,33 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { Navbar } from "./components";
-import Routes from "./routes";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Navbar } from './components';
+import Routes from './routes';
 
-import { fetchPokemon } from "./store/pokemon";
+import { fetchPokemon } from './store/pokemon';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredPokemon: []
-    }
+      // filteredPokemon: []
+      searchedName: '',
+    };
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
   componentDidMount() {
     this.props.fetchPokemon();
   }
 
-  handleSearchChange (event) {
+  handleSearchChange(event) {
+    // this.setState({
+    //   filteredPokemon: this.props.pokemon.filter(pokemon => pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1)
+    // })
     this.setState({
-      filteredPokemon: this.props.pokemon.filter(pokemon => pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1)
-    })
-    if(this.props.location.pathname !== '/pokemon') {
-      this.props.history.push('/pokemon')
+      searchedName: event.target.value,
+    });
+    if (this.props.location.pathname !== '/pokemon') {
+      this.props.history.push('/pokemon');
     }
   }
 
@@ -31,7 +35,7 @@ class App extends Component {
     return (
       <div>
         <Navbar handleSearchChange={this.handleSearchChange} />
-        <Routes filteredPokemon={this.state.filteredPokemon}/>
+        <Routes searchedName={this.state.searchedName} />
       </div>
     );
   }
@@ -39,13 +43,13 @@ class App extends Component {
 
 const mapState = state => {
   return {
-    pokemon: state.pokemon
-  }
-}
+    pokemon: state.pokemon,
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
-    fetchPokemon: () => dispatch(fetchPokemon())
+    fetchPokemon: () => dispatch(fetchPokemon()),
   };
 };
 
