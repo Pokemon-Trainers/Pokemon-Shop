@@ -1,20 +1,9 @@
-import React from 'react';
+import React from "react";
 
-class Searchbar extends React.Component {
-  constructor () {
-    super()
-  }
-
-  render() {
-    return (
-      <div>
-        <form>
-        <input type="text" />
-        <button type="submit">Search</button>
-        </form>
-      </div>
-    )
-  }
-}
+const Searchbar = props => (
+  <div>
+    <input type="text" onChange={props.handleSearchChange} />
+  </div>
+);
 
 export default Searchbar;

@@ -1,8 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+
+import Searchbar from './Searchbar';
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
   return (
@@ -23,6 +25,9 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
           <div>
             {/* The navbar will show these links after you log in */}
 
+      <div>
+        <Searchbar handleSearchChange={handleSearchChange}/>
+      </div>
             <a href="#" onClick={handleClick}>
               Logout
             </a>

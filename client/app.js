@@ -7,10 +7,10 @@ import Routes from "./routes";
 import { fetchPokemon } from "./store/pokemon";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      search: ''
+      filteredPokemon: props.pokemon || []
     }
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
@@ -20,17 +20,26 @@ class App extends Component {
 
   handleSearchChange (event) {
     this.setState({
-      search: event.target.value
+      filteredPokemon: this.props.pokemon.filter(pokemon => pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1)
     })
+    if(this.props.location.pathname !== '/pokemon') {
+      this.props.history.push('/pokemon')
+    }
   }
 
   render() {
     return (
       <div>
         <Navbar handleSearchChange={this.handleSearchChange} />
-        <Routes search={this.state.search}/>
+        <Routes filteredPokemon={this.state.filteredPokemon}/>
       </div>
     );
+  }
+}
+
+const mapState = state => {
+  return {
+    pokemon: state.pokemon
   }
 }
 
@@ -42,7 +51,7 @@ const mapDispatch = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapState,
     mapDispatch
   )(App)
 );
