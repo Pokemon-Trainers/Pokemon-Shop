@@ -18,7 +18,7 @@ const Price = props => {
   return (
     <div>
       {priceArray.map(singlePrice => (
-        <li key={singlePrice}>
+        <div key={singlePrice}>
           <button
             onClick={() => handlePriceFilter(singlePrice)}
             className="btn btn-outline-primary"
@@ -26,7 +26,7 @@ const Price = props => {
             {' '}
             {singlePrice}{' '}
           </button>
-        </li>
+        </div>
       ))}
     </div>
   );

@@ -24,7 +24,7 @@ const Type = props => {
   return (
     <div>
       {typeArray.map(singleType => (
-        <li key={singleType}>
+        <div key={singleType}>
           <button
             onClick={() => handleTypeFilter(singleType)}
             className="btn btn-outline-primary"
@@ -32,7 +32,7 @@ const Type = props => {
             {' '}
             {singleType}{' '}
           </button>
-        </li>
+        </div>
       ))}
     </div>
   );

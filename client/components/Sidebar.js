@@ -11,25 +11,26 @@ const Sidebar = props => {
       <div className="row ">
         <div className="col-sm-3 col-md-2">
           <div className="d-flex justify-content-end flex-wrap">
-            <h4>Categories</h4>
+            <h3>Categories</h3>
             <ul className="nav-sidebar">
               {/* <li className="active">
                 <a href="#">Overview</a>
               </li> */}
+
               <button
                 onClick={resetFilters}
                 className="btn btn-outline-primary"
               >
                 Reset Filters
               </button>
-              <h3>Type</h3>
+              <h4>Type</h4>
               <Type handleTypeFilter={handleTypeFilter} />
 
-              <h3>Price</h3>
+              <h4>Price</h4>
 
               <Price handlePriceFilter={handlePriceFilter} />
 
-              <h3>Level</h3>
+              <h4>Level</h4>
 
               <Level />
             </ul>
