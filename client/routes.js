@@ -32,8 +32,8 @@ class Routes extends Component {
     return (
       <Switch>
         {/* All Pokemon */}
+        <Route exact path="/pokemon/:id" component={IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
-        {/* <Route exact path="/pokemon/:id" component={IndividualPokemon} /> */}
         {/* <Route exact path="/pokemon/:electric" component={Electric} /> */}
 
         {/* Routes placed here are available to all visitors */}

@@ -51,6 +51,7 @@ class PokemonList extends Component {
   }
 
   render() {
+    console.log(this.props.search);
     const { pokemon } = this.state || this.props;
     return (
       <div className="container">
