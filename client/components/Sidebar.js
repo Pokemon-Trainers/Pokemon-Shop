@@ -11,19 +11,19 @@ const Sidebar = props => {
       <div className="row ">
         <div className="col-sm-3 col-md-2">
           <div className="d-flex justify-content-end flex-wrap">
-            <h4>Categories</h4>
+            <h3>Categories</h3>
             <ul className="nav-sidebar">
               {/* <li className="active">
                 <a href="#">Overview</a>
               </li> */}
-              <h3>Type</h3>
+              <h4>Type</h4>
               <Type handleTypeFilter={handleTypeFilter} pokemon={pokemon} />
 
-              <h3>Price</h3>
+              <h4>Price</h4>
 
               <Price handlePriceFilter={handlePriceFilter} pokemon={pokemon} />
 
-              <h3>Level</h3>
+              <h4>Level</h4>
 
               <Level pokemon={pokemon} />
             </ul>
