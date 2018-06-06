@@ -7,7 +7,7 @@ class PokemonList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: props.filteredPokemon || []
+      pokemon: []
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
@@ -17,6 +17,14 @@ class PokemonList extends Component {
     this.setState({
       pokemon: this.props.pokemon
     });
+  }
+
+  static getDerivedStateFromProps (props, state) {
+    if (props.filteredPokemon.length > 0) {
+      return {pokemon: props.filteredPokemon}
+    } else {
+      return state
+    }
   }
 
   handleTypeFilter(type) {
