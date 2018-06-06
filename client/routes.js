@@ -14,16 +14,29 @@ import IndividualPokemon from "./components/IndividualPokemon";
 class Routes extends Component {
   constructor() {
     super();
+    this.state = {
+      cart: []
+    };
     this.MyPokemonList = this.MyPokemonList.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     this.props.loadInitialData();
   }
 
+  handleClick(evt) {
+    evt.preventDefault();
+    console.log("this is handle click");
+  }
+
   MyPokemonList(props) {
     return (
       <PokemonList filteredPokemon={this.props.filteredPokemon} {...props} />
-    )
+    );
+  }
+
+  MyCart(props) {
+    return <IndividualPokemon {...props} />;
   }
 
   render() {
@@ -32,7 +45,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* All Pokemon */}
-        <Route exact path="/pokemon/:id" component={IndividualPokemon} />
+        <Route exact path="/pokemon/:id" render={this.MyCart} />
         <Route path="/pokemon" render={this.MyPokemonList} />
 
         {/* Routes placed here are available to all visitors */}
