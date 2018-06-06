@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
+
+  return (
   <div>
     <h1>Gotta Adopt 'Em All</h1>
     <nav>
@@ -27,10 +29,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+
+      <div>
+        <form>
+          <input type="text" onChange={handleSearchChange}/>
+        </form>
+      </div>
     </nav>
     <hr />
   </div>
 );
+}
 
 /**
  * CONTAINER

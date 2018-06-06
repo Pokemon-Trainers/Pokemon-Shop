@@ -20,7 +20,6 @@ const typeArray = [
 ];
 
 const Type = props => {
-  console.log(props);
   const { handleTypeFilter } = props;
   return (
     <div>

@@ -12,8 +12,18 @@ import IndividualPokemon from "./components/IndividualPokemon";
  * COMPONENT
  */
 class Routes extends Component {
+  constructor() {
+    super();
+    this.MyPokemonList = this.MyPokemonList.bind(this);
+  }
   componentDidMount() {
     this.props.loadInitialData();
+  }
+
+  MyPokemonList(props) {
+    return (
+      <PokemonList search={this.props.search} {...props} />
+    )
   }
 
   render() {
@@ -22,7 +32,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* All Pokemon */}
-        <Route path="/pokemon" component={PokemonList} />
+        <Route path="/pokemon" render={this.MyPokemonList} />
         {/* <Route exact path="/pokemon/:id" component={IndividualPokemon} /> */}
         {/* <Route exact path="/pokemon/:electric" component={Electric} /> */}
 
