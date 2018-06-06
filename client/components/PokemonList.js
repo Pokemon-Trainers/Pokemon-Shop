@@ -22,8 +22,10 @@ class PokemonList extends Component {
 
   handleSearch() {
     this.setState({
-      pokemon: this.props.pokemon.filter(pokemon => pokemon.name.indexOf(this.props.search) !== -1)
-    })
+      pokemon: this.props.pokemon.filter(
+        pokemon => pokemon.name.indexOf(this.props.search) !== -1
+      )
+    });
   }
 
   handleTypeFilter(type) {
