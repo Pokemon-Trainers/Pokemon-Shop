@@ -1,4 +1,4 @@
-const { db, Pokemon } = require('./index.js');
+const { db, Pokemon, Order } = require('./index.js');
 
 const pokemon = [
   {
@@ -39,10 +39,22 @@ const pokemon = [
   },
 ];
 
+const order  = [
+  {
+    billingName: 'Linda Morales',
+    billingAddress: '123 Fake Street',
+    shippingName: 'Linda Morales',
+    shippingAddress: '123 Fake Street',
+    email: 'email@email.com'
+  }
+]
+
+
 const seed = async () => {
   try {
     await db.sync({ force: true });
     const pokes = await Promise.all(pokemon.map(poke => Pokemon.create(poke)));
+    const orders = await Promise.all(order.map(order => Order.create(order)));
     console.log('Seeding complete');
   } catch (err) {
     console.error('Seeding failed:', err);
