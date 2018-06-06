@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredPokemon: props.pokemon || []
+      filteredPokemon: []
     }
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }

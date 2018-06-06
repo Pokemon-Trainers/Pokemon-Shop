@@ -19,12 +19,8 @@ class PokemonList extends Component {
     });
   }
 
-  static getDerivedStateFromProps (props, state) {
-    if (props.filteredPokemon.length > 0) {
-      return {pokemon: props.filteredPokemon}
-    } else {
-      return state
-    }
+  static getDerivedStateFromProps(props, state) {
+    return { pokemon: props.filteredPokemon };
   }
 
   handleTypeFilter(type) {
@@ -65,7 +61,7 @@ class PokemonList extends Component {
           {/* <div className="col-9 d-flex justify-content-between flex-wrap"> */}{" "}
           {pokemon.length === 0 ? (
             <div className="col-9 d-flex justify-content-start flex-wrap">
-              <h1>No Pokemon this Type!</h1>
+              <h1>No Pokemon Found!</h1>
             </div>
           ) : (
             <div className="col-9 d-flex justify-content-start flex-wrap">
