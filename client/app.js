@@ -20,7 +20,7 @@ class App extends Component {
 
   handleSearchChange (event) {
     this.setState({
-      filteredPokemon: this.props.pokemon.filter(pokemon => pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1)
+      filteredPokemon: this.props.pokemon.filter(pokemon => pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1) // Have a seperate function for filter filter(searchTerm)
     })
     if(this.props.location.pathname !== '/pokemon') {
       this.props.history.push('/pokemon')

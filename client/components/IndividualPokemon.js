@@ -18,12 +18,10 @@ const IndividualPokemon = props => {
       <h3>Price: {pokemon.price} Poké Balls</h3>
       <p>{pokemon.description}</p>
       <div>
-        <form>
-          <input type="number" />
-          <button onClick={props.handleClick} type="button">
-            Add To Cart
-          </button>
-        </form>
+        <input type="number" onChange={props.handleQuantityChange}/>
+        <button type="button" onClick={props.handleClick}>
+          Add To Cart
+        </button>
       </div>
     </div>
   );
