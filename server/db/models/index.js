@@ -12,7 +12,8 @@ const Review = require('./review')
 
 Order.belongsToMany(Pokemon, {as: 'item', through: 'itemsInOrder'});
 Order.belongsTo(User);
-Review.belongsTo(User)
+Review.belongsTo(User);
+Review.belongsTo(Pokemon)
 User.hasMany(Review)
 
 /**

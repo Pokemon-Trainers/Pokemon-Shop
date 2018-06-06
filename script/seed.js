@@ -1,7 +1,7 @@
 "use strict";
 
 const db = require("../server/db");
-const { User, Pokemon, Order } = require("../server/db/models");
+const { User, Pokemon, Order, Review } = require("../server/db/models");
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -63,6 +63,25 @@ const order = [
   }
 ];
 
+const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec elementum lectus. Sed imperdiet ac libero quis mollis. Aenean blandit urna sed sem vestibulum, vitae ultricies sem vulputate. Suspendisse auctor eros lectus, ac lacinia lectus varius nec. Nam sit amet nunc vitae enim scelerisque tristique. Praesent a mauris nec leo venenatis aliquet. Curabitur pretium id risus eget luctus.'
+
+const review = [
+  {
+    rating: 2.5,
+    title: 'Pick another pokemon...',
+    description: lorem,
+    userId: 1,
+    pokemonId: 2
+  },
+  {
+    rating: 5,
+    title: 'Best pokemon ever!',
+    description: lorem,
+    userId: 1,
+    pokemonId: 3
+  }
+]
+
 async function seed() {
   await db.sync({ force: true });
   console.log("db synced!");
@@ -74,6 +93,7 @@ async function seed() {
   ]);
   const pokes = await Promise.all(pokemon.map(poke => Pokemon.create(poke)));
   const orders = await Promise.all(order.map(order => Order.create(order)));
+  const reviews = await Promise.all(review.map(review => Review.create(review)));
   console.log("Seeding complete");
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
