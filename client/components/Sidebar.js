@@ -1,10 +1,10 @@
-import React from "react";
-import Type from "./categories/Type";
-import Price from "./categories/Price";
-import Level from "./categories/Level";
+import React from 'react';
+import Type from './categories/Type';
+import Price from './categories/Price';
+import Level from './categories/Level';
 
 const Sidebar = props => {
-  const { pokemon, handleTypeFilter, handlePriceFilter } = props;
+  const { pokemon, handleTypeFilter, handlePriceFilter, resetFilters } = props;
 
   return (
     <div className="col-1 ">
@@ -16,16 +16,23 @@ const Sidebar = props => {
               {/* <li className="active">
                 <a href="#">Overview</a>
               </li> */}
+
+              <button
+                onClick={resetFilters}
+                className="btn btn-outline-primary"
+              >
+                Reset Filters
+              </button>
               <h4>Type</h4>
-              <Type handleTypeFilter={handleTypeFilter} pokemon={pokemon} />
+              <Type handleTypeFilter={handleTypeFilter} />
 
               <h4>Price</h4>
 
-              <Price handlePriceFilter={handlePriceFilter} pokemon={pokemon} />
+              <Price handlePriceFilter={handlePriceFilter} />
 
               <h4>Level</h4>
 
-              <Level pokemon={pokemon} />
+              <Level />
             </ul>
           </div>
         </div>
