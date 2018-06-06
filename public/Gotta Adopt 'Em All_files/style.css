@@ -4,7 +4,6 @@ body {
 
 a {
   text-decoration: none;
-  color: #000000;
 }
 
 a:hover {
@@ -132,6 +131,13 @@ img.poke {
   border-radius: 5px;
 }
 
+.logo-ball {
+  width: 100px;
+  position: absolute;
+  left: 550px;
+  z-index: 0;
+}
+
 .header {
   font-style: italic;
   display: inline;
@@ -140,26 +146,11 @@ img.poke {
 
 .page-header {
   padding: 20px;
-  background: linear-gradient(
-    rgba(20, 20, 20, 0.5),
-    rgba(20, 20, 20, 0.5)),
-    url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
-  /* background-image: url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg"); */
   background-color: #f2f295;
-  width: 200%;
-  height: 150px;
 }
 
-.page-header img {
-  position: relative;
-  /* top: 60px; */
-  left: 20px;
-  z-index: 1;
-}
-
-.page-header Link {
-  border: none;
-  background-color: white;
+.page-header .logo {
+  padding-left: 40px;
 }
 
 .login {
@@ -192,9 +183,4 @@ img.poke {
   font-weight: 700;
   color: #ff890e;
   font-size: 18px;
-}
-
-.method {
-  display: flex;
-  /* justify-content: flex-end; */
 }
