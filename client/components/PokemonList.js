@@ -7,11 +7,10 @@ class PokemonList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: props.pokemon || []
+      pokemon: []
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -20,12 +19,12 @@ class PokemonList extends Component {
     });
   }
 
-  handleSearch() {
-    this.setState({
-      pokemon: this.props.pokemon.filter(
-        pokemon => pokemon.name.indexOf(this.props.search) !== -1
-      )
-    });
+  static getDerivedStateFromProps (props, state) {
+    if (props.filteredPokemon.length > 0) {
+      return {pokemon: props.filteredPokemon}
+    } else {
+      return state
+    }
   }
 
   handleTypeFilter(type) {
@@ -53,6 +52,7 @@ class PokemonList extends Component {
   }
 
   render() {
+    console.log(this.props.search);
     const { pokemon } = this.state || this.props;
     return (
       <div className="container">
