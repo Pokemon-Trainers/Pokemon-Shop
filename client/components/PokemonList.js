@@ -1,64 +1,105 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PokemonCard from "./PokemonCard";
-import Sidebar from "./Sidebar";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PokemonCard from './PokemonCard';
+import Sidebar from './Sidebar';
 
 class PokemonList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: []
+      // pokemon: []
+      typeFilter: null,
+      levelFilter: null,
+      priceFilter: null,
+      nameFilter: null,
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      pokemon: this.props.pokemon
-    });
+    this.resetFilters = this.resetFilters.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
-    return { pokemon: props.filteredPokemon };
+    return { nameFilter: props.searchedName };
   }
 
+  // State Setters
+
   handleTypeFilter(type) {
+    this.resetFilters();
     this.setState({
-      pokemon:
-        type === "Reset Filter"
-          ? this.props.pokemon
-          : this.props.pokemon.filter(
-              pokemon => pokemon.type.indexOf(type) > -1
-            )
+      typeFilter: type,
     });
   }
   handlePriceFilter(priceRange) {
-    let arr = priceRange.split(/[\s-]+/);
+    this.resetFilters();
     this.setState({
-      pokemon:
-        priceRange === "Reset Filter"
-          ? this.props.pokemon
-          : this.props.pokemon.filter(
-              pokemon =>
-                pokemon.price >= Number(arr[0]) &&
-                pokemon.price <= Number(arr[1])
-            )
+      priceFilter: priceRange,
     });
   }
 
+  resetFilters() {
+    this.setState({
+      typeFilter: null,
+      levelFilter: null,
+      priceFilter: null,
+      nameFilter: null,
+    });
+  }
+
+  // Filter methods
+
+  filterType() {
+    return this.props.pokemon.filter(
+      poke => poke.type.indexOf(this.state.typeFilter) > -1
+    );
+  }
+  filterLevel() {
+    return this.props.pokemon.filter(
+      poke => poke.type.indexOf(this.state.typeFilter) > -1
+    );
+  }
+  filterPrice() {
+    let arr = this.state.priceFilter.split(/[\s-]+/);
+    return this.props.pokemon.filter(
+      poke => poke.price >= Number(arr[0]) && poke.price <= Number(arr[1])
+    );
+  }
+  filterName() {
+    return this.props.pokemon.filter(
+      poke =>
+        poke.name
+          .toLowerCase()
+          .indexOf(this.props.searchedName.toLowerCase()) !== -1
+    );
+  }
+
+  currentPokemon() {
+    let pokemon = this.props.pokemon;
+    if (this.state.typeFilter) {
+      pokemon = this.filterType();
+    }
+    if (this.state.levelFilter) {
+      pokemon = this.filterLevel();
+    }
+    if (this.state.priceFilter) {
+      pokemon = this.filterPrice();
+    }
+    if (this.state.nameFilter) {
+      pokemon = this.filterName();
+    }
+    return pokemon;
+  }
+
   render() {
-    console.log(this.props.search);
-    const { pokemon } = this.state || this.props;
+    const pokemon = this.currentPokemon();
     return (
       <div className="container">
         <div className="row">
           <Sidebar
             handleTypeFilter={this.handleTypeFilter}
             handlePriceFilter={this.handlePriceFilter}
-            pokemon={pokemon}
+            resetFilters={this.resetFilters}
           />
-          {/* <div className="col-9 d-flex justify-content-between flex-wrap"> */}{" "}
           {pokemon.length === 0 ? (
             <div className="col-9 d-flex justify-content-start flex-wrap">
               <h1>No Pokemon Found!</h1>
@@ -80,7 +121,7 @@ class PokemonList extends Component {
 
 const mapState = state => {
   return {
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 

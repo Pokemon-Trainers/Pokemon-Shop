@@ -1,29 +1,39 @@
 import axios from "axios";
 
 // Action types
-const ADD_ITEM = "ADD_ITEM ";
-const REMOVE_ITEM = "REMOVE_ITEM";
-const EDIT_QTY = "EDIT_QTY";
-const CHECKOUT = "CHECKOUT";
+
+const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const CLEAR_CART = "CLEAR_CART";
+const SET_CART = "SET_CART";
 
 // Action creators
-const addItem = (item, qty) => ({
-  type: ADD_ITEM,
-  item,
+const setCart = (itemId, qty) => ({
+  type: SET_CART,
+  itemId,
   qty
 });
 
+const clearCart = () => ({
+  type: CLEAR_CART
+});
 // Thunk
 
 // Reducer
 
-const cartReducer = (state = {}, action) => {
+const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case ADD_ITEM:
-      return {
-        ...state,
-        items: state.items
-      };
+    case SET_CART:
+      return state
+        .map(item => {
+          if (action.itemId === item.itemId) {
+            return { ...item, qty: action.qty };
+          }
+          return { ...item };
+        })
+        .filter(item => item.qty !== 0);
+
+    case CLEAR_CART:
+      return [];
     default:
       return state;
   }

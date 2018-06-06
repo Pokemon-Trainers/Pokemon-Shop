@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Searchbar = props => (
   <div className="row search-container">
