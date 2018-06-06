@@ -44,6 +44,7 @@ class PokemonList extends Component {
   }
 
   render() {
+    console.log('PokemonList====', this.props)
     const { pokemon } = this.state || this.props;
     return (
       <div className="container">

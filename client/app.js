@@ -22,13 +22,13 @@ class App extends Component {
     this.setState({
       search: event.target.value
     })
-    console.log(this.state.search)
   }
+
   render() {
     return (
       <div>
-        <Navbar handleSearchChange={this.handleSearchChange}/>
-        <Routes />
+        <Navbar handleSearchChange={this.handleSearchChange} />
+        <Routes search={this.state.search}/>
       </div>
     );
   }

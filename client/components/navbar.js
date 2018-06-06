@@ -33,7 +33,6 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
       <div>
         <form>
           <input type="text" onChange={handleSearchChange}/>
-          <button type="submit">Search</button>
         </form>
       </div>
     </nav>
