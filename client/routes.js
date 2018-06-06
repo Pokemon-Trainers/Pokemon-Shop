@@ -18,15 +18,20 @@ class Routes extends Component {
       cart: [],
     };
     this.MyPokemonList = this.MyPokemonList.bind(this);
+    this.MyCart = this.MyCart.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
   }
   componentDidMount() {
     this.props.loadInitialData();
   }
 
+  handleQuantityChange(event) {
+    const quantity = event.target.value;
+  }
+
   handleClick(evt) {
     evt.preventDefault();
-    console.log('this is handle click');
   }
 
   MyPokemonList(props) {
@@ -34,7 +39,7 @@ class Routes extends Component {
   }
 
   MyCart(props) {
-    return <IndividualPokemon {...props} />;
+    return <IndividualPokemon handleClick={this.handleClick} handleQuantityChange={this.handleQuantityChange} {...props} />;
   }
 
   render() {

@@ -3,6 +3,7 @@ module.exports = router;
 
 router.use('/users', require('./users'));
 router.use('/pokemon', require('./pokemon'));
+router.use('/review', require('./review'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');
