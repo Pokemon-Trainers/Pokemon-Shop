@@ -20,11 +20,7 @@ class PokemonList extends Component {
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.filteredPokemon.length > 0) {
-      return {pokemon: props.filteredPokemon}
-    } else {
-      return state
-    }
+    return {pokemon: props.filteredPokemon}
   }
 
   handleTypeFilter(type) {

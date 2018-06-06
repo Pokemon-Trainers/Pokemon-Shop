@@ -11,7 +11,8 @@ const IndividualPokemon = props => {
       <h1>{pokemon.name}</h1>
       <h3>Type: </h3>
       <ul>
-        {pokemon.type && pokemon.type.map((type, key) => <li key={key}>{type}</li>)}
+        {pokemon.type &&
+          pokemon.type.map((type, key) => <li key={key}>{type}</li>)}
       </ul>
       <h3>Level: {pokemon.level}</h3>
       <h3>Price: {pokemon.price} Poké Balls</h3>
@@ -19,7 +20,9 @@ const IndividualPokemon = props => {
       <div>
         <form>
           <input type="number" />
-          <button type="button">Add To Cart</button>
+          <button onClick={props.handleClick} type="button">
+            Add To Cart
+          </button>
         </form>
       </div>
     </div>
