@@ -1,9 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { removeFromCart, addToCart } from "../../store/cart";
+import React from 'react';
+import { connect } from 'react-redux';
+import { removeFromCart, addToCart } from '../../store/cart';
 
 const CartItem = ({ cart, pokemon, handleMinus, handlePlus }) => {
-  console.log("this is cart", handleMinus, handlePlus);
   const id = cart.itemId;
   return (
     <div className="container">
@@ -35,7 +34,7 @@ const CartItem = ({ cart, pokemon, handleMinus, handlePlus }) => {
                       </button>
                     </div>
                   ) : (
-                    ""
+                    ''
                   )}
                 </div>
               ))}
@@ -50,7 +49,7 @@ const CartItem = ({ cart, pokemon, handleMinus, handlePlus }) => {
 const mapPropToCart = state => {
   return {
     cart: state.cart,
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 
@@ -61,7 +60,7 @@ const mapDispatchToCart = dispatch => {
     },
     handlePlus(itemId, qty) {
       dispatch(addToCart(itemId, qty));
-    }
+    },
   };
 };
 
