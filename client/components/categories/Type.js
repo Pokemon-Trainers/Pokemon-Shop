@@ -26,6 +26,7 @@ const Type = props => {
       {typeArray.map(singleType => (
         <div key={singleType}>
           <button
+            id="types"
             onClick={() => handleTypeFilter(singleType)}
             // className="btn btn-outline-primary"
             type="button"

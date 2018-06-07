@@ -36,6 +36,7 @@ const Sidebar = props => {
                 <button
                   type="button"
                   className="btn btn-link"
+                  id="Type"
                   onClick={toggleTypeHidden}
                 >
                   Type (15)
@@ -47,6 +48,7 @@ const Sidebar = props => {
                 <button
                   type="button"
                   className="btn btn-link"
+                  id="Type"
                   onClick={togglePriceHidden}
                 >
                   Price (10)
