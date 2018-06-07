@@ -6,11 +6,14 @@ import { logout } from "../store";
 
 import Searchbar from "./Searchbar";
 
-const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
+const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
-    <div>
+    <div className="mb-4">
       <div className="page-header">
-        <img src="https://fontmeme.com/permalink/180606/ab7190a3c1ba8d6d6d1093d8c52c9e38.png" />
+        <img
+          className="img img-fluid"
+          src="https://fontmeme.com/permalink/180606/ab7190a3c1ba8d6d6d1093d8c52c9e38.png"
+        />
 
         <div className="method">
           {isLoggedIn ? (
@@ -31,7 +34,11 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
               >
                 Login
               </Link>
-              <Link className="login" to="/signup" style={{ backgroundColor: "#FFFFFF", border: "none" }}>
+              <Link
+                className="login"
+                to="/signup"
+                style={{ backgroundColor: "#FFFFFF", border: "none" }}
+              >
                 Sign Up
               </Link>
             </div>
@@ -44,17 +51,19 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
         <Link to="/pokemon">Pokemon</Link>
 
         <Searchbar handleSearchChange={handleSearchChange} />
+        <Link to="/cart">
+          <button className="cart-button">
+            <div className="nav-cart">
+              <img
+                className="cart-icon"
+                src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
+              />
 
-        <div className="nav-cart">
-          <img
-            className="cart-icon"
-            src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
-          />
-          <span className="quantity-count">0</span>
-        </div>
+              <span className="quantity-count">{total}</span>
+            </div>
+          </button>
+        </Link>
       </nav>
-
-      <hr />
     </div>
   );
 };

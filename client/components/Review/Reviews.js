@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import Review from "./Review";
+import Review from './Review';
 
 class Reviews extends React.Component {
   render() {
@@ -13,7 +13,13 @@ class Reviews extends React.Component {
       ) || [];
 
     if (filteredReviews.length === 0) {
-      return <div>There are no reviews...</div>;
+      return (
+        <div>
+          <h2>Reviews</h2>
+          <hr />
+          <p>There are no reviews...</p>
+        </div>
+      );
     }
 
     return (
@@ -29,7 +35,7 @@ class Reviews extends React.Component {
 
 const mapState = (state, ownProps) => {
   return {
-    reviews: state.reviews
+    reviews: state.reviews,
     // filteredReview: state.reviews.find(review => ownProps.selectedPokemon.id === review.pokemonId)
   };
 };

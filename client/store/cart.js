@@ -7,7 +7,7 @@ const CLEAR_CART = "CLEAR_CART";
 const SET_CART = "SET_CART";
 
 // Action creators
-const setCart = (itemId, qty) => ({
+export const setCart = (itemId, qty) => ({
   type: SET_CART,
   itemId,
   qty
@@ -21,16 +21,22 @@ const clearCart = () => ({
 // Reducer
 
 const cartReducer = (state = [], action) => {
+  console.log("state on cart", state);
   switch (action.type) {
     case SET_CART:
-      return state
-        .map(item => {
-          if (action.itemId === item.itemId) {
-            return { ...item, qty: action.qty };
-          }
-          return { ...item };
-        })
-        .filter(item => item.qty !== 0);
+      console.log("We are setting cart", state, action);
+      if (state.find(item => item.itemId === action.itemId)) {
+        return state
+          .map(item => {
+            if (action.itemId === item.itemId) {
+              return { ...item, qty: action.qty };
+            }
+            return { ...item };
+          })
+          .filter(item => item.qty !== 0);
+      } else {
+        return [...state, { itemId: action.itemId, qty: action.qty }];
+      }
 
     case CLEAR_CART:
       return [];

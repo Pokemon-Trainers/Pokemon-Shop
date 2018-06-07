@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PokemonCard = props => {
   const { pokemon } = props;
@@ -10,7 +10,7 @@ const PokemonCard = props => {
           <h2>{pokemon.name}</h2>
         </div>
         <div>
-          <img src={pokemon.imageUrl} className="img-fluid p-3 mb-3 poke" />
+          <img src={pokemon.imageUrl} className="img img-fluid p-3 mb-3 poke" />
         </div>
         <div className="row">
           <div className="col">
@@ -25,7 +25,7 @@ const PokemonCard = props => {
           </div>
           <div className="col p-0">
             <p>
-              Price: {pokemon.price}{" "}
+              Price: {pokemon.price}{' '}
               <img className="currency img-fluid" src="/PokeBallCurrency.png" />
             </p>
           </div>
