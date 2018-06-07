@@ -76,7 +76,7 @@ const IndividualPokemon = props => {
         </div>
       </div>
       <div className="row">
-        <Review selectedPokemon={pokemon} />
+        <Review selectedPokemon={pokemon} reviews={filteredReviews}/>
       </div>
     </div>
   );

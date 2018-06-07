@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS'
+const ADD_REVIEW = 'ADD_REVIEW'
 
 const getAllReviews = reviews => {
   return {
@@ -8,6 +9,8 @@ const getAllReviews = reviews => {
     reviews
   }
 }
+
+const addReview = review =
 
 export const fetchReviews = () => {
   return async dispatch => {
