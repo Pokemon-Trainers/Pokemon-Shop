@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
 const CartItem = ({ cart, pokemon }) => {
-  console.log("this is cart", cart);
+  console.log('this is cart', cart);
   const id = cart.itemId;
   return (
     <div className="container">
@@ -19,7 +19,7 @@ const CartItem = ({ cart, pokemon }) => {
                       <span>Price: {poke.price}</span>
                     </div>
                   ) : (
-                    ""
+                    ''
                   )}
                 </div>
               ))}
@@ -35,7 +35,7 @@ const CartItem = ({ cart, pokemon }) => {
 const mapPropToCart = state => {
   return {
     cart: state.cart,
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 
