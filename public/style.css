@@ -140,9 +140,7 @@ img.poke {
 
 .page-header {
   padding: 20px;
-  background: linear-gradient(
-    rgba(20, 20, 20, 0.5),
-    rgba(20, 20, 20, 0.5)),
+  background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
     url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
   background-size: cover;
   background-color: #f2f295;
@@ -157,7 +155,7 @@ img.poke {
   z-index: 1;
 }
 
-.page-header Link {
+.page-header link {
   border: none;
   background-color: white;
 }
@@ -197,4 +195,14 @@ img.poke {
 .method {
   display: flex;
   /* justify-content: flex-end; */
+}
+
+.cart-button {
+  padding: 15px;
+  background-color: #e3f2fd;
+  border: none;
+}
+
+#Type {
+  font-size: 30px;
 }
