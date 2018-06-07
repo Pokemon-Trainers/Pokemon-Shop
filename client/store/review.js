@@ -10,7 +10,12 @@ const getAllReviews = reviews => {
   }
 }
 
-const addReview = review =
+const addReview = review => {
+  return {
+    type: ADD_REVIEW,
+    review
+  }
+}
 
 export const fetchReviews = () => {
   return async dispatch => {
@@ -19,10 +24,19 @@ export const fetchReviews = () => {
   }
 }
 
+export const createReview = () => {
+  return async dispatch => {
+    const {data} = await axios.put('api/review', review);
+    dispatch(addReview(data))
+  }
+}
+
 const reviewReducer = (state = [], action) => {
   switch (action.type) {
     case GET_ALL_REVIEWS:
       return action.reviews;
+    case ADD_REVIEW:
+      return [...state, action.review]
     default:
       return state
   }
