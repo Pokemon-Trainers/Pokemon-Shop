@@ -1,16 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
 
-import Searchbar from "./Searchbar";
+import Searchbar from './Searchbar';
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
     <div>
       <div className="page-header">
-        <img src="https://fontmeme.com/permalink/180606/ab7190a3c1ba8d6d6d1093d8c52c9e38.png" />
+        <img
+          className="img img-fluid"
+          src="https://fontmeme.com/permalink/180606/ab7190a3c1ba8d6d6d1093d8c52c9e38.png"
+        />
 
         <div className="method">
           {isLoggedIn ? (
@@ -27,14 +30,14 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
               <Link
                 className="login"
                 to="/login"
-                style={{ backgroundColor: "#FFFFFF", border: "none" }}
+                style={{ backgroundColor: '#FFFFFF', border: 'none' }}
               >
                 Login
               </Link>
               <Link
                 className="login"
                 to="/signup"
-                style={{ backgroundColor: "#FFFFFF", border: "none" }}
+                style={{ backgroundColor: '#FFFFFF', border: 'none' }}
               >
                 Sign Up
               </Link>
@@ -68,7 +71,7 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   };
 };
 
@@ -76,7 +79,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
-    }
+    },
   };
 };
 
@@ -90,5 +93,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };
