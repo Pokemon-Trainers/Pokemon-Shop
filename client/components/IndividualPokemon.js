@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { render } from "react-dom";
 import ReactStars from "react-stars";
 
-import Review from "./Review/Reviews";
+import Reviews from "./Review/Reviews";
 
 const averageRating = reviews => {
   const ratingsTotal = reviews
@@ -76,7 +76,7 @@ const IndividualPokemon = props => {
         </div>
       </div>
       <div className="row">
-        <Review selectedPokemon={pokemon} reviews={filteredReviews}/>
+        <Reviews selectedPokemon={pokemon} reviews={filteredReviews}/>
       </div>
     </div>
   );
