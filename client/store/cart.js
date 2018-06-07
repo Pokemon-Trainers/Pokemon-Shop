@@ -21,7 +21,6 @@ const clearCart = () => ({
 // Reducer
 
 const cartReducer = (state = [], action) => {
-  console.log("state on cart", state);
   switch (action.type) {
     case SET_CART:
       console.log("We are setting cart", state, action);

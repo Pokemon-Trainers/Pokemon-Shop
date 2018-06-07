@@ -26,7 +26,7 @@ class Reviews extends React.Component {
       <div>
         <h2>Reviews</h2>
         {filteredReviews.map((review, key) => (
-          <Review key={key} review={review} />
+          <Review key={key} review={review} reviews={filteredReviews} />
         ))}
       </div>
     );
@@ -36,7 +36,6 @@ class Reviews extends React.Component {
 const mapState = (state, ownProps) => {
   return {
     reviews: state.reviews,
-    // filteredReview: state.reviews.find(review => ownProps.selectedPokemon.id === review.pokemonId)
   };
 };
 
