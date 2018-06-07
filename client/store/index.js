@@ -5,11 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import user from "./user";
 import pokemonReducer from "./pokemon";
 import cartReducer from "./cart";
+import reviewReducer from './review'
 
 const reducer = combineReducers({
   user: user,
   pokemon: pokemonReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  reviews: reviewReducer
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
