@@ -18,10 +18,10 @@ const addReview = review => {
   }
 }
 
-const deleteReview = review => {
+const deleteReview = reviewId => {
   return {
     type: DELETE_REVIEW,
-    review
+    reviewId
   }
 }
 
@@ -39,10 +39,10 @@ export const createReview = review => {
   }
 }
 
-export const removeReview = review => {
+export const removeReview = reviewId => {
   return async dispatch => {
-    await axios.delete(`/api/review/${review.id}`);
-    dispatch(deleteReview(review))
+    await axios.delete(`/api/review/${reviewId}`);
+    dispatch(deleteReview(reviewId))
   }
 }
 
@@ -53,7 +53,7 @@ const reviewReducer = (state = [], action) => {
     case ADD_REVIEW:
       return [...state, action.review];
     case DELETE_REVIEW:
-      return this.state.filter(review => review.id !== action.review.id)
+      return state.filter(review => review.id !== action.reviewId)
     default:
       return state
   }
