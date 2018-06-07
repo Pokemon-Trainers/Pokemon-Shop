@@ -6,6 +6,7 @@ import Routes from "./routes";
 import { setCart } from "./store/cart";
 
 import { fetchPokemon } from "./store/pokemon";
+import { fetchReviews } from "./store/review";
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
   }
   componentDidMount() {
     this.props.fetchPokemon();
+    this.props.fetchReviews();
   }
 
   handleSearchChange(event) {
@@ -85,9 +87,12 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchPokemon: () => dispatch(fetchPokemon()),
+
     addPokemontoCart(itemId, qty) {
       dispatch(setCart(itemId, qty));
-    }
+    },
+
+    fetchReviews: () => dispatch(fetchReviews())
   };
 };
 

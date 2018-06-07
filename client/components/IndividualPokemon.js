@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import Review from "./Review/Reviews";
+
 const IndividualPokemon = props => {
   const pokemon = props.selectedPokemon || {};
   const loading = <p>This page is either loading or not available...</p>;
@@ -18,11 +20,13 @@ const IndividualPokemon = props => {
       <h3>Price: {pokemon.price} Poké Balls</h3>
       <p>{pokemon.description}</p>
       <div>
-        <input type="number" onChange={props.handleQuantityChange} />
+        <input type="number" min="0" onChange={props.handleQuantityChange} />
         <button type="button" onClick={props.handleClick}>
           Add To Cart
         </button>
       </div>
+
+      <Review selectedPokemon={pokemon} />
     </div>
   );
   return <div>{pokemon.id ? loaded : loading}</div>;

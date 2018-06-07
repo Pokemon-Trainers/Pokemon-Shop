@@ -144,7 +144,7 @@ img.poke {
     rgba(20, 20, 20, 0.5),
     rgba(20, 20, 20, 0.5)),
     url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
-  /* background-image: url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg"); */
+  background-size: cover;
   background-color: #f2f295;
   width: 200%;
   height: 150px;
