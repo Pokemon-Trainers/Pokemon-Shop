@@ -122,7 +122,7 @@ class PokemonList extends Component {
           />
           {pokemon.length === 0 ? (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <h1>No Pokemon Found!</h1>
+              <p>This page is either loading or there are no Pokemon found...</p>
             </div>
           ) : (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">

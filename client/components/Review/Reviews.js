@@ -5,12 +5,8 @@ import Review from './Review';
 
 class Reviews extends React.Component {
   render() {
-    const reviews = this.props.reviews;
+    const reviews = props.reviews;
 
-    const filteredReviews =
-      reviews.filter(
-        review => review.pokemonId === this.props.selectedPokemon.id
-      ) || [];
 
     if (filteredReviews.length === 0) {
       return (
@@ -26,18 +22,11 @@ class Reviews extends React.Component {
       <div>
         <h2>Reviews</h2>
         {filteredReviews.map((review, key) => (
-          <Review key={key} review={review} />
+          <Review key={key} review={review} reviews={filteredReviews} />
         ))}
       </div>
     );
   }
 }
 
-const mapState = (state, ownProps) => {
-  return {
-    reviews: state.reviews,
-    // filteredReview: state.reviews.find(review => ownProps.selectedPokemon.id === review.pokemonId)
-  };
-};
-
-export default connect(mapState)(Reviews);
+export default Reviews;
