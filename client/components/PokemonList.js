@@ -121,16 +121,21 @@ class PokemonList extends Component {
             priceHidden={this.state.priceHidden}
           />
           {pokemon.length === 0 ? (
-            <div className="col-9 d-flex justify-content-start flex-wrap">
+            <div className="col-9 col-sm-7 col-md-9 mx-auto">
               <h1>No Pokemon Found!</h1>
             </div>
           ) : (
-            <div className="col-9 d-flex justify-content-start flex-wrap">
-              {pokemon.map(poke => (
-                <div className="col-4 p-0" key={poke.id}>
-                  <PokemonCard pokemon={poke} />
-                </div>
-              ))}
+            <div className="col-9 col-sm-7 col-md-9 mx-auto">
+              <div className="row">
+                {pokemon.map(poke => (
+                  <div
+                    className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
+                    key={poke.id}
+                  >
+                    <PokemonCard pokemon={poke} />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

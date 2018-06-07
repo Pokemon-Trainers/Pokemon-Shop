@@ -1,5 +1,5 @@
 body {
-  font-family: "Arvo", serif;
+  font-family: 'Arvo', serif;
 }
 
 a {
@@ -31,14 +31,14 @@ form div {
 }
 
 .pokeCard::after {
-  content: "";
+  content: '';
   z-index: -1;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url("pokemonCardBackgroundGray.png");
+  background-image: url('pokemonCardBackgroundGray.png');
   background-size: contain;
   opacity: 0.4;
 }
@@ -141,10 +141,10 @@ img.poke {
 .page-header {
   padding: 20px;
   background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
-    url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
+    url('https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg');
   background-size: cover;
   background-color: #f2f295;
-  width: 200%;
+  width: 100%;
   height: 150px;
 }
 
