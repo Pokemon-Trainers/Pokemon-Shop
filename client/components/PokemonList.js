@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PokemonCard from './PokemonCard';
-import Sidebar from './Sidebar';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PokemonCard from "./PokemonCard";
+import Sidebar from "./Sidebar";
 
 class PokemonList extends Component {
   constructor(props) {
@@ -12,10 +12,14 @@ class PokemonList extends Component {
       levelFilter: null,
       priceFilter: null,
       nameFilter: null,
+      typeHidden: true,
+      priceHidden: true
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
     this.resetFilters = this.resetFilters.bind(this);
+    this.toggleTypeHidden = this.toggleTypeHidden.bind(this);
+    this.togglePriceHidden = this.togglePriceHidden.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -27,13 +31,13 @@ class PokemonList extends Component {
   handleTypeFilter(type) {
     this.resetFilters();
     this.setState({
-      typeFilter: type,
+      typeFilter: type
     });
   }
   handlePriceFilter(priceRange) {
     this.resetFilters();
     this.setState({
-      priceFilter: priceRange,
+      priceFilter: priceRange
     });
   }
 
@@ -42,7 +46,18 @@ class PokemonList extends Component {
       typeFilter: null,
       levelFilter: null,
       priceFilter: null,
-      nameFilter: null,
+      nameFilter: null
+    });
+  }
+
+  toggleTypeHidden() {
+    this.setState({
+      typeHidden: !this.state.typeHidden
+    });
+  }
+  togglePriceHidden() {
+    this.setState({
+      priceHidden: !this.state.priceHidden
     });
   }
 
@@ -92,6 +107,7 @@ class PokemonList extends Component {
 
   render() {
     const pokemon = this.currentPokemon();
+
     return (
       <div className="container">
         <div className="row">
@@ -99,6 +115,10 @@ class PokemonList extends Component {
             handleTypeFilter={this.handleTypeFilter}
             handlePriceFilter={this.handlePriceFilter}
             resetFilters={this.resetFilters}
+            toggleTypeHidden={this.toggleTypeHidden}
+            typeHidden={this.state.typeHidden}
+            togglePriceHidden={this.togglePriceHidden}
+            priceHidden={this.state.priceHidden}
           />
           {pokemon.length === 0 ? (
             <div className="col-9 d-flex justify-content-start flex-wrap">
@@ -121,7 +141,7 @@ class PokemonList extends Component {
 
 const mapState = state => {
   return {
-    pokemon: state.pokemon,
+    pokemon: state.pokemon
   };
 };
 
