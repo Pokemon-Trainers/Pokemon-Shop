@@ -8,7 +8,7 @@ import Searchbar from './Searchbar';
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
-    <div>
+    <div className="mb-4">
       <div className="page-header">
         <img
           className="img img-fluid"
@@ -62,8 +62,6 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
           </div>
         </button>
       </nav>
-
-      <hr />
     </div>
   );
 };
