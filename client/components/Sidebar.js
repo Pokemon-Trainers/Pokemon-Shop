@@ -1,7 +1,7 @@
-import React from "react";
-import Type from "./categories/Type";
-import Price from "./categories/Price";
-import Level from "./categories/Level";
+import React from 'react';
+import Type from './categories/Type';
+import Price from './categories/Price';
+import Level from './categories/Level';
 
 const Sidebar = props => {
   const {
@@ -12,55 +12,43 @@ const Sidebar = props => {
     toggleTypeHidden,
     typeHidden,
     priceHidden,
-    togglePriceHidden
+    togglePriceHidden,
   } = props;
 
   return (
-    <div className="col-1 ">
+    <div className="col-sm-5 col-md-3 d-none d-sm-block">
       <div className="row ">
-        <div className="col-sm-3 col-md-2">
-          <div className=" d-flex justify-content-end flex-wrap">
-            <h3>Categories</h3>
-            <ul className="nav-sidebar">
-              {/* <li className="active">
-                <a href="#">Overview</a>
-              </li> */}
+        <div className="col-12">
+          <h3>Categories</h3>
+          <div className="nav-sidebar mx-auto">
+            <button
+              onClick={resetFilters}
+              className="btn btn-outline-primary mx-auto"
+            >
+              Reset Filters
+            </button>
+            <button
+              type="button"
+              className="btn btn-link"
+              id="Type"
+              onClick={toggleTypeHidden}
+            >
+              Type (15)
+            </button>
+            {!typeHidden && <Type handleTypeFilter={handleTypeFilter} />}
 
-              <button
-                onClick={resetFilters}
-                className="btn btn-outline-primary"
-              >
-                Reset Filters
-              </button>
-              <h4>
-                <button
-                  type="button"
-                  className="btn btn-link"
-                  id="Type"
-                  onClick={toggleTypeHidden}
-                >
-                  Type (15)
-                </button>
-              </h4>
-              {!typeHidden && <Type handleTypeFilter={handleTypeFilter} />}
+            <button
+              type="button"
+              className="btn btn-link"
+              id="Type"
+              onClick={togglePriceHidden}
+            >
+              Price (10)
+            </button>
 
-              <h4>
-                <button
-                  type="button"
-                  className="btn btn-link"
-                  id="Type"
-                  onClick={togglePriceHidden}
-                >
-                  Price (10)
-                </button>
-              </h4>
+            {!priceHidden && <Price handlePriceFilter={handlePriceFilter} />}
 
-              {!priceHidden && <Price handlePriceFilter={handlePriceFilter} />}
-
-              <h4>Level</h4>
-
-              <Level />
-            </ul>
+            <Level />
           </div>
         </div>
       </div>
