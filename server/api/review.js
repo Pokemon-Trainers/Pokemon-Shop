@@ -21,4 +21,12 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+// router.delete('/', async (req, res, next) => {
+//   try {
+
+//   } catch (error) {
+    
+//   }
+// })
+
 module.exports = router;

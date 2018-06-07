@@ -9,7 +9,7 @@ const Review = props => {
     <div className="individual-review">
       <ReactStars
         count={5}
-        value={review.rating}
+        value={Number(review.rating)}
         size={24}
         edit={false}
         color2={"#ffd700"}

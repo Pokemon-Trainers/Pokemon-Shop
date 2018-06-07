@@ -34,6 +34,8 @@ class Reviews extends React.Component {
           <h2>Reviews</h2>
           <hr />
           <p>There are no reviews...</p>
+          <button type="button" onClick={this.handleToggle}>Submit a Review</button>
+          {this.state.toggleAddReview && <AddReview pokemon={this.props.selectedPokemon} />}
         </div>
       );
     }

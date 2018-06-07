@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { render } from "react-dom";
 import ReactStars from "react-stars";
+import {Link} from 'react-router-dom'
+
 import { createReview } from "../../store/review";
 
 class AddReview extends React.Component {
@@ -11,7 +13,8 @@ class AddReview extends React.Component {
       title: "",
       desription: "",
       rating: 0,
-      pokemonId: 0
+      pokemonId: 0,
+      userId: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +23,8 @@ class AddReview extends React.Component {
 
   componentDidMount() {
     this.setState({
-      pokemonId: this.props.pokemon.id
+      pokemonId: this.props.pokemon.id,
+      userId: this.props.user.id
     })
   }
 
@@ -48,6 +52,10 @@ class AddReview extends React.Component {
   }
 
   render() {
+
+    if (Object.keys(this.props.user).length === 0) {
+      return (<div><Link to="/login">Log in to write a review...</Link></div>)
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -80,12 +88,18 @@ class AddReview extends React.Component {
   }
 }
 
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+
 const mapDispatch = dispatch => {
   return {
     createReview: review => dispatch(createReview(review))
   };
 };
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(AddReview);
