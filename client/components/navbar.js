@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
 
-import Searchbar from './Searchbar';
+import Searchbar from "./Searchbar";
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
@@ -30,14 +30,14 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
               <Link
                 className="login"
                 to="/login"
-                style={{ backgroundColor: '#FFFFFF', border: 'none' }}
+                style={{ backgroundColor: "#FFFFFF", border: "none" }}
               >
                 Login
               </Link>
               <Link
                 className="login"
                 to="/signup"
-                style={{ backgroundColor: '#FFFFFF', border: 'none' }}
+                style={{ backgroundColor: "#FFFFFF", border: "none" }}
               >
                 Sign Up
               </Link>
@@ -51,16 +51,18 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
         <Link to="/pokemon">Pokemon</Link>
 
         <Searchbar handleSearchChange={handleSearchChange} />
-        <button className="cart-button">
-          <div className="nav-cart">
-            <img
-              className="cart-icon"
-              src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
-            />
+        <Link to="/cart">
+          <button className="cart-button">
+            <div className="nav-cart">
+              <img
+                className="cart-icon"
+                src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
+              />
 
-            <span className="quantity-count">{total}</span>
-          </div>
-        </button>
+              <span className="quantity-count">{total}</span>
+            </div>
+          </button>
+        </Link>
       </nav>
     </div>
   );
@@ -71,7 +73,7 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id
   };
 };
 
@@ -79,7 +81,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
-    },
+    }
   };
 };
 
@@ -93,5 +95,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 };

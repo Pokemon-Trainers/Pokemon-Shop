@@ -21,11 +21,11 @@ const clearCart = () => ({
 // Reducer
 
 const cartReducer = (state = [], action) => {
-  console.log("We are reducing");
+  console.log("state on cart", state);
   switch (action.type) {
     case SET_CART:
       console.log("We are setting cart", state, action);
-      if (state.length > 0) {
+      if (state.find(item => item.itemId === action.itemId)) {
         return state
           .map(item => {
             if (action.itemId === item.itemId) {
@@ -35,7 +35,7 @@ const cartReducer = (state = [], action) => {
           })
           .filter(item => item.qty !== 0);
       } else {
-        return [{ itemId: action.itemId, qty: action.qty }];
+        return [...state, { itemId: action.itemId, qty: action.qty }];
       }
 
     case CLEAR_CART:
