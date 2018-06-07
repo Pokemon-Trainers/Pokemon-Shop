@@ -51,14 +51,16 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
         <Link to="/pokemon">Pokemon</Link>
 
         <Searchbar handleSearchChange={handleSearchChange} />
+        <button className="cart-button">
+          <div className="nav-cart">
+            <img
+              className="cart-icon"
+              src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
+            />
 
-        <div className="nav-cart">
-          <img
-            className="cart-icon"
-            src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
-          />
-          <span className="quantity-count">{total}</span>
-        </div>
+            <span className="quantity-count">{total}</span>
+          </div>
+        </button>
       </nav>
 
       <hr />

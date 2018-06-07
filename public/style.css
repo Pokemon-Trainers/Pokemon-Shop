@@ -196,3 +196,13 @@ img.poke {
   display: flex;
   /* justify-content: flex-end; */
 }
+
+.cart-button {
+  padding: 15px;
+  background-color: #e3f2fd;
+  border: none;
+}
+
+#Type {
+  font-size: 30px;
+}
