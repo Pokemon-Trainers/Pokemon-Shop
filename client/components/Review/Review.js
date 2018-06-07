@@ -15,7 +15,7 @@ const Review = props => {
         color2={"#ffd700"}
       />
       <h5>{review.title}</h5>
-      <p>Review by {review.user.email}</p>
+      <p>Review by {review.user ? review.user.email : 'anonymous'}</p>
       <p>{review.description}</p>
     </div>
   );

@@ -26,7 +26,7 @@ class AddReview extends React.Component {
 
   setRating(rating) {
     this.setState({
-      rating
+      rating: Number(rating)
     })
   }
 
@@ -56,7 +56,7 @@ class AddReview extends React.Component {
             <tr>
               <td>Rating: </td>
               <td>
-                <ReactStars count={5} size={24} color2={"#ffd700"} onClick={this.setRating}/>
+                <ReactStars count={5} size={24} color2={"#ffd700"} value={this.state.rating} onChange={this.setRating} />
               </td>
             </tr>
             <tr>

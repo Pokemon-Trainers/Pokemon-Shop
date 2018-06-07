@@ -23,7 +23,6 @@ class Reviews extends React.Component {
         toggleAddReview: true
       })
     }
-    console.log(this.state.toggleAddReview);
   }
 
   render() {
