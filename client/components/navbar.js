@@ -6,7 +6,7 @@ import { logout } from "../store";
 
 import Searchbar from "./Searchbar";
 
-const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
+const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
     <div>
       <div className="page-header">
@@ -31,7 +31,11 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
               >
                 Login
               </Link>
-              <Link className="login" to="/signup" style={{ backgroundColor: "#FFFFFF", border: "none" }}>
+              <Link
+                className="login"
+                to="/signup"
+                style={{ backgroundColor: "#FFFFFF", border: "none" }}
+              >
                 Sign Up
               </Link>
             </div>
@@ -50,7 +54,7 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn }) => {
             className="cart-icon"
             src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
           />
-          <span className="quantity-count">0</span>
+          <span className="quantity-count">{total}</span>
         </div>
       </nav>
 
