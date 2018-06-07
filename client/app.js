@@ -28,9 +28,7 @@ class App extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('newProps', props);
     if (props !== state) {
-      console.log('is this working');
       return {
         ...state,
         ...props,

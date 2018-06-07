@@ -1,23 +1,46 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import Review from './Review';
+import Review from "./Review";
+
+import AddReview from "./AddReview";
 
 class Reviews extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      toggleAddReview: false
+    };
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleToggle(event) {
+    if (this.state.toggleAddReview === true) {
+      this.setState({
+        toggleAddReview: false
+      });
+    } else {
+      this.setState({
+        toggleAddReview: true
+      });
+    }
+  }
+
   render() {
     const reviews = this.props.reviews;
 
-    const filteredReviews =
-      reviews.filter(
-        review => review.pokemonId === this.props.selectedPokemon.id
-      ) || [];
-
-    if (filteredReviews.length === 0) {
+    if (reviews.length === 0) {
       return (
         <div>
           <h2>Reviews</h2>
           <hr />
           <p>There are no reviews...</p>
+          <button type="button" onClick={this.handleToggle}>
+            Submit a Review
+          </button>
+          {this.state.toggleAddReview && (
+            <AddReview pokemon={this.props.selectedPokemon} />
+          )}
         </div>
       );
     }
@@ -25,19 +48,19 @@ class Reviews extends React.Component {
     return (
       <div>
         <h2>Reviews</h2>
-        {filteredReviews.map((review, key) => (
-          <Review key={key} review={review} />
+        {reviews.map((review, key) => (
+          <Review key={key} review={review} reviews={reviews} />
         ))}
+        <button type="button" onClick={this.handleToggle}>
+          Submit a Review
+        </button>
+
+        {this.state.toggleAddReview && (
+          <AddReview pokemon={this.props.selectedPokemon} />
+        )}
       </div>
     );
   }
 }
 
-const mapState = (state, ownProps) => {
-  return {
-    reviews: state.reviews,
-    // filteredReview: state.reviews.find(review => ownProps.selectedPokemon.id === review.pokemonId)
-  };
-};
-
-export default connect(mapState)(Reviews);
+export default Reviews;
