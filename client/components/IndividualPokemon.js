@@ -24,7 +24,7 @@ const IndividualPokemon = props => {
   const reviewsPresent = (filteredReviews.length > 0 &&
     <ReactStars
       count={5}
-      value={averageRating(filteredReviews)}
+      value={Number(averageRating(filteredReviews))}
       size={24}
       edit={false}
       color2={"#ffd700"}
