@@ -25,31 +25,48 @@ class CartItem extends Component {
     if (qty > 0) {
       this.props.updateCartItemQty(this.props.poke.id, qty);
     } else {
-      this.props.removeFromCart(this.props.poke.id);
+      this.props.removingFromCart(this.props.poke.id);
     }
     this.setState({
       qty
     });
   }
   render() {
-    const { poke } = this.props;
+    const { poke, removingFromCart } = this.props;
     return (
       <div className="container">
         <div className="row">
-          <li>{poke.name}</li>
-          <img src={poke.imageUrl} />
-          <span>Price: {poke.price}</span>
-          <li>
-            Quantity :{" "}
-            <input
-              name="qty"
-              type="number"
-              min="0"
-              value={this.state.qty}
-              onChange={this.handleQty}
-            />
-          </li>
-          <div>Total Value: {0}</div>
+          <div className="col">
+            <img src={poke.imageUrl} />
+          </div>
+          <div className="col">
+            <h2>{poke.name}</h2>
+          </div>
+          <div className="col">
+            <span>Price: {poke.price}</span>
+          </div>
+          <div className="col">
+            <span>
+              Quantity :{" "}
+              <input
+                name="qty"
+                type="number"
+                min="0"
+                value={this.state.qty}
+                onChange={this.handleQty}
+              />
+            </span>
+          </div>
+          <div className="col">
+            <button
+              onClick={() => removingFromCart(poke.id)}
+              type="button"
+              className="close"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -61,7 +78,7 @@ const mapDispatchToCart = dispatch => {
     updateCartItemQty: (itemId, qty) => {
       dispatch(updateCartItemQty(itemId, qty));
     },
-    removeFromCart: itemId => {
+    removingFromCart: itemId => {
       dispatch(removeFromCart(itemId));
     }
   };

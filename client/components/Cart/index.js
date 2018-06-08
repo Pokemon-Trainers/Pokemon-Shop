@@ -32,6 +32,7 @@ class Cart extends Component {
                 ))}
               </div>
             ))}
+          <div className="col-12">Total Value: {0}</div>
         </div>
       </div>
     );
