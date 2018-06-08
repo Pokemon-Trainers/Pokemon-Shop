@@ -20,7 +20,7 @@ class Review extends React.Component {
     const user = this.props.user;
     const review = this.props.review;
     return (
-      <div className="individual-review">
+      <div className="review">
         <ReactStars
           count={5}
           value={Number(review.rating)}
@@ -34,7 +34,7 @@ class Review extends React.Component {
 
         {user.id === review.userId && (
           <form onSubmit={this.handleDelete}>
-            <button type="submit">Delete</button>
+            <button className="btn btn-info" type="submit">Delete</button>
           </form>
         )}
       </div>
