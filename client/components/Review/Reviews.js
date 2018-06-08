@@ -34,7 +34,7 @@ class Reviews extends React.Component {
           <h2>Reviews</h2>
           <hr />
           <p>There are no reviews...</p>
-          <button type="button" onClick={this.handleToggle}>Submit a Review</button>
+          <button className="btn btn-info" type="button" onClick={this.handleToggle}>Submit a Review</button>
           {this.state.toggleAddReview && <AddReview pokemon={this.props.selectedPokemon} />}
         </div>
       );
@@ -45,8 +45,8 @@ class Reviews extends React.Component {
         <h2>Reviews</h2>
         {reviews.map((review, key) => (
           <Review key={key} review={review} reviews={reviews} />
-        ))}
-        <button type="button" onClick={this.handleToggle}>Submit a Review</button>
+        ))}<br/>
+        <button type="button" className="btn btn-info" onClick={this.handleToggle}>Submit a Review</button>
 
         {this.state.toggleAddReview && <AddReview pokemon={this.props.selectedPokemon} />}
       </div>
