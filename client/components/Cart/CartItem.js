@@ -1,70 +1,73 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { removeFromCart, addToCart } from '../../store/cart';
+import React, { Component } from "react";
+import { removeFromCart, updateCartItemQty } from "../../store/cart";
+import { connect } from "react-redux";
 
-const CartItem = ({ cart, pokemon, handleMinus, handlePlus }) => {
-  const id = cart.itemId;
-  return (
-    <div className="container">
-      <div className="row">
-        {cart.length &&
-          cart.map(item => (
-            <div key={item.itemId}>
-              {pokemon.map(poke => (
-                <div key={poke.id}>
-                  {poke.id === item.itemId && item.qty > 0 ? (
-                    <div>
-                      <li>{poke.name}</li>
-                      <img src={poke.imageUrl} />
-                      <span>Price: {poke.price}</span>
-                      <li>Quantity : {item.qty}</li>
-                      <button
-                        type="button"
-                        className="btn btn-info"
-                        onClick={() => handlePlus(item.itemId, item.qty)}
-                      >
-                        +
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-danger"
-                        onClick={() => handleMinus(item.itemId, item.qty)}
-                      >
-                        -
-                      </button>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        <div>Total Value: {0}</div>
+class CartItem extends Component {
+  // const id = cart.itemId;
+  constructor() {
+    super();
+    this.state = {
+      qty: ""
+    };
+    this.handleQty = this.handleQty.bind(this);
+  }
+  static getDerivedStateFromProps(props, state) {
+    if (props.item.qty !== state.qty) {
+      return {
+        ...state,
+        qty: props.item.qty
+      };
+    }
+    return state;
+  }
+  handleQty(event) {
+    const qty = Number(event.target.value);
+    if (qty > 0) {
+      this.props.updateCartItemQty(this.props.poke.id, qty);
+    } else {
+      this.props.removeFromCart(this.props.poke.id);
+    }
+    this.setState({
+      qty
+    });
+  }
+  render() {
+    const { poke } = this.props;
+    return (
+      <div className="container">
+        <div className="row">
+          <li>{poke.name}</li>
+          <img src={poke.imageUrl} />
+          <span>Price: {poke.price}</span>
+          <li>
+            Quantity :{" "}
+            <input
+              name="qty"
+              type="number"
+              min="0"
+              value={this.state.qty}
+              onChange={this.handleQty}
+            />
+          </li>
+          <div>Total Value: {0}</div>
+        </div>
       </div>
-    </div>
-  );
-};
-
-const mapPropToCart = state => {
-  return {
-    cart: state.cart,
-    pokemon: state.pokemon,
-  };
-};
+    );
+  }
+}
 
 const mapDispatchToCart = dispatch => {
   return {
-    handleMinus(itemId, qty) {
-      dispatch(removeFromCart(itemId, qty));
+    updateCartItemQty: (itemId, qty) => {
+      dispatch(updateCartItemQty(itemId, qty));
     },
-    handlePlus(itemId, qty) {
-      dispatch(addToCart(itemId, qty));
-    },
+    removeFromCart: itemId => {
+      dispatch(removeFromCart(itemId));
+    }
   };
 };
 
 export default connect(
-  mapPropToCart,
+  null,
   mapDispatchToCart
 )(CartItem);

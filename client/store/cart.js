@@ -1,46 +1,45 @@
-import axios from 'axios';
-import { getCookie, setCookie, expireCookie } from 'redux-cookie';
+import axios from "axios";
+import { getCookie, setCookie, expireCookie } from "redux-cookie";
 
 // Action types
 
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-const CLEAR_CART = 'CLEAR_CART';
-const SET_CART = 'SET_CART';
-const GET_CART = 'GET_CART';
-const ADD_TO_CART = 'ADD_TO_CART';
+const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const CLEAR_CART = "CLEAR_CART";
+const SET_CART = "SET_CART";
+const GET_CART = "GET_CART";
+const UPDATE_CART_ITEM_QTY = "UPDATE_CART_ITEM_QTY";
 
 // Action creators
 export const setCart = (itemId, qty) => ({
   type: SET_CART,
   itemId,
-  qty,
+  qty
 });
 
 export const getCart = cart => ({
   type: GET_CART,
-  cart,
+  cart
 });
 
-export const removeFromCart = (itemId, qty) => ({
+export const removeFromCart = itemId => ({
   type: REMOVE_FROM_CART,
-  itemId,
-  qty,
+  itemId
 });
 
-export const addToCart = (itemId, qty) => ({
-  type: ADD_TO_CART,
+export const updateCartItemQty = (itemId, qty) => ({
+  type: UPDATE_CART_ITEM_QTY,
   itemId,
-  qty,
+  qty
 });
 
 const clearCart = () => ({
-  type: CLEAR_CART,
+  type: CLEAR_CART
 });
 // Thunk
 
 export const fetchCart = () => {
   return dispatch => {
-    const cart = dispatch(getCookie('cart'));
+    const cart = dispatch(getCookie("cart"));
     dispatch(getCart((cart && JSON.parse(cart)) || []));
   };
 };
@@ -48,7 +47,7 @@ export const fetchCart = () => {
 export const updateCart = (itemId, qty) => {
   return (dispatch, getState) => {
     dispatch(setCart(itemId, qty));
-    dispatch(setCookie('cart', JSON.stringify(getState().cart)));
+    dispatch(setCookie("cart", JSON.stringify(getState().cart)));
   };
 };
 
@@ -73,23 +72,14 @@ const cartReducer = (state = [], action) => {
       }
 
     case REMOVE_FROM_CART:
-      if (state.find(item => item.itemId === action.itemId)) {
-        return state.map(item => {
-          if (action.itemId === item.itemId) {
-            return { ...item, qty: item.qty - 1 };
-          }
-          return { ...item };
-        });
-      }
-    case ADD_TO_CART:
-      if (state.find(item => item.itemId === action.itemId)) {
-        return state.map(item => {
-          if (action.itemId === item.itemId) {
-            return { ...item, qty: item.qty + 1 };
-          }
-          return { ...item };
-        });
-      }
+      return state.filter(item => item.id !== action.itemId);
+
+    case UPDATE_CART_ITEM_QTY:
+      return state.map(item => {
+        return item.itemId === action.itemId
+          ? { ...item, qty: action.qty }
+          : { ...item };
+      });
 
     case CLEAR_CART:
       return [];

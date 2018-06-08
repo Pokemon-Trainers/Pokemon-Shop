@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
+import { removeFromCart, addToCart } from "../../store/cart";
 
 class Cart extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      totalPrice: 0
+    };
   }
 
   render() {
@@ -12,11 +16,33 @@ class Cart extends Component {
       <div className="container">
         <div className="row">
           <h1>Cart</h1>
-          <CartItem />
+          {this.props.cart.length &&
+            this.props.cart.map(item => (
+              <div key={item.itemId}>
+                {this.props.pokemon.map(poke => (
+                  <div key={poke.id}>
+                    {poke.id === item.itemId && item.qty > 0 ? (
+                      <div>
+                        <CartItem item={item} poke={poke} />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
         </div>
       </div>
     );
   }
 }
 
-export default Cart;
+const mapPropToCart = state => {
+  return {
+    cart: state.cart,
+    pokemon: state.pokemon
+  };
+};
+
+export default connect(mapPropToCart)(Cart);
