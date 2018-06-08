@@ -8,61 +8,48 @@ import Searchbar from "./Searchbar";
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-4 background">
       <div className="page-header">
-        <img
-          className="img img-fluid"
-          src="https://fontmeme.com/permalink/180606/ab7190a3c1ba8d6d6d1093d8c52c9e38.png"
-        />
+      <div className="logo">
+            <img src="https://fontmeme.com/permalink/180606/ab7190a3c1ba8d6d6d1093d8c52c9e38.png" />
+          </div>
+        <div className="flex top-nav">
 
-        <div className="method">
           {isLoggedIn ? (
-            <div>
-              {/* The navbar will show these links after you log in */}
-
+            <div className="top-nav-button">
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
             </div>
           ) : (
-            <div>
+            <div className="flex">
               {/* The navbar will show these links before you log in */}
-              <Link
-                className="login"
-                to="/login"
-                style={{ backgroundColor: "#FFFFFF", border: "none" }}
-              >
-                Login
-              </Link>
-              <Link
-                className="login"
-                to="/signup"
-                style={{ backgroundColor: "#FFFFFF", border: "none" }}
-              >
-                Sign Up
-              </Link>
+              <div className="top-nav-button">
+                <Link to="/login">Login</Link>
+              </div>
+              <div className="top-nav-button">
+                <Link to="/signup">Sign Up</Link>
+              </div>
             </div>
           )}
-        </div>
-      </div>
-
-      <nav className="navbar navbar-light">
-        <Link to="/home">Home</Link>
-        <Link to="/pokemon">Pokemon</Link>
-
-        <Searchbar handleSearchChange={handleSearchChange} />
-        <Link to="/cart">
-          <button className="cart-button">
-            <div className="nav-cart">
+          <Link to="/cart">
+            <div className="top-nav-button">
               <img
                 className="cart-icon"
                 src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-10.png"
               />
 
-              <span className="quantity-count">{total}</span>
+              <span className="cart-quantity">{total}</span>
             </div>
-          </button>
-        </Link>
+          </Link>
+        </div>
+      </div>
+
+      <nav className="navbar">
+        <Link to="/home">Home</Link>
+        <Link to="/pokemon">Pokemon</Link>
+
+        <Searchbar handleSearchChange={handleSearchChange} />
       </nav>
     </div>
   );
