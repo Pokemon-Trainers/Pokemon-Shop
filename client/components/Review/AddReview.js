@@ -81,7 +81,7 @@ class AddReview extends React.Component {
             </tr>
             </tbody>
           </table>
-          <button type="submit">Add Review</button>
+          <button className="btn btn-info" type="submit">Add Review</button>
         </form>
       </div>
     );
