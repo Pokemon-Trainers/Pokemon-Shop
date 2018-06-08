@@ -40,7 +40,7 @@ form div {
   left: 0;
   right: 0;
   background-image: url("pokemonCardBackgroundGray.png");
-  background-size: contain;
+  background-size: cover;
   opacity: 0.4;
 }
 
