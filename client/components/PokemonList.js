@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PokemonCard from "./PokemonCard";
 import Sidebar from "./Sidebar";
+// import { Pagination } from "react-bootstrap";
+import { push } from "react-router-redux";
+import Paginating from "./Paginating";
 
 class PokemonList extends Component {
   constructor(props) {
@@ -20,6 +23,7 @@ class PokemonList extends Component {
     this.resetFilters = this.resetFilters.bind(this);
     this.toggleTypeHidden = this.toggleTypeHidden.bind(this);
     this.togglePriceHidden = this.togglePriceHidden.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -87,6 +91,9 @@ class PokemonList extends Component {
           .indexOf(this.props.searchedName.toLowerCase()) !== -1
     );
   }
+  changePage(page) {
+    this.props.history.push("/pokemon/?page=" + page);
+  }
 
   currentPokemon() {
     let pokemon = this.props.pokemon;
@@ -107,6 +114,10 @@ class PokemonList extends Component {
 
   render() {
     const pokemon = this.currentPokemon();
+    const perPage = 9;
+    const pages = Math.ceil(pokemon.length / perPage);
+    const startOffset = (this.props.page - 1) * perPage;
+    let startCount = 0;
 
     return (
       <div className="container">
@@ -120,9 +131,11 @@ class PokemonList extends Component {
             togglePriceHidden={this.togglePriceHidden}
             priceHidden={this.state.priceHidden}
           />
-          {pokemon.length === 0 ? (
+          {/* {pokemon.length === 0 ? (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <p>This page is either loading or there are no Pokemon found...</p>
+              <p>
+                This page is either loading or there are no Pokemon found...
+              </p>
             </div>
           ) : (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">
@@ -137,16 +150,49 @@ class PokemonList extends Component {
                 ))}
               </div>
             </div>
+          )} */}
+          {pokemon.length === 0 ? (
+            <div className="col-9 col-sm-7 col-md-9 mx-auto">
+              <p>
+                This page is either loading or there are no Pokemon found...
+              </p>
+            </div>
+          ) : (
+            <div className="col-9 col-sm-7 col-md-9 mx-auto">
+              <div className="row">
+                {pokemon.map((poke, index) => {
+                  if (index >= startOffset && startCount < perPage) {
+                    startCount++;
+                    return (
+                      <div
+                        className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
+                        key={poke.id}
+                      >
+                        <PokemonCard pokemon={poke} />
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
           )}
         </div>
+        <Paginating
+          changePage={this.changePage}
+          pages={pages}
+          page={this.props.page}
+          {...this.props}
+        />
       </div>
     );
   }
 }
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  let pageNum = ownProps.history.location.search.length - 1;
   return {
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
+    page: ownProps.history.location.search[pageNum] || 1
   };
 };
 
