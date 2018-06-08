@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, matchPath } from 'react-router-dom';
-import { Navbar } from './components';
-import Routes from './routes';
-import { fetchCart, updateCart } from './store/cart';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter, matchPath } from "react-router-dom";
+import { Navbar } from "./components";
+import Routes from "./routes";
+import { fetchCart, updateCart } from "./store/cart";
 
-import { fetchPokemon } from './store/pokemon';
-import { fetchReviews } from './store/review';
+import { fetchPokemon } from "./store/pokemon";
+import { fetchReviews } from "./store/review";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // filteredPokemon: []
-      searchedName: '',
-      quantity: '0',
-      total: 0,
+      searchedName: "",
+      quantity: "0",
+      total: 0
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -31,7 +31,7 @@ class App extends Component {
     if (props !== state) {
       return {
         ...state,
-        ...props,
+        ...props
       };
     }
   }
@@ -41,31 +41,31 @@ class App extends Component {
     //   filteredPokemon: this.props.pokemon.filter(pokemon => pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1)
     // })
     this.setState({
-      searchedName: event.target.value,
+      searchedName: event.target.value
     });
-    if (this.props.location.pathname !== '/pokemon') {
-      this.props.history.push('/pokemon');
+    if (this.props.location.pathname !== "/pokemon") {
+      this.props.history.push("/pokemon");
     }
   }
 
   handleQuantityChange(event) {
     this.setState({
-      quantity: Number(event.target.value),
+      quantity: Number(event.target.value)
     });
   }
 
   handleClick(evt) {
     evt.preventDefault();
     const match = matchPath(this.props.history.location.pathname, {
-      path: '/pokemon/:id',
+      path: "/pokemon/:id",
       exact: true,
-      strict: false,
+      strict: false
     });
 
     let itemId = Number(match.params.id);
     let qty = Number(this.state.quantity);
     this.setState({
-      total: qty + this.state.total,
+      total: qty + this.state.total
     });
     this.props.addPokemontoCart(itemId, qty);
   }
@@ -96,7 +96,7 @@ const mapState = state => {
   });
   return {
     pokemon: state.pokemon,
-    total,
+    total
   };
 };
 
@@ -109,7 +109,7 @@ const mapDispatch = dispatch => {
     },
 
     fetchReviews: () => dispatch(fetchReviews()),
-    fetchCart: () => dispatch(fetchCart()),
+    fetchCart: () => dispatch(fetchCart())
   };
 };
 

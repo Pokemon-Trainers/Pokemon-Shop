@@ -131,8 +131,8 @@ img.poke {
 .background {
   background: linear-gradient(rgba(20, 20, 20, 0.5), rgb(255, 255, 255)),
     url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
-    background-attachment: fixed;
-    background-size: cover
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .navbar {
@@ -141,7 +141,7 @@ img.poke {
 }
 
 .navbar a {
-  color: #fff
+  color: #fff;
 }
 
 .navbar a:hover {
@@ -156,6 +156,12 @@ img.poke {
 
 .page-header {
   padding: 20px;
+
+  background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
+    url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
+  background-size: cover;
+  background-color: #f2f295;
+
   width: 100%;
 }
 
@@ -199,11 +205,11 @@ img.poke {
   padding: 20px;
 }
 
-.top-nav-button a{
+.top-nav-button a {
   color: white;
 }
 
-.top-nav-button a:hover{
+.top-nav-button a:hover {
   color: #ffcd00;
 }
 
@@ -225,7 +231,14 @@ img.poke {
   width: 100%;
 }
 
-.review .border{
+.review .border {
   border-bottom: 1px solid lightgray;
   padding: 20px 0 20px 0;
+}
+
+.pagination-centered {
+  align-content: center;
+}
+.inline-display {
+  display: inline;
 }
