@@ -21,6 +21,18 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    if (!review) return res.sendStatus(404);
+
+    const updatedReview = await review.update(req.body);
+    res.status(202).json(updatedReview)
+  } catch (error) {
+    next(error);
+  }
+})
+
 router.delete('/:id', async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id);
@@ -33,3 +45,4 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 module.exports = router;
+
