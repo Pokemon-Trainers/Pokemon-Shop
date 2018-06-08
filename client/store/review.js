@@ -1,63 +1,47 @@
-import axios from 'axios'
+const router = require('express').Router();
+const { Review, User } = require('../db/models');
 
-const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS'
-const ADD_REVIEW = 'ADD_REVIEW'
-const DELETE_REVIEW = 'DELETE_REVIEW'
-
-const getAllReviews = reviews => {
-  return {
-    type: GET_ALL_REVIEWS,
-    reviews
+router.get('/', async (req, res, next) => {
+  try {
+    const reviews = await Review.findAll({
+      include: [{model: User}]
+    });
+    res.json(reviews);
+  } catch (error) {
+    next(error)
   }
-}
+})
 
-const addReview = review => {
-  return {
-    type: ADD_REVIEW,
-    review
+router.post('/', async (req, res, next) => {
+  try {
+    const review = await Review.create(req.body);
+    res.status(200).json(review)
+  } catch (error) {
+    next(error);
   }
-}
+})
 
-const deleteReview = reviewId => {
-  return {
-    type: DELETE_REVIEW,
-    reviewId
+router.put('/:id', async (req, res, next) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    if (!review) return res.sendStatus(404);
+
+    const updatedReview = await review.update(req.body);
+    res.status(202).json(updatedReview)
+  } catch (error) {
+    next(error);
   }
-}
+})
 
-export const fetchReviews = () => {
-  return async dispatch => {
-    const {data} = await axios.get('/api/review');
-    dispatch(getAllReviews(data));
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    await review.destroy()
+    res.sendStatus(204);
+
+  } catch (error) {
+    next(error)
   }
-}
+})
 
-export const createReview = review => {
-  return async dispatch => {
-    const {data} = await axios.post('/api/review', review);
-    dispatch(addReview(data))
-  }
-}
-
-export const removeReview = reviewId => {
-  return async dispatch => {
-    await axios.delete(`/api/review/${reviewId}`);
-    dispatch(deleteReview(reviewId))
-  }
-}
-
-const reviewReducer = (state = [], action) => {
-  switch (action.type) {
-    case GET_ALL_REVIEWS:
-      return action.reviews;
-    case ADD_REVIEW:
-      return [...state, action.review];
-    case DELETE_REVIEW:
-      return state.filter(review => review.id !== action.reviewId)
-    default:
-      return state
-  }
-}
-
-export default reviewReducer;
-
+module.exports = router;

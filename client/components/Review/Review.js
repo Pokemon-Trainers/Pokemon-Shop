@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import ReactStars from "react-stars";
 
 import { removeReview } from "../../store/review";
-
+import UpdateReview from './UpdateReview';
 class Review extends React.Component {
   constructor() {
     super();
@@ -32,9 +32,11 @@ class Review extends React.Component {
         <p>Review by {review.user ? review.user.email : "anonymous"}</p>
         <p>{review.description}</p>
 
-        {user.id === review.userId && (
-          <form onSubmit={this.handleDelete}>
-            <button className="btn btn-info" type="submit">Delete</button>
+        <UpdateReview review={review}/>
+
+        {(user.id === review.userId || user.admin) && (
+          <form>
+            <button className="btn btn-info" type="button" onClick={this.handleDelete}>Delete</button>
           </form>
         )}
       </div>
@@ -58,3 +60,4 @@ export default connect(
   mapState,
   mapDispatch
 )(Review);
+
