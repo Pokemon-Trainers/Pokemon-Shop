@@ -14,6 +14,7 @@ class Cart extends Component {
           <h1>Cart</h1>
           <CartItem />
         </div>
+        <button>Proceed to Checkout</button>
       </div>
     );
   }
