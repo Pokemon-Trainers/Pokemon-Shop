@@ -49,6 +49,7 @@ class AddReview extends React.Component {
       rating: 0,
       pokemonId: 0
     })
+    this.props.handleFinishedReview();
   }
 
   render() {

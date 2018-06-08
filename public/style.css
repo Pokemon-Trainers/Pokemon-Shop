@@ -231,8 +231,7 @@ img.poke {
   width: 100%;
 }
 
-.review .border {
-  border-bottom: 1px solid lightgray;
+.review {
   padding: 20px 0 20px 0;
 }
 

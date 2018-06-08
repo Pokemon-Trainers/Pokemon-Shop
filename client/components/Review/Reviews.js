@@ -12,6 +12,7 @@ class Reviews extends React.Component {
       toggleAddReview: false
     };
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleFinishedReview = this.handleFinishedReview.bind(this);
   }
 
   handleToggle(event) {
@@ -24,6 +25,12 @@ class Reviews extends React.Component {
         toggleAddReview: true
       });
     }
+  }
+
+  handleFinishedReview(event) {
+    this.setState({
+      toggleAddReview: false
+    })
   }
 
   render() {
@@ -52,7 +59,7 @@ class Reviews extends React.Component {
 
 
         {this.state.toggleAddReview && (
-          <AddReview pokemon={this.props.selectedPokemon} />
+          <AddReview pokemon={this.props.selectedPokemon} handleFinishedReview={this.handleFinishedReview} />
         )}
       </div>
     );

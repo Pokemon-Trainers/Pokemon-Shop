@@ -73,7 +73,7 @@ class UpdateReview extends React.Component {
           />
           <br />
           <button className="btn btn-info" type="submit">
-            Update Review
+            Update
           </button>
           <br />
         </form>
