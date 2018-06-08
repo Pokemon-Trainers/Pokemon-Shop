@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Review from "./Review";
+
 import AddReview from "./AddReview";
 
 class Reviews extends React.Component {
@@ -9,7 +10,7 @@ class Reviews extends React.Component {
     super();
     this.state = {
       toggleAddReview: false
-    }
+    };
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -17,11 +18,11 @@ class Reviews extends React.Component {
     if (this.state.toggleAddReview === true) {
       this.setState({
         toggleAddReview: false
-      })
+      });
     } else {
       this.setState({
         toggleAddReview: true
-      })
+      });
     }
   }
 
@@ -36,6 +37,7 @@ class Reviews extends React.Component {
           <p>There are no reviews...</p>
           <button className="btn btn-info" type="button" onClick={this.handleToggle}>Submit a Review</button>
           {this.state.toggleAddReview && <AddReview pokemon={this.props.selectedPokemon} />}
+
         </div>
       );
     }
@@ -48,7 +50,10 @@ class Reviews extends React.Component {
         ))}<br/>
         <button type="button" className="btn btn-info" onClick={this.handleToggle}>Submit a Review</button>
 
-        {this.state.toggleAddReview && <AddReview pokemon={this.props.selectedPokemon} />}
+
+        {this.state.toggleAddReview && (
+          <AddReview pokemon={this.props.selectedPokemon} />
+        )}
       </div>
     );
   }

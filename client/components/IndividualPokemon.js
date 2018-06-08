@@ -19,15 +19,15 @@ const IndividualPokemon = props => {
     props.reviews.filter(review => review.pokemonId === pokemon.id) || [];
 
   const noReviews = (
-    <ReactStars count={5} value={0} size={24} edit={false} color2={"#ffd700"} />
+    <ReactStars count={5} value={0} size={24} edit={false} color2="#ffd700" />
   );
-  const reviewsPresent = (filteredReviews.length > 0 &&
+  const reviewsPresent = filteredReviews.length > 0 && (
     <ReactStars
       count={5}
       value={Number(averageRating(filteredReviews))}
       size={24}
       edit={false}
-      color2={"#ffd700"}
+      color2="#ffd700"
     />
   );
 
@@ -76,7 +76,7 @@ const IndividualPokemon = props => {
         </div>
       </div>
       <div className="row">
-        <Reviews selectedPokemon={pokemon} reviews={filteredReviews}/>
+        <Reviews selectedPokemon={pokemon} reviews={filteredReviews} />
       </div>
     </div>
   );
