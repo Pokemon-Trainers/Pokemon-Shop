@@ -37,11 +37,13 @@ const CartItem = ({ cart, pokemon, handleMinus, handlePlus }) => {
                   ) : (
                     ""
                   )}
+                  <h3>Total Value: {item.qty * poke.price}</h3>
                 </div>
               ))}
+              {/* <h3>Total Value: {pokemon[0].price}</h3> */}
             </div>
           ))}
-        <div>Total Value: {0}</div>
+        {/* <div>Total Value: {pokemon[0].price}</div> */}
       </div>
     </div>
   );
