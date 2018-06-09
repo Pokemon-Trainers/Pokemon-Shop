@@ -24,6 +24,8 @@ class PokemonList extends Component {
     this.toggleTypeHidden = this.toggleTypeHidden.bind(this);
     this.togglePriceHidden = this.togglePriceHidden.bind(this);
     this.changePage = this.changePage.bind(this);
+    this.minusOnePage = this.minusOnePage.bind(this);
+    this.plusOnePage = this.plusOnePage.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -111,6 +113,19 @@ class PokemonList extends Component {
     }
     return pokemon;
   }
+  minusOnePage(page) {
+    page = Number(page) - 1;
+    return page;
+  }
+
+  plusOnePage(page) {
+    if (!page) {
+      page = 1;
+    }
+    page = Number(page) + 1;
+    console.log(page);
+    return page;
+  }
 
   render() {
     const pokemon = this.currentPokemon();
@@ -181,6 +196,8 @@ class PokemonList extends Component {
           changePage={this.changePage}
           pages={pages}
           page={this.props.page}
+          minusOnePage={this.minusOnePage}
+          plusOnePage={this.plusOnePage}
           {...this.props}
         />
       </div>
