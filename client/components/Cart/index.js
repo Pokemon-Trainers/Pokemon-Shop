@@ -10,7 +10,6 @@ class Cart extends Component {
       totalPrice: 0
     };
   }
-
   // getDerivedStateFromProps is a react function that is a new version of componentwillrecieveprops  and the static means there is no 'this'
   static getDerivedStateFromProps(props, state) {
     // We calculate the total reflecting the state
@@ -34,26 +33,6 @@ class Cart extends Component {
     return pokeItem;
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log("props inside static", props);
-  //   props.pokemon.forEach(poke => {
-  //     if (poke.id === props.cart.itemId) {
-  //       return {
-  //         ...state,
-  //         totalPrice: props.cart.qty
-  //       };
-  //     }
-  //   });
-  // }
-
-  // static getPokemonPrice(id) {
-  //   const foundId = props.cart.find(item => {
-  //     item.itemId === id;
-  //   });
-
-  //   return foundId;
-  // }
-
   render() {
     return (
       <div className="container">
@@ -67,10 +46,8 @@ class Cart extends Component {
                 <div key={item.itemId}>
                   {this.props.pokemon.map(poke => (
                     <div key={poke.id}>
-                      {poke.id === item.itemId && item.qty > 0 ? (
-                        <div>
-                          <CartItem item={item} poke={poke} />
-                        </div>
+                      {poke.id === item.itemId ? (
+                        <CartItem item={item} poke={poke} />
                       ) : (
                         ""
                       )}
