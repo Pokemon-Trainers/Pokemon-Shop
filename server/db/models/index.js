@@ -1,7 +1,8 @@
-const User = require('./user')
-const Pokemon = require('./pokemon')
-const Order = require('./order')
-const Review = require('./review')
+const User = require('./user');
+const Pokemon = require('./pokemon');
+const Order = require('./order');
+const Review = require('./review');
+const OrderItem = require('./orderItem');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -10,11 +11,14 @@ const Review = require('./review')
  *    BlogPost.belongsTo(User)
  */
 
-Order.belongsToMany(Pokemon, {as: 'item', through: 'itemsInOrder'});
+Order.belongsToMany(Pokemon, { as: 'item', through: 'itemsInOrder' });
 Order.belongsTo(User);
 Review.belongsTo(User);
-Review.belongsTo(Pokemon)
-User.hasMany(Review)
+Review.belongsTo(Pokemon);
+User.hasMany(Review);
+
+OrderItem.belongsTo(Order);
+OrderItem.belongsTo(Pokemon);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -26,5 +30,5 @@ module.exports = {
   User,
   Pokemon,
   Order,
-  Review
-}
+  Review,
+};
