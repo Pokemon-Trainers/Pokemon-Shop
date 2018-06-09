@@ -241,3 +241,17 @@ img.poke {
 .inline-display {
   display: inline;
 }
+
+.btn-info {
+  background-color: #356abd;
+}
+
+.btn-info {
+  background-color: #356abd;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #ffcd00;
+  border: none;
+}
