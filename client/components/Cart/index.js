@@ -34,6 +34,7 @@ class Cart extends Component {
             ))}
           <div className="col-12">Total Value: {this.state.totalPrice}</div>
         </div>
+        <button>Proceed to Checkout</button>
       </div>
     );
   }

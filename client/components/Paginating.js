@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 
 const Paginating = props => {
-  const { pages, changePage, page } = props;
+  const { pages, changePage, page, minusOnePage, plusOnePage } = props;
 
   return (
     <nav aria-label="Page navigation example">
@@ -10,7 +10,10 @@ const Paginating = props => {
         <li className="page-item">
           <button
             onClick={() => {
-              props.history.goBack();
+              if (page > 1 && page <= pages) {
+                let newPage = minusOnePage(page);
+                changePage(newPage);
+              }
             }}
           >
             <span aria-hidden="true">&laquo;</span>
@@ -23,7 +26,11 @@ const Paginating = props => {
         <li className="page-item">
           <button
             onClick={() => {
-              props.history.goForward();
+              console.log(page);
+              if (page >= 1 && page < pages) {
+                let newPage = plusOnePage(page);
+                changePage(newPage);
+              }
             }}
           >
             <span aria-hidden="true">&raquo;</span>
