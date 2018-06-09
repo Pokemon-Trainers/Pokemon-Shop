@@ -41,7 +41,7 @@ class CartItem extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <img src={poke.imageUrl} />
+            <img className="img img-fluid p-3 mb-3 poke" src={poke.imageUrl} />
           </div>
           <div className="col">
             <h2>{poke.name}</h2>
@@ -61,7 +61,7 @@ class CartItem extends Component {
               />
             </span>
           </div>
-          <div className="col">
+          <div className="col-1">
             <button
               onClick={() => removeCartItem(poke.id)}
               type="button"
