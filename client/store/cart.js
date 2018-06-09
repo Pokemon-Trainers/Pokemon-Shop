@@ -51,6 +51,26 @@ export const updateCart = (itemId, qty) => {
   };
 };
 
+export const updatingCartItemQty = (itemId, qty) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemQty(itemId, qty));
+    dispatch(setCookie("cart", JSON.stringify(getState().cart)));
+  };
+};
+
+export const removingCartItem = itemId => {
+  return (dispatch, getState) => {
+    dispatch(removeFromCart(itemId));
+    dispatch(setCookie("cart", JSON.stringify(getState().cart)));
+  };
+};
+
+// export const updateCookies = () => {
+//   return (dispatch, getState) => {
+//     dispatch(setCookie("cart", JSON.stringify(getState().cart)));
+//   };
+// };
+
 // Reducer
 
 const cartReducer = (state = [], action) => {

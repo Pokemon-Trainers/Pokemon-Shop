@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { removeFromCart, updateCartItemQty } from "../../store/cart";
+import {
+  // removeFromCart,
+  updatingCartItemQty,
+  removingCartItem
+} from "../../store/cart";
 import { connect } from "react-redux";
 
 class CartItem extends Component {
@@ -25,14 +29,14 @@ class CartItem extends Component {
     if (qty > 0) {
       this.props.updateCartItemQty(this.props.poke.id, qty);
     } else {
-      this.props.removingFromCart(this.props.poke.id);
+      this.props.removingCartItem(this.props.poke.id);
     }
     this.setState({
       qty
     });
   }
   render() {
-    const { poke, removingFromCart } = this.props;
+    const { poke, removeCartItem } = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -59,7 +63,7 @@ class CartItem extends Component {
           </div>
           <div className="col">
             <button
-              onClick={() => removingFromCart(poke.id)}
+              onClick={() => removeCartItem(poke.id)}
               type="button"
               className="close"
               aria-label="Close"
@@ -76,10 +80,10 @@ class CartItem extends Component {
 const mapDispatchToCart = dispatch => {
   return {
     updateCartItemQty: (itemId, qty) => {
-      dispatch(updateCartItemQty(itemId, qty));
+      dispatch(updatingCartItemQty(itemId, qty));
     },
-    removingFromCart: itemId => {
-      dispatch(removeFromCart(itemId));
+    removeCartItem: itemId => {
+      dispatch(removingCartItem(itemId));
     }
   };
 };
