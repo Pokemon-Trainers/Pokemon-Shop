@@ -16,8 +16,6 @@ const averageRating = reviews => {
 const IndividualPokemon = props => {
   const pokemon = props.selectedPokemon || {};
 
-  console.log('props.reviews in IndividualPokemon', props.reviews)
-
   const filteredReviews =
     props.reviews.filter(review => review.pokemonId === pokemon.id) || [];
 

@@ -35,7 +35,6 @@ class Reviews extends React.Component {
 
   render() {
     const reviews = this.props.filteredReviews;
-    console.log('reviews in Review.js', reviews);
     if (reviews.length === 0) {
       return (
         <div>

@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Review, User } = require('../db/models');
+const { Review, User, Pokemon } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.findAll({
-      include: [{model: User}]
+      include: [{model: User, Pokemon}]
     });
     res.json(reviews);
   } catch (error) {
