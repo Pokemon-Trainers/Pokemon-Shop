@@ -9,8 +9,8 @@ class UpdateReview extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: "",
-      description: "",
+      title: '',
+      description: '',
       rating: 0,
       id: 0
     };
@@ -44,6 +44,7 @@ class UpdateReview extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.changeReview(this.state);
+    this.props.handleUpdateToggle();
   }
 
   render() {

@@ -16,7 +16,6 @@ class Review extends React.Component {
   }
 
   handleUpdateToggle(event) {
-    console.log("this.state.toggleUpdate", this.state.toggleUpdate);
     if (!this.state.toggleUpdate) {
       this.setState({
         toggleUpdate: true
@@ -72,7 +71,7 @@ class Review extends React.Component {
     return (
       <div className="review">
 
-        {!this.state.toggleUpdate ? displayReview : <UpdateReview review={review} />}
+        {!this.state.toggleUpdate ? displayReview : <UpdateReview handleUpdateToggle={this.handleUpdateToggle} review={review} />}
       </div>
     );
   }

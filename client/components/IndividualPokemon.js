@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { render } from "react-dom";
 import ReactStars from "react-stars";
+import {withRouter} from 'react-router-dom'
 
 import Reviews from "./Review/Reviews";
 
@@ -15,8 +16,11 @@ const averageRating = reviews => {
 const IndividualPokemon = props => {
   const pokemon = props.selectedPokemon || {};
 
+  )
   const filteredReviews =
     props.reviews.filter(review => review.pokemonId === pokemon.id) || [];
+
+  console.log('filteredReviews in IndividualPokemon', filteredReviews)
 
   const noReviews = (
     <ReactStars count={5} value={0} size={24} edit={false} color2="#ffd700" />
@@ -76,7 +80,7 @@ const IndividualPokemon = props => {
         </div>
       </div>
       <div className="row">
-        <Reviews selectedPokemon={pokemon} reviews={filteredReviews} />
+        <Reviews selectedPokemon={pokemon} filteredReviews={filteredReviews} />
       </div>
     </div>
   );
@@ -91,4 +95,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(IndividualPokemon);
+export default withRouter(connect(mapStateToProps)(IndividualPokemon));

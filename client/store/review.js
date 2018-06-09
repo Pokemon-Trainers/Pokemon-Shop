@@ -71,7 +71,12 @@ const reviewReducer = (state = [], action) => {
       return state.filter(review => review.id !== action.reviewId);
     case UPDATE_REVIEW:
       return state.map(
-        review => (review.id === action.review.id ? action.review : review)
+        review => {
+          if (review.id === action.review.id) {
+            return action.review
+          } else {
+            return review
+          }}
       );
     default:
       return state;
