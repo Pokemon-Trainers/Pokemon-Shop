@@ -8,7 +8,7 @@ const Paginating = props => {
     <nav aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
         <li className="page-item">
-          <button
+          <button className="btn btn-info"
             onClick={() => {
               props.history.goBack();
             }}
@@ -21,7 +21,7 @@ const Paginating = props => {
         <Button pages={pages} changePage={changePage} page={page} />
 
         <li className="page-item">
-          <button
+          <button className="btn btn-info"
             onClick={() => {
               props.history.goForward();
             }}

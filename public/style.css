@@ -248,10 +248,10 @@ img.poke {
 
 .btn-info {
   background-color: #356abd;
-  border: none;
+  border: 1px solid white;
 }
 
 .btn-info:hover {
   background-color: #ffcd00;
-  border: none;
+  border: 1px solid white;
 }
