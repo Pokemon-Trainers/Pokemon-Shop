@@ -12,7 +12,8 @@ class UpdateReview extends React.Component {
       title: '',
       description: '',
       rating: 0,
-      id: 0
+      id: 0,
+      pokemonId: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +26,8 @@ class UpdateReview extends React.Component {
       title: this.props.review.title,
       description: this.props.review.description,
       rating: this.props.review.rating,
-      id: this.props.review.id
+      id: this.props.review.id,
+      pokemonId: this.props.review.pokemonId
     });
   }
 
