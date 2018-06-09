@@ -29,7 +29,7 @@ class CartItem extends Component {
     if (qty > 0) {
       this.props.updateCartItemQty(this.props.poke.id, qty);
     } else {
-      this.props.removingCartItem(this.props.poke.id);
+      this.props.removeCartItem(this.props.poke.id);
     }
     this.setState({
       qty
