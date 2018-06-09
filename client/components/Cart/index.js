@@ -1,23 +1,79 @@
 import React, { Component } from "react";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
+import { removeFromCart, addToCart } from "../../store/cart";
 
 class Cart extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      totalPrice: 0
+    };
+  }
+  // getDerivedStateFromProps is a react function that is a new version of componentwillrecieveprops  and the static means there is no 'this'
+  static getDerivedStateFromProps(props, state) {
+    // We calculate the total reflecting the state
+    const { pokemon, cart } = props;
+    let totalPrice = 0;
+
+    //we are going to iterate over cart item so that we can calculate to total price of all the pokemon inside the cart
+    if (pokemon.length > 0) {
+      cart.forEach(cartItem => {
+        const pokeItem = Cart.getPokeForCartItem(cartItem, pokemon);
+        totalPrice += cartItem.qty * pokeItem.price;
+      });
+    }
+
+    return { ...state, totalPrice };
+  }
+
+  // helper function to get a pokemon from a cart item
+  static getPokeForCartItem(cartItem, pokemon) {
+    const pokeItem = pokemon.find(poke => poke.id === cartItem.itemId);
+    return pokeItem;
   }
 
   render() {
     return (
       <div className="container">
         <div className="row">
-          <h1>Cart</h1>
-          <CartItem />
+          <div className="col-12">
+            <h1>Cart</h1>
+          </div>
+          {this.props.cart.length ? (
+            <div>
+              {this.props.cart.map(item => (
+                <div key={item.itemId}>
+                  {this.props.pokemon.map(poke => (
+                    <div key={poke.id}>
+                      {poke.id === item.itemId ? (
+                        <CartItem item={item} poke={poke} />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+              <h4>Total: {this.state.totalPrice}</h4>
+              <button>Proceed to Checkout</button>
+            </div>
+          ) : (
+            <div className="col-12">
+              <h3>No Items In cart</h3>
+            </div>
+          )}
         </div>
-        <button>Proceed to Checkout</button>
       </div>
     );
   }
 }
 
-export default Cart;
+const mapPropToCart = state => {
+  return {
+    cart: state.cart,
+    pokemon: state.pokemon
+  };
+};
+
+export default connect(mapPropToCart)(Cart);
