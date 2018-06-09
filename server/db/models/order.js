@@ -6,38 +6,42 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   billingAddress: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   shippingName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   shippingAddress: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
-      isEmail: true
-    }
-  }
-})
+      isEmail: true,
+    },
+  },
+  status: {
+    type: Sequelize.ENUM('inCart', 'pending', 'complete'),
+    defaultValue: 'pending',
+  },
+});
 
 module.exports = Order;
