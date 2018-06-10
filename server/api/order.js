@@ -1,7 +1,30 @@
 const router = require('express').Router();
 const { Order, OrderItem } = require("../db/models");
 
-router.post('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll();
+    res.json(orders);
+  } catch (error) {
+    next (error)
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+      res.json(order)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/:id', async (req, res, next) => {
   try {
     const order = await Order.create(req.body);
 

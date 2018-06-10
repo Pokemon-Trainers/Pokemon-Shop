@@ -5,6 +5,7 @@ import ShippingInfo from "./ShippingInfo";
 import BillingInfo from "./BillingInfo";
 
 import {createOrder} from '../../../store/order'
+import Cart from '../index'
 
 class Checkout extends React.Component {
   constructor() {
@@ -17,13 +18,27 @@ class Checkout extends React.Component {
       shippingAddress: "",
       billingName: "",
       billingAddress: "",
-      email: ""
+      email: "",
+      total: 0
     };
     this.handleShippingInfo = this.handleShippingInfo.bind(this);
     this.handleBillingInfo = this.handleBillingInfo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { pokemon, cart } = props;
+    let totalPrice = 0;
+
+    if (pokemon.length > 0) {
+      cart.forEach(cartItem => {
+        const pokeItem = Cart.getPokeForCartItem(cartItem, pokemon);
+        totalPrice += cartItem.qty * pokeItem.price;
+      });
+    }
+    return { ...state, total: totalPrice };
   }
 
   handleShippingInfo(event) {
@@ -67,7 +82,6 @@ class Checkout extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('this.props.location.state.total', this.props.location.state.total);
     this.props.createOrder({
       shippingName: this.state.shippingName,
       shippingAddress: this.state.shippingAddress,
@@ -75,7 +89,8 @@ class Checkout extends React.Component {
       billingAddress: this.state.billingAddress,
       email: this.state.email,
       cart: this.props.cart,
-      userId: this.props.user.id
+      userId: this.props.user.id,
+      total: this.state.total
     })
   }
 
@@ -126,7 +141,8 @@ class Checkout extends React.Component {
 const mapState = state => {
   return {
     cart: state.cart,
-    user: state.user
+    user: state.user,
+    pokemon: state.pokemon
   }
 }
 
