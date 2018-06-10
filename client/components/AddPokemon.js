@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { postPokemon } from "../store/pokemon";
 
@@ -25,6 +25,7 @@ class AddPokemon extends React.Component {
   }
 
   handleSubmit(evt) {
+    console.log("props inside handle submit", this.props);
     evt.preventDefault();
     this.props.postPokemon({
       name: this.state.name,
@@ -37,6 +38,7 @@ class AddPokemon extends React.Component {
   }
 
   render() {
+    console.log("this.state!", this.props.pokemon);
     return (
       <div>
         <h1>ADD A POKEMON</h1>
@@ -48,17 +50,17 @@ class AddPokemon extends React.Component {
             name="name"
           />
           <p>type</p>
-          <select value={this.state.type} onChange={this.handleChange}>
+          <select
+            name="type"
+            value={this.state.type}
+            onChange={this.handleChange}
+          >
             {this.props.pokemon.map(poke => (
-              <option value={poke.type}>{poke.type}</option>
+              <option key={poke.id} value={poke.type}>
+                {poke.type}
+              </option>
             ))}
           </select>
-          {/* <input
-            type="radio"
-            onChange={this.handleChange}
-            value={this.state.type}
-            name="type"
-          /> */}
           <p>Description</p>
           <input
             onChange={this.handleChange}
@@ -90,15 +92,15 @@ class AddPokemon extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    postPokemon: pokemon => dispatch(postPokemon(pokemon))
-  };
-};
-
 const mapStateToProps = state => {
   return {
     pokemon: state.pokemon
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postPokemon: pokemon => dispatch(postPokemon(pokemon))
   };
 };
 

@@ -36,6 +36,7 @@ export const postPokemon = pokemon => {
 
 // Reducer
 const pokemonReducer = (state = [], action) => {
+  console.log("reducer addpokemon action", action.pokemon);
   switch (action.type) {
     case GET_POKEMON:
       return action.pokemon;
