@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 // import { Pagination } from "react-bootstrap";
 import { push } from "react-router-redux";
 import Paginating from "./Paginating";
+import { Link } from "react-router-dom";
 
 class PokemonList extends Component {
   constructor(props) {
@@ -191,6 +192,13 @@ class PokemonList extends Component {
               </div>
             </div>
           )}
+          {this.props.isAdmin ? (
+            <Link to="/addpokemon">
+              <button>ADD A NEW POKEMON</button>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
         <Paginating
           changePage={this.changePage}
@@ -209,6 +217,7 @@ const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
   return {
     pokemon: state.pokemon,
+    isAdmin: state.user.admin,
     page: ownProps.history.location.search[pageNum] || 1
   };
 };

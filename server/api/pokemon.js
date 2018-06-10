@@ -10,3 +10,19 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+router.post("/", async (req, res, next) => {
+  try {
+    const newPokemon = await Pokemon.create({
+      name: req.body.name,
+      type: req.body.type,
+      description: req.body.description,
+      imageUrl: req.body.imageUrl,
+      level: req.body.level,
+      price: req.body.price
+    });
+    res.json(newPokemon);
+  } catch (err) {
+    next(err);
+  }
+});
