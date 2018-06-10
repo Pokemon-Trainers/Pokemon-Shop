@@ -11,7 +11,6 @@ const OrderItem = require('./orderItem');
  *    BlogPost.belongsTo(User)
  */
 
-Order.belongsToMany(Pokemon, { as: 'item', through: 'itemsInOrder' });
 Order.belongsTo(User);
 Review.belongsTo(User);
 Review.belongsTo(Pokemon);
@@ -20,7 +19,7 @@ User.hasMany(Review);
 OrderItem.belongsTo(Order);
 OrderItem.belongsTo(Pokemon);
 
-Order.hasMany(OrderItem);
+Order.hasMany(OrderItem, { as: 'items' });
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -33,5 +32,5 @@ module.exports = {
   Pokemon,
   Order,
   Review,
-  OrderItem
+  OrderItem,
 };

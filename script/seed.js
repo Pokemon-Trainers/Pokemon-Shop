@@ -1,7 +1,13 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Pokemon, Order, Review } = require('../server/db/models');
+const {
+  User,
+  Pokemon,
+  Order,
+  Review,
+  OrderItem,
+} = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -384,14 +390,21 @@ const order = [
     shippingName: 'Linda Morales',
     shippingAddress: '123 Fake Street',
     email: 'email@email.com',
+    userId: 1,
+    total: 100,
   },
 ];
 
 const orderItem = [
   {
     orderId: 1,
-    pokemon: 1,
+    pokemonId: 1,
     qty: 2,
+  },
+  {
+    orderId: 1,
+    pokemonId: 2,
+    qty: 3,
   },
 ];
 
@@ -428,6 +441,9 @@ async function seed() {
   const orders = await Promise.all(order.map(order => Order.create(order)));
   const reviews = await Promise.all(
     review.map(review => Review.create(review))
+  );
+  const orderItems = await Promise.all(
+    orderItem.map(item => OrderItem.create(item))
   );
   console.log('Seeding complete');
 
