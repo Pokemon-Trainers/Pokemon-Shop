@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PokemonCard from "./PokemonCard";
-import Sidebar from "./Sidebar";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PokemonCard from './PokemonCard';
+import Sidebar from './Sidebar';
 // import { Pagination } from "react-bootstrap";
-import { push } from "react-router-redux";
-import Paginating from "./Paginating";
+import { push } from 'react-router-redux';
+import Paginating from './Paginating';
 
 class PokemonList extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class PokemonList extends Component {
       priceFilter: null,
       nameFilter: null,
       typeHidden: true,
-      priceHidden: true
+      priceHidden: true,
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
@@ -37,13 +37,13 @@ class PokemonList extends Component {
   handleTypeFilter(type) {
     this.resetFilters();
     this.setState({
-      typeFilter: type
+      typeFilter: type,
     });
   }
   handlePriceFilter(priceRange) {
     this.resetFilters();
     this.setState({
-      priceFilter: priceRange
+      priceFilter: priceRange,
     });
   }
 
@@ -52,18 +52,18 @@ class PokemonList extends Component {
       typeFilter: null,
       levelFilter: null,
       priceFilter: null,
-      nameFilter: null
+      nameFilter: null,
     });
   }
 
   toggleTypeHidden() {
     this.setState({
-      typeHidden: !this.state.typeHidden
+      typeHidden: !this.state.typeHidden,
     });
   }
   togglePriceHidden() {
     this.setState({
-      priceHidden: !this.state.priceHidden
+      priceHidden: !this.state.priceHidden,
     });
   }
 
@@ -94,7 +94,7 @@ class PokemonList extends Component {
     );
   }
   changePage(page) {
-    this.props.history.push("/pokemon/?page=" + page);
+    this.props.history.push('/pokemon/?page=' + page);
   }
 
   currentPokemon() {
@@ -135,7 +135,7 @@ class PokemonList extends Component {
     let startCount = 0;
 
     return (
-      <div className="container">
+      <div className="container mb-5">
         <div className="row">
           <Sidebar
             handleTypeFilter={this.handleTypeFilter}
@@ -146,26 +146,7 @@ class PokemonList extends Component {
             togglePriceHidden={this.togglePriceHidden}
             priceHidden={this.state.priceHidden}
           />
-          {/* {pokemon.length === 0 ? (
-            <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <p>
-                This page is either loading or there are no Pokemon found...
-              </p>
-            </div>
-          ) : (
-            <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <div className="row">
-                {pokemon.map(poke => (
-                  <div
-                    className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
-                    key={poke.id}
-                  >
-                    <PokemonCard pokemon={poke} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )} */}
+
           {pokemon.length === 0 ? (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">
               <p>
@@ -209,7 +190,7 @@ const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
   return {
     pokemon: state.pokemon,
-    page: ownProps.history.location.search[pageNum] || 1
+    page: ownProps.history.location.search[pageNum] || 1,
   };
 };
 

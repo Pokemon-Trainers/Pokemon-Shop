@@ -26,7 +26,7 @@ form div {
   display: inline-block;
 }
 .pokeCard {
-  border: 5px solid gold;
+  border: 5px solid #ffcd00;
   border-radius: 15px;
   position: relative;
 }
@@ -231,8 +231,7 @@ img.poke {
   width: 100%;
 }
 
-.review .border {
-  border-bottom: 1px solid lightgray;
+.review {
   padding: 20px 0 20px 0;
 }
 
@@ -241,4 +240,18 @@ img.poke {
 }
 .inline-display {
   display: inline;
+}
+
+.btn-info {
+  background-color: #356abd;
+}
+
+.btn-info {
+  background-color: #356abd;
+  border: 1px solid white;
+}
+
+.btn-info:hover {
+  background-color: #ffcd00;
+  border: 1px solid white;
 }
