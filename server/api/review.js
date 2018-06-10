@@ -15,7 +15,10 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const review = await Review.create(req.body);
-    res.status(200).json(review);
+    const newReview = await Review.findById(review.id, {
+      include: [{ model: User }],
+    });
+    res.status(200).json(newReview);
   } catch (error) {
     next(error);
   }

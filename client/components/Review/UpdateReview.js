@@ -57,7 +57,7 @@ class UpdateReview extends React.Component {
     const { review, handleUpdateToggle } = this.props;
     return (
       <div className="review">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form-group">
           <ReactStars
             count={5}
             value={Number(this.state.rating)}
@@ -69,12 +69,15 @@ class UpdateReview extends React.Component {
           <input
             type="text"
             name="title"
+            className="form-control"
             onChange={this.handleChange}
             value={this.state.title}
           />
           <p>Review by {review.user ? review.user.email : 'anonymous'}</p>
           <textarea
             name="description"
+            className="form-control"
+            rows="5"
             onChange={this.handleChange}
             value={this.state.description}
           />

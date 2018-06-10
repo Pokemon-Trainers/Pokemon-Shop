@@ -10,7 +10,7 @@ class AddReview extends React.Component {
     super();
     this.state = {
       title: '',
-      desription: '',
+      description: '',
       rating: 0,
       pokemonId: 0,
       userId: 0,
@@ -44,7 +44,7 @@ class AddReview extends React.Component {
     this.props.createReview(this.state);
     this.setState({
       title: '',
-      desription: '',
+      description: '',
       rating: 0,
       pokemonId: 0,
     });

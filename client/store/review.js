@@ -72,7 +72,6 @@ const reviewReducer = (state = [], action) => {
     case UPDATE_REVIEW:
       return state.map(review => {
         if (review.id === action.review.id) {
-          console.log('ACTION REVIEW', action.review);
           return {
             ...review,
             title: action.review.title,

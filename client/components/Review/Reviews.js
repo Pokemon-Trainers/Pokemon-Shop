@@ -33,7 +33,7 @@ class Reviews extends React.Component {
   render() {
     const { reviews } = this.props;
     return (
-      <div>
+      <div className="col-10 mx-auto">
         <h2>Reviews</h2>
         {reviews.length ? (
           reviews.map(review => (

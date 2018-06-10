@@ -55,7 +55,7 @@ class Review extends React.Component {
               Update
             </button>
             <button
-              className="btn btn-info"
+              className="btn btn-danger"
               type="button"
               onClick={this.handleDelete}
             >
@@ -66,7 +66,7 @@ class Review extends React.Component {
       </div>
     );
     return (
-      <div className="review">
+      <div className="">
         {!this.state.toggleUpdate ? (
           displayReview
         ) : (
