@@ -1,28 +1,27 @@
-import React from "react";
-import { connect } from "react-redux";
-import { render } from "react-dom";
-import ReactStars from "react-stars";
+import React from 'react';
+import { connect } from 'react-redux';
+import ReactStars from 'react-stars';
 
-import { removeReview } from "../../store/review";
-import UpdateReview from "./UpdateReview";
+import { removeReview } from '../../store/review';
+import UpdateReview from './UpdateReview';
 class Review extends React.Component {
   constructor() {
     super();
     this.state = {
-      toggleUpdate: false
+      toggleUpdate: false,
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdateToggle = this.handleUpdateToggle.bind(this);
   }
 
-  handleUpdateToggle(event) {
+  handleUpdateToggle() {
     if (!this.state.toggleUpdate) {
       this.setState({
-        toggleUpdate: true
+        toggleUpdate: true,
       });
     } else {
       this.setState({
-        toggleUpdate: false
+        toggleUpdate: false,
       });
     }
   }
@@ -33,9 +32,7 @@ class Review extends React.Component {
   }
 
   render() {
-    const user = this.props.user;
-    const review = this.props.review;
-
+    const { user, review } = this.props;
     const displayReview = (
       <div>
         <ReactStars
@@ -43,10 +40,10 @@ class Review extends React.Component {
           value={Number(review.rating)}
           size={24}
           edit={false}
-          color2={"#ffd700"}
+          color2="#ffd700"
         />
         <h5>{review.title}</h5>
-        <p>Review by {review.user ? review.user.email : "anonymous"}</p>
+        <p>Review by {review.user ? review.user.email : 'anonymous'}</p>
         <p>{review.description}</p>
         {(user.id === review.userId || user.admin) && (
           <div>
@@ -70,8 +67,14 @@ class Review extends React.Component {
     );
     return (
       <div className="review">
-
-        {!this.state.toggleUpdate ? displayReview : <UpdateReview handleUpdateToggle={this.handleUpdateToggle} review={review} />}
+        {!this.state.toggleUpdate ? (
+          displayReview
+        ) : (
+          <UpdateReview
+            handleUpdateToggle={this.handleUpdateToggle}
+            review={review}
+          />
+        )}
       </div>
     );
   }
@@ -79,13 +82,13 @@ class Review extends React.Component {
 
 const mapState = state => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
 const mapDispatch = () => {
   return dispatch => ({
-    removeReview: reviewId => dispatch(removeReview(reviewId))
+    removeReview: reviewId => dispatch(removeReview(reviewId)),
   });
 };
 

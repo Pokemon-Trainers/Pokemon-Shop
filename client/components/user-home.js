@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Review from "./Review/Review";
+import Review from './Review/Review';
 
 /**
  * COMPONENT
@@ -23,14 +23,17 @@ export const UserHome = props => {
             individualPokemon => individualPokemon.id === pokemonId
           );
 
-          console.log("reviewedPokemon", reviewedPokemon);
           return (
-            <div className="flex" style={{ paddingBottom: "30px" }}>
+            <div
+              className="flex"
+              key={review.id}
+              style={{ paddingBottom: '30px' }}
+            >
               <div>
                 <Link to={`/pokemon/${reviewedPokemon.id}`}>
                   <img
                     src={reviewedPokemon.imageUrl}
-                    style={{ width: "200px", margin: "30px" }}
+                    style={{ width: '200px', margin: '30px' }}
                   />
                 </Link>
               </div>
@@ -59,7 +62,7 @@ const mapState = state => {
     filteredReviews: state.reviews.filter(
       review => review.userId === state.user.id
     ),
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 
@@ -69,5 +72,5 @@ export default connect(mapState)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  email: PropTypes.string,
 };

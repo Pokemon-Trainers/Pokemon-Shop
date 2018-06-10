@@ -1,20 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
-import { render } from "react-dom";
-import ReactStars from "react-stars";
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { connect } from 'react-redux';
+import ReactStars from 'react-stars';
+import { Link } from 'react-router-dom';
 
-import { createReview } from "../../store/review";
+import { createReview } from '../../store/review';
 
 class AddReview extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: "",
-      desription: "",
+      title: '',
+      desription: '',
       rating: 0,
       pokemonId: 0,
-      userId: 0
+      userId: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,65 +23,80 @@ class AddReview extends React.Component {
   componentDidMount() {
     this.setState({
       pokemonId: this.props.pokemon.id,
-      userId: this.props.user.id
-    })
+      userId: this.props.user.id,
+    });
   }
 
   setRating(rating) {
     this.setState({
-      rating: Number(rating)
-    })
+      rating: Number(rating),
+    });
   }
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
-    })
+      [event.target.name]: event.target.value,
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.createReview(this.state);
     this.setState({
-      title: "",
-      desription: "",
+      title: '',
+      desription: '',
       rating: 0,
-      pokemonId: 0
-    })
+      pokemonId: 0,
+    });
     this.props.handleFinishedReview();
   }
 
   render() {
-
     if (Object.keys(this.props.user).length === 0) {
-      return (<div><Link to="/login">Log in to write a review...</Link></div>)
+      return (
+        <div>
+          <Link to="/login">Log in to write a review...</Link>
+        </div>
+      );
     }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <table>
             <tbody>
-            <tr>
-              <td>Rating: </td>
-              <td>
-                <ReactStars count={5} size={24} color2={"#ffd700"} value={this.state.rating} onChange={this.setRating} />
-              </td>
-            </tr>
-            <tr>
-              <td>Title:</td>
-              <td>
-                <input type="text" name="title" onChange={this.handleChange}/>
-              </td>
-            </tr>
-            <tr>
-              <td>Description:</td>
-              <td>
-                <textarea name="description" onChange={this.handleChange}/>
-              </td>
-            </tr>
+              <tr>
+                <td>Rating: </td>
+                <td>
+                  <ReactStars
+                    count={5}
+                    size={24}
+                    color2="#ffd700"
+                    value={this.state.rating}
+                    onChange={this.setRating}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Title:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="title"
+                    onChange={this.handleChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Description:</td>
+                <td>
+                  <textarea name="description" onChange={this.handleChange} />
+                </td>
+              </tr>
             </tbody>
           </table>
-          <button className="btn btn-info" type="submit">Add Review</button>
+          <button className="btn btn-info" type="submit">
+            Add Review
+          </button>
         </form>
       </div>
     );
@@ -91,13 +105,13 @@ class AddReview extends React.Component {
 
 const mapState = state => {
   return {
-    user: state.user
-  }
-}
+    user: state.user,
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
-    createReview: review => dispatch(createReview(review))
+    createReview: review => dispatch(createReview(review)),
   };
 };
 export default connect(

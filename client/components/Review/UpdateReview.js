@@ -1,9 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { render } from "react-dom";
-import ReactStars from "react-stars";
+import React from 'react';
+import { connect } from 'react-redux';
+import ReactStars from 'react-stars';
 
-import { changeReview } from "../../store/review";
+import { changeReview } from '../../store/review';
 
 class UpdateReview extends React.Component {
   constructor() {
@@ -13,7 +12,7 @@ class UpdateReview extends React.Component {
       description: '',
       rating: 0,
       id: 0,
-      pokemonId: 0
+      pokemonId: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,19 +26,24 @@ class UpdateReview extends React.Component {
       description: this.props.review.description,
       rating: this.props.review.rating,
       id: this.props.review.id,
-      pokemonId: this.props.review.pokemonId
+      pokemonId: this.props.review.pokemonId,
     });
   }
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
+  }
+
+  handleCancel(event) {
+    event.preventDefault();
+    this.props.handleUpdateToggle();
   }
 
   setRating(rating) {
     this.setState({
-      rating
+      rating,
     });
   }
 
@@ -50,7 +54,7 @@ class UpdateReview extends React.Component {
   }
 
   render() {
-    const review = this.props.review;
+    const { review, handleUpdateToggle } = this.props;
     return (
       <div className="review">
         <form onSubmit={this.handleSubmit}>
@@ -58,7 +62,7 @@ class UpdateReview extends React.Component {
             count={5}
             value={Number(this.state.rating)}
             size={24}
-            color2={"#ffd700"}
+            color2="#ffd700"
             onChange={this.setRating}
           />
           <br />
@@ -66,17 +70,23 @@ class UpdateReview extends React.Component {
             type="text"
             name="title"
             onChange={this.handleChange}
-            placeholder={review.title}
+            value={this.state.title}
           />
-          <p>Review by {review.user ? review.user.email : "anonymous"}</p>
+          <p>Review by {review.user ? review.user.email : 'anonymous'}</p>
           <textarea
             name="description"
             onChange={this.handleChange}
-            placeholder={review.description}
+            value={this.state.description}
           />
           <br />
           <button className="btn btn-info" type="submit">
             Update
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={this.props.handleCancel}
+          >
+            Cancel
           </button>
           <br />
         </form>
@@ -86,19 +96,18 @@ class UpdateReview extends React.Component {
 }
 
 const mapState = state => {
-  return ({
-    reviews: state.reviews
-  })
-}
+  return {
+    reviews: state.reviews,
+  };
+};
 
 const mapDispatch = dispatch => {
-  return ({
-    changeReview: review => dispatch(changeReview(review))
-  });
+  return {
+    changeReview: review => dispatch(changeReview(review)),
+  };
 };
 
 export default connect(
   mapState,
   mapDispatch
 )(UpdateReview);
-
