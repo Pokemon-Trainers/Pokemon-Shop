@@ -7,7 +7,7 @@ class AddPokemon extends React.Component {
     super();
     this.state = {
       name: "",
-      type: "Fire",
+      type: "",
       description: "",
       imageUrl: "",
       level: "",
