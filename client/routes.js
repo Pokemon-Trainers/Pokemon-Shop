@@ -8,6 +8,7 @@ import { me } from "./store";
 import Cart from "./components/Cart";
 import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
+import Checkout from "./components/Cart/Checkout";
 
 /**
  * COMPONENT
@@ -46,6 +47,7 @@ class Routes extends Component {
         <Route exact path="/pokemon/:id" render={this.MyCart} />
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
