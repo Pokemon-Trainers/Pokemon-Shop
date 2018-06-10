@@ -244,14 +244,23 @@ img.poke {
 
 .btn-info {
   background-color: #356abd;
-}
-
-.btn-info {
-  background-color: #356abd;
   border: 1px solid white;
 }
 
 .btn-info:hover {
   background-color: #ffcd00;
   border: 1px solid white;
+}
+
+.btn-info:active {
+  background-color: #ffcd00;
+  border: 1px solid white;
+}
+
+.padding-bottom {
+  padding-bottom: 50px;
+}
+
+.home .option .center {
+  margin: auto;
 }
