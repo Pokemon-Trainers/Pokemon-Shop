@@ -20,6 +20,8 @@ User.hasMany(Review);
 OrderItem.belongsTo(Order);
 OrderItem.belongsTo(Pokemon);
 
+Order.hasMany(OrderItem);
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -31,4 +33,5 @@ module.exports = {
   Pokemon,
   Order,
   Review,
+  OrderItem
 };

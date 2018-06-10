@@ -9,13 +9,15 @@ import user from "./user";
 import pokemonReducer from "./pokemon";
 import cartReducer from "./cart";
 import reviewReducer from "./review";
+import orderReducer from "./order";
 import { BrowserRouter } from "react-router-dom";
 
 const reducer = combineReducers({
   user: user,
   pokemon: pokemonReducer,
   cart: cartReducer,
-  reviews: reviewReducer
+  reviews: reviewReducer,
+  orders: orderReducer
 });
 
 const middleware = composeWithDevTools(
