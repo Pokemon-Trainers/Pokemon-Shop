@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CartItem from "./CartItem";
 import { connect } from "react-redux";
+import {Link} from 'react-router-dom';
 import { removeFromCart, addToCart } from "../../store/cart";
 
 class Cart extends Component {
@@ -23,7 +24,8 @@ class Cart extends Component {
         totalPrice += cartItem.qty * pokeItem.price;
       });
     }
-
+    // props.totalCart('state.totalPrice', state.totalPrice)
+    // console.log('totalPrice', totalPrice)
     return { ...state, totalPrice };
   }
 
@@ -34,35 +36,39 @@ class Cart extends Component {
   }
 
   render() {
+    const filledCart = (
+      <div>
+        {this.props.cart.map(item => (
+          <div key={item.itemId}>
+            {this.props.pokemon.map(poke => (
+              <div key={poke.id}>
+                {poke.id === item.itemId ? (
+                  <CartItem item={item} poke={poke} />
+                ) : (
+                  ""
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+        <h4>Total: {this.state.totalPrice}</h4>
+        <Link to='/checkout'><button>Proceed to Checkout</button></Link>
+      </div>
+    );
+
+    const emptyCart = (
+      <div className="col-12">
+        <h3>No Items In cart</h3>
+      </div>
+    );
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-12">
             <h1>Cart</h1>
           </div>
-          {this.props.cart.length ? (
-            <div>
-              {this.props.cart.map(item => (
-                <div key={item.itemId}>
-                  {this.props.pokemon.map(poke => (
-                    <div key={poke.id}>
-                      {poke.id === item.itemId ? (
-                        <CartItem item={item} poke={poke} />
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  ))}
-                </div>
-              ))}
-              <h4>Total: {this.state.totalPrice}</h4>
-              <button>Proceed to Checkout</button>
-            </div>
-          ) : (
-            <div className="col-12">
-              <h3>No Items In cart</h3>
-            </div>
-          )}
+          {this.props.cart.length ? filledCart : emptyCart}
         </div>
       </div>
     );
@@ -77,3 +83,4 @@ const mapPropToCart = state => {
 };
 
 export default connect(mapPropToCart)(Cart);
+

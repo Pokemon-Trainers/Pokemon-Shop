@@ -8,7 +8,7 @@ const OrderItem = db.define('orderItem', {
     validate: {
       min: 1,
     },
-  },
+  }
 });
 
 module.exports = OrderItem;
