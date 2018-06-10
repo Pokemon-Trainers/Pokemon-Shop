@@ -1,37 +1,40 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Pokemon = db.define('pokemon', {
+const Pokemon = db.define("pokemon", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   type: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   description: {
-    type: Sequelize.TEXT,
+    type: Sequelize.TEXT
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: '/pokeball.png',
+    defaultValue: "/pokeball.png"
   },
   level: {
     type: Sequelize.INTEGER,
-    defaultValue: 1,
+    defaultValue: 1
   },
   price: {
     type: Sequelize.INTEGER,
     defaultValue: 1,
-    allowNull: false,
+    allowNull: false
   },
+  basePokemon: {
+    type: Sequelize.BOOLEAN
+  }
 });
 
 Pokemon.beforeValidate(pokemon => {
