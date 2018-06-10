@@ -25,7 +25,6 @@ class BillingInfo extends React.Component {
   // }
 
   setLocalState(event) {
-    console.log('this.state in BillingInfo', this.state);
     this.setState({
       [event.target.name]: event.target.value
     });
