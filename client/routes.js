@@ -22,17 +22,9 @@ class Routes extends Component {
     }
     this.MyPokemonList = this.MyPokemonList.bind(this);
     this.IndividualPokemon = this.IndividualPokemon.bind(this);
-    this.totalCart = this.totalCart.bind(this);
-    this.PassTotal = this.PassTotal.bind(this);
   }
   componentDidMount() {
     this.props.loadInitialData();
-  }
-
-  totalCart(total) {
-    this.setState({
-      total
-    })
   }
 
   MyPokemonList(props) {
@@ -49,14 +41,6 @@ class Routes extends Component {
     );
   }
 
-  PassTotal() {
-    return (
-      <Cart
-        totalCart={this.totalCart}
-      />
-    )
-  }
-
   render() {
     const { isLoggedIn } = this.props;
 
@@ -65,8 +49,8 @@ class Routes extends Component {
         {/* All Pokemon */}
         <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
-        <Route path="/cart" render={this.PassTotal}/>
-        <Route path="/checkout" />
+        <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout}/>
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
