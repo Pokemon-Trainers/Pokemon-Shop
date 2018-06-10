@@ -23,7 +23,6 @@ class ShippingInfo extends React.Component {
       address.push(value);
     }
     const combinedAddress = address.join(", ");
-    console.log('address in ShippingInfo', combinedAddress)
     this.props.handleAddress('shippingAddress', combinedAddress)
   }
 

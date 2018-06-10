@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import ShippingInfo from "./ShippingInfo";
 import BillingInfo from "./BillingInfo";
 
-import createOrder from '../../../store/order'
+import {createOrder} from '../../../store/order'
 
 class Checkout extends React.Component {
   constructor() {
@@ -23,6 +23,7 @@ class Checkout extends React.Component {
     this.handleBillingInfo = this.handleBillingInfo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleShippingInfo(event) {
@@ -65,6 +66,19 @@ class Checkout extends React.Component {
     });
   }
 
+  handleSubmit(event) {
+    console.log('this.props.location.state.total', this.props.location.state.total);
+    this.props.createOrder({
+      shippingName: this.state.shippingName,
+      shippingAddress: this.state.shippingAddress,
+      billingName: this.state.billingName,
+      billingAddress: this.state.billingAddress,
+      email: this.state.email,
+      cart: this.props.cart,
+      userId: this.props.user.id
+    })
+  }
+
   render() {
     const shippingInfo = (
       <div className="cart">
@@ -73,6 +87,7 @@ class Checkout extends React.Component {
           <ShippingInfo
             handleAddress={this.handleAddress}
             handleChange={this.handleChange}
+            state={this.state}
           />
         )}
       </div>
@@ -85,6 +100,7 @@ class Checkout extends React.Component {
           <BillingInfo
             handleAddress={this.handleAddress}
             handleChange={this.handleChange}
+            state={this.state}
           />
         )}
       </div>
@@ -100,7 +116,8 @@ class Checkout extends React.Component {
       <div className="container">
         <h1>Checkout</h1>
         {shippingInfo}
-        {billingInfo}
+        {billingInfo}<br />
+        <button type="submit" className="btn btn-info" onClick={this.handleSubmit}>Submit Order</button>
       </div>
     );
   }
@@ -108,13 +125,14 @@ class Checkout extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    createOrder: order => dispatch(createOrder(order))
+    createOrder: order => dispatch(createOrder(order)),
   }
 }
 

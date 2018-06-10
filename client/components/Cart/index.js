@@ -24,7 +24,8 @@ class Cart extends Component {
         totalPrice += cartItem.qty * pokeItem.price;
       });
     }
-
+    // props.totalCart('state.totalPrice', state.totalPrice)
+    // console.log('totalPrice', totalPrice)
     return { ...state, totalPrice };
   }
 
@@ -51,7 +52,7 @@ class Cart extends Component {
           </div>
         ))}
         <h4>Total: {this.state.totalPrice}</h4>
-        <Link to="/checkout"><button>Proceed to Checkout</button></Link>
+        <Link to='/checkout'><button>Proceed to Checkout</button></Link>
       </div>
     );
 

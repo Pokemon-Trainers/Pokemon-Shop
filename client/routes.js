@@ -17,18 +17,29 @@ class Routes extends Component {
   constructor() {
     super();
 
+    this.state = {
+      total: 0
+    }
     this.MyPokemonList = this.MyPokemonList.bind(this);
-    this.MyCart = this.MyCart.bind(this);
+    this.IndividualPokemon = this.IndividualPokemon.bind(this);
+    this.totalCart = this.totalCart.bind(this);
+    this.PassTotal = this.PassTotal.bind(this);
   }
   componentDidMount() {
     this.props.loadInitialData();
+  }
+
+  totalCart(total) {
+    this.setState({
+      total
+    })
   }
 
   MyPokemonList(props) {
     return <PokemonList searchedName={this.props.searchedName} {...props} />;
   }
 
-  MyCart(props) {
+  IndividualPokemon(props) {
     return (
       <IndividualPokemon
         handleClick={this.props.handleClick}
@@ -38,16 +49,24 @@ class Routes extends Component {
     );
   }
 
+  PassTotal() {
+    return (
+      <Cart
+        totalCart={this.totalCart}
+      />
+    )
+  }
+
   render() {
     const { isLoggedIn } = this.props;
 
     return (
       <Switch>
         {/* All Pokemon */}
-        <Route exact path="/pokemon/:id" render={this.MyCart} />
+        <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path="/cart" render={this.PassTotal}/>
+        <Route path="/checkout" />
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />

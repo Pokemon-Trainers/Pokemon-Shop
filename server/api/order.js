@@ -8,7 +8,7 @@ router.post('/', async (req, res, next) => {
     req.body.cart.map(async item => {
       await OrderItem.create({
         qty: item.qty,
-        pokemonId: item.pokemonId,
+        pokemonId: item.itemId,
         orderId: order.id
       })
     })
