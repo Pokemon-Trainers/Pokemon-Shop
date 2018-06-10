@@ -9,6 +9,7 @@ import Cart from "./components/Cart";
 import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
 import AddPokemon from "./components/AddPokemon";
+import Checkout from "./components/Cart/Checkout";
 
 /**
  * COMPONENT
@@ -17,8 +18,11 @@ class Routes extends Component {
   constructor() {
     super();
 
+    this.state = {
+      total: 0
+    };
     this.MyPokemonList = this.MyPokemonList.bind(this);
-    this.MyCart = this.MyCart.bind(this);
+    this.IndividualPokemon = this.IndividualPokemon.bind(this);
   }
   componentDidMount() {
     this.props.loadInitialData();
@@ -28,7 +32,7 @@ class Routes extends Component {
     return <PokemonList searchedName={this.props.searchedName} {...props} />;
   }
 
-  MyCart(props) {
+  IndividualPokemon(props) {
     return (
       <IndividualPokemon
         handleClick={this.props.handleClick}
@@ -45,9 +49,10 @@ class Routes extends Component {
     return (
       <Switch>
         {/* All Pokemon */}
-        <Route exact path="/pokemon/:id" render={this.MyCart} />
+        <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />

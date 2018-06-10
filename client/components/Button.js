@@ -16,7 +16,7 @@ const Button = props => {
             <li key={num} className="page-item">
               <button
                 value={num}
-                onClick={evt => {
+                className="btn btn-info" onClick={evt => {
                   changePage(evt.target.value);
                 }}
               >

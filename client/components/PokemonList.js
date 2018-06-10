@@ -136,7 +136,7 @@ class PokemonList extends Component {
     let startCount = 0;
 
     return (
-      <div className="container">
+      <div className="container mb-5">
         <div className="row">
           <Sidebar
             handleTypeFilter={this.handleTypeFilter}
@@ -147,26 +147,7 @@ class PokemonList extends Component {
             togglePriceHidden={this.togglePriceHidden}
             priceHidden={this.state.priceHidden}
           />
-          {/* {pokemon.length === 0 ? (
-            <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <p>
-                This page is either loading or there are no Pokemon found...
-              </p>
-            </div>
-          ) : (
-            <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <div className="row">
-                {pokemon.map(poke => (
-                  <div
-                    className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
-                    key={poke.id}
-                  >
-                    <PokemonCard pokemon={poke} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )} */}
+
           {pokemon.length === 0 ? (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">
               <p>

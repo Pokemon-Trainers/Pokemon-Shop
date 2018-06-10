@@ -6,16 +6,19 @@ const Review = db.define('review', {
     type: Sequelize.DECIMAL(2, 1),
     defaultValue: 0,
     validate: {
-      max: 5
-    }
+      max: 5,
+    },
+    // get() {
+    //   return this.getDataValue('rating') / 10;
+    // },
   },
   title: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false
-  }
-})
+    allowNull: false,
+  },
+});
 
 module.exports = Review;
