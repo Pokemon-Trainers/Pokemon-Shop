@@ -11,7 +11,7 @@ const addOrder = order => {
 
 export const createOrder = order => {
   return async dispatch => {
-    const { data } = await axios.post('/api/order', order);
+    const { data } = await axios.post(`/api/order/${order.id}`, order);
     dispatch(createOrder(data));
   };
 };
