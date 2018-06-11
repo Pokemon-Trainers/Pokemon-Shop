@@ -544,10 +544,8 @@ async function seed() {
   console.log("db synced!");
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
-  const users = await Promise.all([\
-    User.create({ email: "cody@email.com", password: "123", admin: true }),
-
-
+  const users = await Promise.all([
+    User.create({ email: "cody@email.com", password: "123", admin: true })
   ]);
   const pokes = await Promise.all(pokemon.map(poke => Pokemon.create(poke)));
   const orders = await Promise.all(order.map(order => Order.create(order)));
