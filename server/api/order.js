@@ -4,7 +4,7 @@ const { Order, OrderItem } = require("../db/models");
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
-      include: [{ all: true });
+      include: [{ all: true }]});
     res.json(orders);
   } catch (error) {
     next (error)

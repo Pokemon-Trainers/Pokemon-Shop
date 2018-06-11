@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Review from "./Review/Review";
+import Reviews from './UserHome/Reviews'
+import Orders from './UserHome/Orders'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const { user, filteredReviews, pokemon } = props;
+  const { user } = props;
 
   return (
     <div>
@@ -19,40 +19,9 @@ export const UserHome = props => {
           <button className="btn btn-info" type="button">Orders</button>
           <button className="btn btn-info" type="button">Reviews</button>
         </div>
-        <div>
-          <h4>Reviews</h4>
-          {filteredReviews.map((review, key) => {
-            const pokemonId = review.pokemonId;
-            const reviewedPokemon = pokemon.find(
-              individualPokemon => individualPokemon.id === pokemonId
-            );
+        <Orders />
+        <Reviews />
 
-            return (
-              <div
-                className="flex"
-                key={review.id}
-                style={{ paddingBottom: "30px" }}
-              >
-                <div>
-                  <Link to={`/pokemon/${reviewedPokemon.id}`}>
-                    <img
-                      src={reviewedPokemon.imageUrl}
-                      style={{ width: "200px", margin: "30px" }}
-                    />
-                  </Link>
-                </div>
-                <div>
-                  <h2>
-                    <Link to={`/pokemon/${reviewedPokemon.id}`}>
-                      {reviewedPokemon.name}
-                    </Link>
-                  </h2>
-                  <Review key={key} review={review} />
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </div>
   );

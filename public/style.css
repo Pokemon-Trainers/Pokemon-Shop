@@ -264,3 +264,34 @@ img.poke {
 .home .option .center {
   margin: auto;
 }
+
+.order {
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+
+.order p{
+  margin-bottom: 0;
+}
+
+.order .specs{
+  background-color: #356abd;
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.order .img{
+  width: 100px;
+  margin: 20px;
+}
+
+.order .pokemon{
+  justify-content: space-between;
+}
+
+
+
+
