@@ -78,9 +78,6 @@ const pokemonReducer = (state = [], action) => {
         if (pokemon.id === action.pokemon.id) {
           return {
             ...pokemon,
-            name: action.pokemon.name,
-            rating: action.pokemon.rating,
-            type: action.pokemon.type,
             level: action.pokemon.level,
             price: action.pokemon.price,
             description: action.pokemon.description
