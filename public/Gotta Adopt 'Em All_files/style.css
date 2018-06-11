@@ -184,3 +184,9 @@ img.poke {
   color: #ff890e;
   font-size: 18px;
 }
+
+.home .option {
+  margin: 25px;
+  border: 1px solid lightgray;
+  width: 50%;
+}

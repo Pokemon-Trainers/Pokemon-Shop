@@ -390,9 +390,20 @@ const order = [
     shippingName: 'Linda Morales',
     shippingAddress: '123 Fake Street',
     email: 'email@email.com',
-    userId: 1,
-    total: 100,
+    userId: 2,
+    total: 30,
+    status: 'pending'
   },
+  {
+    billingName: 'Sheri Kwong',
+    billingAddress: '123 Fake Street',
+    shippingName: 'Sheri Kwong',
+    shippingAddress: '123 Fake Street',
+    email: 'email@email.com',
+    userId: 2,
+    total: 100,
+    status: 'shipped'
+  }
 ];
 
 const orderItem = [
@@ -402,10 +413,20 @@ const orderItem = [
     qty: 2,
   },
   {
-    orderId: 1,
-    pokemonId: 2,
-    qty: 3,
+    orderId: 2,
+    pokemonId: 3,
+    qty: 1,
   },
+  {
+    orderId: 2,
+    pokemonId: 4,
+    qty: 2,
+  },
+  {
+    orderId: 2,
+    pokemonId: 10,
+    qty: 1,
+  }
 ];
 
 const lorem =
