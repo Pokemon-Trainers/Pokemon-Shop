@@ -7,6 +7,7 @@ class EditPokemon extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: "",
       description: "",
       level: "",
       price: ""
@@ -20,47 +21,22 @@ class EditPokemon extends React.Component {
     if (!props.selectedPokemon) {
       return state;
     }
-
+    state.id = props.selectedPokemon.id;
     state.description = props.selectedPokemon.description;
     state.level = props.selectedPokemon.level;
     state.price = props.selectedPokemon.price;
     return state;
   }
 
-  getTypes() {
-    const types = [];
-
-    this.props.pokemon.forEach(poke => {
-      poke.type.forEach(type => {
-        if (!types.includes(type)) {
-          types.push(type);
-        }
-      });
-    });
-
-    return types.sort();
-  }
-
   handleChange(evt) {
-    if (evt.target.name === "type") {
-      const selectedTypes = [...evt.target.options]
-        .filter(option => option.selected)
-        .map(option => option.value);
-
-      this.setState({
-        [evt.target.name]: selectedTypes
-      });
-    } else {
-      this.setState({
-        [evt.target.name]: evt.target.value
-      });
-    }
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
     const id = this.state.id;
-    this.props.history.push(`/pokemon/${id}`);
     this.props.handleToggle();
 
     this.props.postPokemon({
@@ -69,16 +45,10 @@ class EditPokemon extends React.Component {
   }
 
   render() {
-    console.log("this.state!", this.props.pokemon);
+    console.log("history", this.props.history);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <p>Description</p>
-          <input
-            onChange={this.handleChange}
-            value={this.state.description}
-            name="description"
-          />
           <p>Level</p>
           <input
             onChange={this.handleChange}
@@ -90,6 +60,12 @@ class EditPokemon extends React.Component {
             onChange={this.handleChange}
             value={this.state.price}
             name="price"
+          />
+          <p>Description</p>
+          <input
+            onChange={this.handleChange}
+            value={this.state.description}
+            name="description"
           />
           <button onClick={this.handleSubmit} type="submit">
             Edit Pokemon
