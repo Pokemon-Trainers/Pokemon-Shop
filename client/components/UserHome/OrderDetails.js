@@ -63,20 +63,20 @@ const OrderDetails = props => {
       <p>
         Ordered on {order.createdAt.slice(0, 10)} | Order # {order.id}
       </p>
-      <div className="order flex padding">
-        <div>
+      <div className="order row padding">
+        <div className="col-3">
           <h5>Shipping Address</h5>
           <p>{order.shippingAddress}</p>
         </div>
-        <div>
+        <div className="col-3">
           <h5>Billing Address</h5>
           <p>{order.billingAddress}</p>
         </div>
-        <div>
+        <div className="col-3">
           <h5>Payment Method</h5>
           <p>aoigaeoigjagj</p>
         </div>
-        <div>
+        <div className="col-3">
           <h5>Total</h5>
           <p>{order.total}</p>
         </div>

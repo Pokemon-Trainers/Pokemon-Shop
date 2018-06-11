@@ -16,13 +16,21 @@ class Orders extends React.Component {
         );
     }
 
+    let filteredOrders;
+
+    if (this.props.status !== 'all') {
+      filteredOrders = orders.filter(order => order.status === this.props.status);
+    } else {
+      filteredOrders = orders;
+    }
+
     return (
       <div>
         <h4>Orders</h4>
 
-        {orders.length === 0 && <div>You have no orders...</div>}
+        {filteredOrders.length === 0 && <div>You have no orders...</div>}
 
-        {orders.map((order, key) => <Order  order={order} key={key}/>)}
+        {filteredOrders.map((order, key) => <Order  order={order} key={key}/>)}
       </div>
     );
   }

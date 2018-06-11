@@ -57,22 +57,22 @@ const Order = props => {
   return (
     <div className="container order">
       <div className="specs row">
-        <div className="col">
+        <div className="col-3">
           <p>ORDER PLACED:</p>
           <p>{order.createdAt.slice(0, 10)}</p>
         </div>
-        <div className="col">
+        <div className="col-3">
           <p>TOTAL:</p>
           <p>
             {order.total}{" "}
             <img className="currency img-fluid" src="/PokeBallCurrency.png" />
           </p>
         </div>
-        <div className="col">
+        <div className="col-3">
           <p>SHIP TO:</p>
           <p>{order.shippingName}</p>
         </div>
-        <div className="col">
+        <div className="col-3">
           <p>ORDER # {order.id}</p>
           <p>
             <Link

@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 const Reviews = props => {
   const { filteredReviews, pokemon } = props;
 
+  
+
   return (
     <div>
       <h4>Reviews</h4>
