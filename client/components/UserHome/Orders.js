@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchOrders } from '../../store/order';
-import Order from './order'
+import { fetchOrders } from "../../store/order";
+import Order from "./order";
 
 class Orders extends React.Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class Orders extends React.Component {
     return (
       <div>
         <h4>Orders</h4>
-        {filteredOrders.map((order, key) => <Order  order={order} key={key}/>)}
+        {filteredOrders.map((order, key) => <Order order={order} key={key} />)}
       </div>
     );
   }
@@ -32,7 +32,10 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchOrders: () => dispatch(fetchOrders())
-  }
+  };
 };
 
-export default connect(mapState, mapDispatch)(Orders);
+export default connect(
+  mapState,
+  mapDispatch
+)(Orders);
