@@ -7,7 +7,7 @@ class AddPokemon extends React.Component {
     super();
     this.state = {
       name: "",
-      type: "",
+      type: [],
       description: "",
       imageUrl: "",
       level: "",
@@ -18,10 +18,34 @@ class AddPokemon extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
+  getTypes() {
+    const types = [];
+
+    this.props.pokemon.forEach(poke => {
+      poke.type.forEach(type => {
+        if (!types.includes(type)) {
+          types.push(type);
+        }
+      });
     });
+
+    return types.sort();
+  }
+
+  handleChange(evt) {
+    if (evt.target.name === "type") {
+      const selectedTypes = [...evt.target.options]
+        .filter(option => option.selected)
+        .map(option => option.value);
+
+      this.setState({
+        [evt.target.name]: selectedTypes
+      });
+    } else {
+      this.setState({
+        [evt.target.name]: evt.target.value
+      });
+    }
   }
 
   handleSubmit(evt) {
@@ -51,15 +75,21 @@ class AddPokemon extends React.Component {
           />
           <p>type</p>
           <select
+            multiple
             name="type"
             value={this.state.type}
             onChange={this.handleChange}
           >
-            {this.props.pokemon.map(poke => (
-              <option key={poke.id} value={poke.type}>
-                {poke.type}
+            {this.getTypes().map(type => (
+              <option key={type} value={type}>
+                {type}
               </option>
             ))}
+            {/* {this.props.pokemon.map(poke => (
+              <option key={poke.id} value={JSON.stringify(poke.type)}>
+                {poke.type.join(", ")}
+              </option>
+            ))} */}
           </select>
           <p>Description</p>
           <input
