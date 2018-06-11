@@ -9,6 +9,7 @@ import Cart from "./components/Cart";
 import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
 import Checkout from "./components/Cart/Checkout";
+import OrderDetails from './components/UserHome/OrderDetails'
 
 /**
  * COMPONENT
@@ -51,6 +52,7 @@ class Routes extends Component {
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout}/>
+        <Route path="/orders/:id" component={OrderDetails}/>
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />

@@ -1,9 +1,10 @@
-import React from "react";
-import Item from "./Item";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {connect} from 'react-redux'
 
-const Order = props => {
-  const { order } = props;
+import Item from './Item'
+
+const OrderDetails = props => {
+  const order = props.order
 
   const pending = (
     <div
@@ -46,6 +47,8 @@ const Order = props => {
 
   let progress;
 
+  if (!order) return <div className="container">Loading...</div>
+
   if (order.status === "pending") {
     progress = pending;
   } else if (order.status === "shipped") {
@@ -55,35 +58,28 @@ const Order = props => {
   }
 
   return (
-    <div className="order">
-      <div className="specs flex">
+    <div className="container">
+      <h1>Order Details</h1>
+      <p>Ordered on {order.createdAt.slice(0, 10)} | Order # {order.id}</p>
+      <div className="order flex padding">
         <div>
-          <p>ORDER PLACED:</p>
-          <p>{order.createdAt.slice(0, 10)}</p>
+          <h5>Shipping Address</h5>
+          <p>{order.shippingAddress}</p>
         </div>
         <div>
-          <p>TOTAL:</p>
-          <p>
-            {order.total}{" "}
-            <img className="currency img-fluid" src="/PokeBallCurrency.png" />
-          </p>
+          <h5>Billing Address</h5>
+          <p>{order.billingAddress}</p>
         </div>
         <div>
-          <p>SHIP TO:</p>
-          <p>{order.shippingName}</p>
+          <h5>Payment Method</h5>
+          <p>aoigaeoigjagj</p>
         </div>
         <div>
-          <p>ORDER # {order.id}</p>
-          <p>
-            <Link
-              to={`/orders/${order.id}`}
-            >
-              Order Details
-            </Link>
-          </p>
+          <h5>Total</h5>
+          <p>{order.total}</p>
         </div>
       </div>
-      <div className="body">
+      <div>
         <div className="progress margin-bottom">{progress}</div>
 
         <div className="flex pokemon">
@@ -93,8 +89,19 @@ const Order = props => {
             ))}
         </div>
       </div>
-    </div>
-  );
-};
 
-export default Order;
+
+    </div>
+  )
+}
+
+const mapState = (state, ownProps) => {
+  const id = +ownProps.match.params.id;
+
+  return {
+    order: state.orders.find(order => order.id === id),
+    pokemon: state.pokemon
+  }
+}
+
+export default connect(mapState)(OrderDetails)

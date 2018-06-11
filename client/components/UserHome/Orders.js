@@ -4,9 +4,6 @@ import { fetchOrders } from '../../store/order';
 import Order from './order'
 
 class Orders extends React.Component {
-  componentDidMount() {
-    this.props.fetchOrders();
-  }
 
   render() {
     let orders;
@@ -18,8 +15,6 @@ class Orders extends React.Component {
           order => order.user.id === this.props.user.id
         );
     }
-
-    console.log(this.props);
 
     return (
       <div>

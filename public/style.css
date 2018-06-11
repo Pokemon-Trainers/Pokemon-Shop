@@ -268,18 +268,25 @@ img.poke {
 .order {
   margin-bottom: 50px;
   border-radius: 10px;
+  border: 1px solid lightgray;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .order p{
   margin-bottom: 0;
 }
 
+.container .padding {
+  padding: 20px;
+}
+
 .order .specs{
   background-color: #356abd;
-  border-radius: 10px;
+  border-radius:10px 10px 0px 0px;
   justify-content: space-between;
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: white;
 }
 
@@ -290,8 +297,11 @@ img.poke {
 
 .order .pokemon{
   justify-content: space-between;
-  /* margin-right: 50px; */
   width: 33%;
+}
+
+.order .body {
+  padding: 20px;
 }
 
 .progress{
