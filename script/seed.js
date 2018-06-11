@@ -412,13 +412,64 @@ const pokemon = [
     basePokemon: true
   },
   {
-    name: "Wigglytuff ",
+    name: "Wigglytuff",
+
     type: ["Normal", "Fairy"],
     description:
       "Wigglytuff has large, saucerlike eyes. The surfaces of its eyes are always covered with a thin layer of tears. If any dust gets in this Pokémon's eyes, it is quickly washed away.",
     imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/040.png",
     level: 29,
     price: 32,
+    basePokemon: true
+  },
+  {
+    name: "Zubat",
+    type: ["Poison", "Flying"],
+    description:
+      "Zubat remains quietly unmoving in a dark spot during the bright daylight hours. It does so because prolonged exposure to the sun causes its body to become slightly burned.",
+    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/041.png",
+    level: 8,
+    price: 18,
+    basePokemon: true
+  },
+  {
+    name: "Golbat",
+    type: ["Poison", "Flying"],
+    description:
+      "Golbat loves to drink the blood of living things. It is particularly active in the pitch black of night. This Pokémon flits around in the night skies, seeking fresh blood.",
+    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/042.png",
+    level: 26,
+    price: 32,
+    basePokemon: true
+  },
+  {
+    name: "Oddish",
+    type: ["Grass", "Poison"],
+    description:
+      "During the daytime, Oddish buries itself in soil to absorb nutrients from the ground using its entire body. The more fertile the soil, the glossier its leaves become.",
+    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/043.png",
+    level: 10,
+    price: 10,
+    basePokemon: true
+  },
+  {
+    name: "Gloom",
+    type: ["Grass", "Poison"],
+    description:
+      "Gloom releases a foul fragrance from the pistil of its flower. When faced with danger, the stench worsens. If this Pokémon is feeling calm and secure, it does not release its usual stinky aroma.",
+    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/044.png",
+    level: 25,
+    price: 25,
+    basePokemon: true
+  },
+  {
+    name: "Vileplume",
+    type: ["Grass", "Poison"],
+    description:
+      "Vileplume's toxic pollen triggers atrocious allergy attacks. That's why it is advisable never to approach any attractive flowers in a jungle, however pretty they may be.",
+    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/045.png",
+    level: 45,
+    price: 45,
     basePokemon: true
   }
 ];

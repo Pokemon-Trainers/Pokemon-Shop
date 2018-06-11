@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchOrders } from '../../store/order';
-import Order from './order'
+import { fetchOrders } from "../../store/order";
+import Order from "./order";
 
 class Orders extends React.Component {
 
@@ -46,7 +46,10 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchOrders: () => dispatch(fetchOrders())
-  }
+  };
 };
 
-export default connect(mapState, mapDispatch)(Orders);
+export default connect(
+  mapState,
+  mapDispatch
+)(Orders);
