@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import ReactStars from "react-stars";
 import { withRouter, Link } from "react-router-dom";
 import EditPokemon from "./EditPokemon";
-import { removePokemon } from "../store/pokemon";
 
 import Reviews from "./Review/Reviews";
 
@@ -13,26 +12,16 @@ class IndividualPokemon extends React.Component {
     this.state = {
       toggleUpdate: false
     };
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleDelete(event) {
-    event.preventDefault();
-    if (window.confirm("Are you sure you wish to delete this Pokemon?"))
-      this.props.history.push("/pokemon");
-
-    this.props.removePokemon(this.props.selectedPokemon.id);
   }
 
   handleToggle() {
     if (this.state.toggleUpdate === true) {
       this.setState({
-        toggleUpdate: false
+        toggleAddReview: false
       });
     } else {
       this.setState({
-        toggleUpdate: true
+        toggleAddReview: true
       });
     }
   }
@@ -42,12 +31,7 @@ class IndividualPokemon extends React.Component {
     const { reviews, avg } = this.props;
     const loading = <p>This page is either loading or not available...</p>;
 
-    const edit = (
-      <EditPokemon
-        handleToggle={this.handleToggle}
-        selectedPokemon={this.props.selectedPokemon}
-      />
-    );
+    const edit = <EditPokemon selectedPokemon={pokemon} />;
 
     const loaded = (
       <div className="mb-5">
@@ -108,17 +92,7 @@ class IndividualPokemon extends React.Component {
             ) : (
               ""
             )}
-            {this.props.isAdmin ? (
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={this.handleDelete}
-              >
-                DELETE POKEMON
-              </button>
-            ) : (
-              ""
-            )}
+            {this.props.isAdmin ? <button>DELETE POKEMON</button> : ""}
           </div>
         </div>
         <div className="row">
@@ -153,14 +127,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return dispatch => ({
-    removePokemon: pokemonId => dispatch(removePokemon(pokemonId))
-  });
-};
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(IndividualPokemon)
-);
+export default withRouter(connect(mapStateToProps)(IndividualPokemon));
