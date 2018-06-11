@@ -82,7 +82,7 @@ const Order = props => {
       </div>
 
       <div className="flex pokemon">
-        {order.orderItems.map((item, key) => (
+        {order.items && order.items.map((item, key) => (
           <Item key={key} pokemonId={item.pokemonId} />
         ))}
       </div>
