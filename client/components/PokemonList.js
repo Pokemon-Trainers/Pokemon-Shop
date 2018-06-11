@@ -134,7 +134,8 @@ class PokemonList extends Component {
     const pokemon = this.currentPokemon();
     const perPage = 9;
     const pages = Math.ceil(pokemon.length / perPage);
-    const startOffset = (this.props.page - 1) * perPage;
+    const startOffset =
+      pokemon.length < 40 ? 1 : (this.props.page - 1) * perPage;
     let startCount = 0;
 
     return (
