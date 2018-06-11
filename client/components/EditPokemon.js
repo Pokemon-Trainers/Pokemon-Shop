@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { changePokemon } from "../store/pokemon";
 
 class EditPokemon extends React.Component {
@@ -64,8 +65,11 @@ class EditPokemon extends React.Component {
   }
 
   handleSubmit(evt) {
-    console.log("props inside handle submit", this.props);
     evt.preventDefault();
+    const id = this.state.id;
+    this.props.history.push(`/pokemon/${id}`);
+    this.props.handleToggle();
+
     this.props.postPokemon({
       ...this.state
     });
@@ -125,7 +129,9 @@ class EditPokemon extends React.Component {
             value={this.state.price}
             name="price"
           />
-          <button type="submit">Edit Pokemon</button>
+          <button onClick={this.handleSubmit} type="submit">
+            Edit Pokemon
+          </button>
         </form>
       </div>
     );
@@ -144,7 +150,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditPokemon);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(EditPokemon)
+);

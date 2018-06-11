@@ -19,7 +19,7 @@ class IndividualPokemon extends React.Component {
 
   handleDelete(event) {
     event.preventDefault();
-    if (window.confirm("Are you sure you wish to delete this item?"))
+    if (window.confirm("Are you sure you wish to delete this Pokemon?"))
       this.props.history.push("/pokemon");
 
     this.props.removePokemon(this.props.selectedPokemon.id);
@@ -42,7 +42,12 @@ class IndividualPokemon extends React.Component {
     const { reviews, avg } = this.props;
     const loading = <p>This page is either loading or not available...</p>;
 
-    const edit = <EditPokemon selectedPokemon={this.props.selectedPokemon} />;
+    const edit = (
+      <EditPokemon
+        handleToggle={this.handleToggle}
+        selectedPokemon={this.props.selectedPokemon}
+      />
+    );
 
     const loaded = (
       <div className="mb-5">
@@ -124,12 +129,6 @@ class IndividualPokemon extends React.Component {
     return (
       <div className="container mb-5">
         {pokemon.id && !this.state.toggleUpdate ? loaded : edit}
-        {/* <div className="col">
-          <img src={pokemon.imageUrl} />
-        </div>
-        <div className="row">
-          <Reviews selectedPokemon={pokemon} reviews={reviews} />
-        </div> */}
       </div>
     );
   }
