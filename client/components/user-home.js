@@ -36,7 +36,7 @@ class UserHome extends React.Component {
     return (
       <div>
         <div className="container">
-          <h3>Welcome, {user.email}! {isAdmin && <button type="button" class="btn btn-xs">ADMIN</button>}</h3>
+          <h3>Welcome, {user.email}! {isAdmin && <img src="http://i67.tinypic.com/bhx5za.png" />}</h3>
 
           <div className="flex margin-bottom">
             <div className="dropdown">
