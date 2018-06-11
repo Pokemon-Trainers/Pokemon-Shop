@@ -41,15 +41,7 @@ class IndividualPokemon extends React.Component {
     const pokemon = this.props.selectedPokemon || {};
     const { reviews, avg } = this.props;
     const loading = <p>This page is either loading or not available...</p>;
-
-    const edit = (
-      <EditPokemon
-        handleToggle={this.handleToggle}
-        selectedPokemon={this.props.selectedPokemon}
-      />
-    );
-
-    const loaded = (
+    return (
       <div className="mb-5">
         <div className="row">
           <div className="col">
@@ -73,19 +65,32 @@ class IndividualPokemon extends React.Component {
                   </span>
                 ))}
             </p>
-            <p>Level: {pokemon.level}</p>
-            <p>
-              Price: {pokemon.price}{" "}
-              <img className="currency img-fluid" src="/PokeBallCurrency.png" />
-            </p>
-            <p>{pokemon.description}</p>
+            {!this.state.toggleUpdate ? (
+              <div>
+                <p>Level: {pokemon.level}</p>
+                <p>
+                  Price: {pokemon.price}{" "}
+                  <img
+                    className="currency img-fluid"
+                    src="/PokeBallCurrency.png"
+                  />
+                </p>
+                <p>{pokemon.description}</p>
+              </div>
+            ) : (
+              <EditPokemon
+                handleToggle={this.handleToggle}
+                selectedPokemon={this.props.selectedPokemon}
+                this
+              />
+            )}
             <div className="input-group">
               <input
                 type="number"
-                min="0"
+                min="1"
                 onChange={this.props.handleQuantityChange}
                 className="form-control"
-                placeholder="0"
+                placeholder="1"
               />
               <button
                 type="button"
@@ -124,11 +129,6 @@ class IndividualPokemon extends React.Component {
         <div className="row">
           <Reviews selectedPokemon={pokemon} reviews={reviews} />
         </div>
-      </div>
-    );
-    return (
-      <div className="container mb-5">
-        {pokemon.id && !this.state.toggleUpdate ? loaded : edit}
       </div>
     );
   }
