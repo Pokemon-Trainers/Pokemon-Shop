@@ -7,11 +7,7 @@ class EditPokemon extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: "",
-      name: "",
-      type: [],
       description: "",
-      imageUrl: "",
       level: "",
       price: ""
     };
@@ -24,11 +20,8 @@ class EditPokemon extends React.Component {
     if (!props.selectedPokemon) {
       return state;
     }
-    state.id = props.selectedPokemon.id;
-    state.name = props.selectedPokemon.name;
-    state.type = props.selectedPokemon.type;
+
     state.description = props.selectedPokemon.description;
-    state.imageUrl = props.selectedPokemon.imageUrl;
     state.level = props.selectedPokemon.level;
     state.price = props.selectedPokemon.price;
     return state;
@@ -79,43 +72,12 @@ class EditPokemon extends React.Component {
     console.log("this.state!", this.props.pokemon);
     return (
       <div>
-        <h1>Edit POKEMON</h1>
         <form onSubmit={this.handleSubmit}>
-          <p>Name</p>
-          <input
-            onChange={this.handleChange}
-            value={this.state.name}
-            name="name"
-          />
-          <p>type</p>
-          <select
-            multiple
-            name="type"
-            value={this.state.type}
-            onChange={this.handleChange}
-          >
-            {this.getTypes().map(type => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-            {/* {this.props.pokemon.map(poke => (
-              <option key={poke.id} value={JSON.stringify(poke.type)}>
-                {poke.type.join(", ")}
-              </option>
-            ))} */}
-          </select>
           <p>Description</p>
           <input
             onChange={this.handleChange}
             value={this.state.description}
             name="description"
-          />
-          <p>Image</p>
-          <input
-            onChange={this.handleChange}
-            value={this.state.imageUrl}
-            name="imageUrl"
           />
           <p>Level</p>
           <input
