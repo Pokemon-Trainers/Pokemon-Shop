@@ -119,7 +119,9 @@ const mapDispatch = dispatch => {
     },
 
     fetchReviews: () => dispatch(fetchReviews()),
+
     fetchCart: () => dispatch(fetchCart()),
+    
     fetchOrders: () => dispatch(fetchOrders())
   };
 };

@@ -29,7 +29,6 @@ const Item = props => {
 
 const mapState = (state, props) => {
   return {
-    pokemon: state.pokemon,
     selectedPokemon: state.pokemon.find(
       pokemon => pokemon.id === props.pokemonId
     )
