@@ -2,30 +2,57 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Reviews from './UserHome/Reviews'
-import Orders from './UserHome/Orders'
+import Reviews from "./UserHome/Reviews";
+import Orders from "./UserHome/Orders";
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const { user } = props;
+class UserHome extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      view: "orders"
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-  return (
-    <div>
-      <div className="container">
-        <h3>Welcome, {user.email}!</h3>
-        <div className="flex margin-bottom">
-          <button className="btn btn-info" type="button">Orders</button>
-          <button className="btn btn-info" type="button">Reviews</button>
+  handleClick(event) {
+    this.setState({
+      view: event.target.name
+    });
+  }
+  render() {
+    const { user } = this.props;
+    return (
+      <div>
+        <div className="container">
+          <h3>Welcome, {user.email}!</h3>
+          <div className="flex margin-bottom">
+            <button
+              className="btn btn-info"
+              type="button"
+              name="orders"
+              onClick={this.handleClick}
+            >
+              Orders
+            </button>
+            <button
+              className="btn btn-info"
+              type="button"
+              name="reviews"
+              onClick={this.handleClick}
+            >
+              Reviews
+            </button>
+          </div>
+
+          {this.state.view === "orders" ? <Orders /> : <Reviews />}
         </div>
-        <Orders />
-        <Reviews />
-
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 /**
  * CONTAINER

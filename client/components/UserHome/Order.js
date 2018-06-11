@@ -77,7 +77,7 @@ const Order = props => {
         </div>
       </div>
 
-      <div className="progress margin-bottom" style={{ height: "40px" }}>
+      <div className="progress margin-bottom">
         {progress}
       </div>
 
