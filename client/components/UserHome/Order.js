@@ -55,24 +55,24 @@ const Order = props => {
   }
 
   return (
-    <div className="order">
-      <div className="specs flex">
-        <div>
+    <div className="container order">
+      <div className="specs row">
+        <div className="col">
           <p>ORDER PLACED:</p>
           <p>{order.createdAt.slice(0, 10)}</p>
         </div>
-        <div>
+        <div className="col">
           <p>TOTAL:</p>
           <p>
             {order.total}{" "}
             <img className="currency img-fluid" src="/PokeBallCurrency.png" />
           </p>
         </div>
-        <div>
+        <div className="col">
           <p>SHIP TO:</p>
           <p>{order.shippingName}</p>
         </div>
-        <div>
+        <div className="col">
           <p>ORDER # {order.id}</p>
           <p>
             <Link
@@ -86,7 +86,7 @@ const Order = props => {
       <div className="body">
         <div className="progress margin-bottom">{progress}</div>
 
-        <div className="flex pokemon">
+        <div className="row p-2">
           {order.items &&
             order.items.map((item, key) => (
               <Item key={key} pokemonId={item.pokemonId} />

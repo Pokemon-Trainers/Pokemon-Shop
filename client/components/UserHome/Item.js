@@ -9,11 +9,11 @@ const Item = props => {
   if (!selectedPokemon) return <div>Loading...</div>
 
     const loaded = (
-      <div className="flex">
+      <div className="media col-4 p-2">
         <div>
-          <img className="img" src={selectedPokemon.imageUrl} />
+          <img className="align-self-center mr-3 img" src={selectedPokemon.imageUrl} />
         </div>
-        <div>
+        <div className="media-body">
           <h4>{selectedPokemon.name}</h4>
           <p>
             Price: {selectedPokemon.price}{" "}

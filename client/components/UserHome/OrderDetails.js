@@ -1,10 +1,10 @@
-import React from 'react';
-import {connect} from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
-import Item from './Item'
+import Item from "./Item";
 
 const OrderDetails = props => {
-  const order = props.order
+  const order = props.order;
 
   const pending = (
     <div
@@ -47,7 +47,7 @@ const OrderDetails = props => {
 
   let progress;
 
-  if (!order) return <div className="container">Loading...</div>
+  if (!order) return <div className="container">Loading...</div>;
 
   if (order.status === "pending") {
     progress = pending;
@@ -60,7 +60,9 @@ const OrderDetails = props => {
   return (
     <div className="container">
       <h1>Order Details</h1>
-      <p>Ordered on {order.createdAt.slice(0, 10)} | Order # {order.id}</p>
+      <p>
+        Ordered on {order.createdAt.slice(0, 10)} | Order # {order.id}
+      </p>
       <div className="order flex padding">
         <div>
           <h5>Shipping Address</h5>
@@ -82,18 +84,18 @@ const OrderDetails = props => {
       <div>
         <div className="progress margin-bottom">{progress}</div>
 
-        <div className="flex pokemon">
-          {order.items &&
-            order.items.map((item, key) => (
-              <Item key={key} pokemonId={item.pokemonId} />
-            ))}
+        <div className="order">
+          <div className="row p-2">
+            {order.items &&
+              order.items.map((item, key) => (
+                <Item key={key} pokemonId={item.pokemonId} />
+              ))}
+          </div>
         </div>
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
 const mapState = (state, ownProps) => {
   const id = +ownProps.match.params.id;
@@ -101,7 +103,7 @@ const mapState = (state, ownProps) => {
   return {
     order: state.orders.find(order => order.id === id),
     pokemon: state.pokemon
-  }
-}
+  };
+};
 
-export default connect(mapState)(OrderDetails)
+export default connect(mapState)(OrderDetails);
