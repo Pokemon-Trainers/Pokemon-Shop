@@ -1,10 +1,10 @@
-const router = require('express').Router();
-const { Review, User, Pokemon } = require('../db/models');
+const router = require("express").Router();
+const { Review, User, Pokemon } = require("../db/models");
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const reviews = await Review.findAll({
-      include: [{ model: User, Pokemon }],
+      include: [{ model: User, Pokemon }]
     });
     res.json(reviews);
   } catch (error) {
@@ -12,11 +12,11 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const review = await Review.create(req.body);
     const newReview = await Review.findById(review.id, {
-      include: [{ model: User }],
+      include: [{ model: User }]
     });
     res.status(200).json(newReview);
   } catch (error) {
@@ -24,10 +24,10 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id, {
-      include: [{ all: true }],
+      include: [{ all: true }]
     });
     if (!review) return res.sendStatus(404);
 
@@ -38,7 +38,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id);
     await review.destroy();

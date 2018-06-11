@@ -18,16 +18,12 @@ const fromCurrToCent = amount => amount * 100;
 
 const onToken = (amount, description) => token => {
   try {
-    axios.post(
-      PAYMENT_SERVER_URL,
-      {
-        description,
-        source: token.id,
-        currency: CURRENCY,
-        amount
-      },
-      console.log("token", token)
-    );
+    axios.post(PAYMENT_SERVER_URL, {
+      description,
+      source: token.id,
+      currency: CURRENCY,
+      amount: fromCurrToCent(amount)
+    });
   } catch (err) {
     console.err(err);
   }
