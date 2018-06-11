@@ -15,7 +15,6 @@ class BillingInfo extends React.Component {
   static getDerivedStateFromProps(props, localState) {
     if (props.billingAddress) {
       const [address, city, state, zipCode] = props.billingAddress.split(", ");
-      console.log('address in BillingInfo', address)
       return {
         address,
         city,
@@ -43,7 +42,7 @@ class BillingInfo extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container  margin-bottom">
         <div>
           Name:<br />
           <input

@@ -41,7 +41,7 @@ class ShippingInfo extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container margin-bottom">
         <div>
           <div>
             Name:<br />

@@ -11,9 +11,7 @@ class Checkout extends React.Component {
   constructor() {
     super();
     this.state = {
-      toggleShippingInfo: true,
-      toggleBillingInfo: false,
-      toggleShippingOptions: false,
+      toggle: 'shipping',
       shippingName: "",
       shippingAddress: "",
       billingName: "",
@@ -21,8 +19,7 @@ class Checkout extends React.Component {
       email: "",
       total: 0
     };
-    this.handleShippingInfo = this.handleShippingInfo.bind(this);
-    this.handleBillingInfo = this.handleBillingInfo.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,30 +38,14 @@ class Checkout extends React.Component {
     return { ...state, total: totalPrice };
   }
 
-  handleShippingInfo(event) {
-    if (this.state.toggleShippingInfo) {
+  handleToggle(event) {
+    if (this.state.toggle === 'shipping') {
       this.setState({
-        toggleShippingInfo: false
+        toggle: 'billing'
       });
     } else {
       this.setState({
-        toggleShippingInfo: true,
-        toggleBillingInfo: false,
-        toggleShippingOptions: false
-      });
-    }
-  }
-
-  handleBillingInfo(event) {
-    if (this.state.toggleBillingInfo) {
-      this.setState({
-        toggleBillingInfo: false
-      });
-    } else {
-      this.setState({
-        toggleBillingInfo: true,
-        toggleShippingInfo: false,
-        toggleShippingOptions: false
+        toggle: 'shipping',
       });
     }
   }
@@ -97,8 +78,8 @@ class Checkout extends React.Component {
   render() {
     const shippingInfo = (
       <div className="cart">
-        <h2 onClick={this.handleShippingInfo}>Shipping Info</h2>
-        {this.state.toggleShippingInfo && (
+        <h2>Shipping Info</h2>
+        {this.state.toggle === 'shipping' && (
           <ShippingInfo
             handleAddress={this.handleAddress}
             handleChange={this.handleChange}
@@ -110,8 +91,8 @@ class Checkout extends React.Component {
 
     const billingInfo = (
       <div className="cart">
-        <h2 onClick={this.handleBillingInfo}>Billing Information</h2>
-        {this.state.toggleBillingInfo && (
+        <h2>Billing Information</h2>
+        {this.state.toggle === 'billing' && (
           <BillingInfo
             handleAddress={this.handleAddress}
             handleChange={this.handleChange}
@@ -121,24 +102,45 @@ class Checkout extends React.Component {
       </div>
     );
 
-    const shippingOptions = (
-      <div>
-        <h2>Shipping Options</h2>
+    const shippingProgress = (
+      <div
+        className="progress-bar"
+        role="progressbar"
+        style={{ width: "33%" }}
+        aria-valuenow="33"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <span>Shipping</span>
       </div>
     );
-    console.log("INDEX STATE BILLING", this.state.billingAddress);
+
+    const billingProgress = (
+      <div
+        className="progress-bar"
+        role="progressbar"
+        style={{ width: "66%" }}
+        aria-valuenow="66"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <span>Billing</span>
+      </div>
+    );
+
     return (
       <div className="container">
         <h1>Checkout</h1>
+        <div className="progress margin-bottom">{this.state.toggle === 'shipping' ? shippingProgress : billingProgress}</div>
+
         {shippingInfo}
         {billingInfo}
-        <br />
         <button
           type="submit"
           className="btn btn-info"
-          onClick={this.handleSubmit}
+          onClick={this.handleToggle}
         >
-          Submit Order
+          Next
         </button>
       </div>
     );

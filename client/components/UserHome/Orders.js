@@ -9,17 +9,25 @@ class Orders extends React.Component {
   }
 
   render() {
-    const filteredOrders = this.props.orders.filter(
-      order => order.userId === this.props.userId
-    );
+    let orders;
+
+    if (this.props.user.admin) {
+      orders = this.props.orders
+    } else {
+        orders = this.props.orders.filter(
+          order => order.user.id === this.props.user.id
+        );
+    }
+
+    console.log(this.props);
 
     return (
       <div>
         <h4>Orders</h4>
 
-        {filteredOrders.length === 0 && <div>You have no orders...</div>}
+        {orders.length === 0 && <div>You have no orders...</div>}
 
-        {filteredOrders.map((order, key) => <Order  order={order} key={key}/>)}
+        {orders.map((order, key) => <Order  order={order} key={key}/>)}
       </div>
     );
   }
@@ -28,7 +36,7 @@ class Orders extends React.Component {
 const mapState = state => {
   return {
     orders: state.orders,
-    userId: state.user.id
+    user: state.user
   };
 };
 
