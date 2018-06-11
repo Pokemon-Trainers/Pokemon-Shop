@@ -413,6 +413,7 @@ const pokemon = [
   },
   {
     name: "Wigglytuff",
+
     type: ["Normal", "Fairy"],
     description:
       "Wigglytuff has large, saucerlike eyes. The surfaces of its eyes are always covered with a thin layer of tears. If any dust gets in this Pokémon's eyes, it is quickly washed away.",
@@ -545,7 +546,8 @@ async function seed() {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
   const users = await Promise.all([
-    User.create({ email: "cody@email.com", password: "123", admin: true })
+    User.create({ email: "cody@email.com", password: "123", admin: true }),
+    User.create({ email: "murphy@email.com", password: "123" })
   ]);
   const pokes = await Promise.all(pokemon.map(poke => Pokemon.create(poke)));
   const orders = await Promise.all(order.map(order => Order.create(order)));
