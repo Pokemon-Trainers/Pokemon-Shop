@@ -24,9 +24,9 @@ export const createOrder = order => {
   };
 };
 
-export const fetchOrders = orders => {
+export const fetchOrders = () => {
   return async dispatch => {
-    const {data} = await axios.get('api/order');
+    const {data} = await axios.get('/api/order');
     dispatch(getOrders(data));
   }
 }

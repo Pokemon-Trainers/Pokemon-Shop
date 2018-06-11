@@ -26,7 +26,6 @@ const Paginating = props => {
         <li className="page-item">
           <button className="btn btn-info"
             onClick={() => {
-              console.log(page);
               if (page >= 1 && page < pages) {
                 let newPage = plusOnePage(page);
                 changePage(newPage);

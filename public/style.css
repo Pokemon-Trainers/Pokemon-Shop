@@ -244,10 +244,6 @@ img.poke {
 
 .btn-info {
   background-color: #356abd;
-}
-
-.btn-info {
-  background-color: #356abd;
   border: 1px solid white;
 }
 
@@ -255,3 +251,61 @@ img.poke {
   background-color: #ffcd00;
   border: 1px solid white;
 }
+
+.btn-info:active {
+  background-color: #ffcd00;
+  border: 1px solid white;
+}
+
+.margin-bottom {
+  margin-bottom: 50px;
+}
+
+.home .option .center {
+  margin: auto;
+}
+
+.order {
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+
+.order p{
+  margin-bottom: 0;
+}
+
+.order .specs{
+  background-color: #356abd;
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.order .img{
+  width: 100px;
+  margin: 20px;
+}
+
+.order .pokemon{
+  justify-content: space-between;
+  /* margin-right: 50px; */
+  width: 33%;
+}
+
+.progress{
+  border-radius: 10px;
+  height: 30px;
+}
+
+.progress-bar{
+  background-color: #ffcd00;
+  width: 80%;
+  font-size: 20px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+
+
