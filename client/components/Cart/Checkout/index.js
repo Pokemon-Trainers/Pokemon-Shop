@@ -4,8 +4,11 @@ import { connect } from "react-redux";
 import ShippingInfo from "./ShippingInfo";
 import BillingInfo from "./BillingInfo";
 
-import {createOrder} from '../../../store/order'
-import Cart from '../index'
+import { createOrder } from "../../../store/order";
+import Cart from "../index";
+
+import Stripe from "./Stripe";
+import StripeCheckout from "react-stripe-checkout";
 
 class Checkout extends React.Component {
   constructor() {
@@ -91,7 +94,7 @@ class Checkout extends React.Component {
       cart: this.props.cart,
       userId: this.props.user.id,
       total: this.state.total
-    })
+    });
   }
 
   render() {
@@ -131,8 +134,16 @@ class Checkout extends React.Component {
       <div className="container">
         <h1>Checkout</h1>
         {shippingInfo}
-        {billingInfo}<br />
-        <button type="submit" className="btn btn-info" onClick={this.handleSubmit}>Submit Order</button>
+        {billingInfo}
+        {Stripe(this.state.billingName, this.state.email, this.state.total)}
+        <br />
+        <button
+          type="submit"
+          className="btn btn-info"
+          onClick={this.handleSubmit}
+        >
+          Submit Order
+        </button>
       </div>
     );
   }
@@ -143,17 +154,16 @@ const mapState = state => {
     cart: state.cart,
     user: state.user,
     pokemon: state.pokemon
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
-    createOrder: order => dispatch(createOrder(order)),
-  }
-}
+    createOrder: order => dispatch(createOrder(order))
+  };
+};
 
 export default connect(
   mapState,
   mapDispatch
 )(Checkout);
-
