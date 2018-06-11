@@ -8,8 +8,13 @@ import { me } from "./store";
 import Cart from "./components/Cart";
 import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
+import AddPokemon from "./components/AddPokemon";
 import Checkout from "./components/Cart/Checkout";
+<<<<<<< HEAD
 import OrderDetails from './components/UserHome/OrderDetails'
+=======
+import EditPokemon from "./components/EditPokemon";
+>>>>>>> master
 
 /**
  * COMPONENT
@@ -20,7 +25,7 @@ class Routes extends Component {
 
     this.state = {
       total: 0
-    }
+    };
     this.MyPokemonList = this.MyPokemonList.bind(this);
     this.IndividualPokemon = this.IndividualPokemon.bind(this);
   }
@@ -44,6 +49,7 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
+    console.log("isloggedin", isLoggedIn);
 
     return (
       <Switch>
@@ -51,8 +57,12 @@ class Routes extends Component {
         <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
+<<<<<<< HEAD
         <Route path="/checkout" component={Checkout}/>
         <Route path="/orders/:id" component={OrderDetails}/>
+=======
+        <Route path="/checkout" component={Checkout} />
+>>>>>>> master
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
@@ -61,6 +71,18 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            {/* <Route path="/addpokemon" component={AddPokemon} /> */}
+            {console.log("isADMIN:", this.props.isAdmin)}
+            {this.props.isAdmin ? (
+              <Route path="/addpokemon" component={AddPokemon} />
+            ) : (
+              ""
+            )}
+            {this.props.isAdmin ? (
+              <Route path="/editpokemon" component={EditPokemon} />
+            ) : (
+              ""
+            )}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -77,7 +99,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.admin
   };
 };
 

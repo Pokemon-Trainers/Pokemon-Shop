@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PokemonCard from './PokemonCard';
-import Sidebar from './Sidebar';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PokemonCard from "./PokemonCard";
+import Sidebar from "./Sidebar";
 // import { Pagination } from "react-bootstrap";
-import { push } from 'react-router-redux';
-import Paginating from './Paginating';
+import { push } from "react-router-redux";
+import Paginating from "./Paginating";
+import { Link } from "react-router-dom";
 
 class PokemonList extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class PokemonList extends Component {
       priceFilter: null,
       nameFilter: null,
       typeHidden: true,
-      priceHidden: true,
+      priceHidden: true
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
@@ -37,13 +38,13 @@ class PokemonList extends Component {
   handleTypeFilter(type) {
     this.resetFilters();
     this.setState({
-      typeFilter: type,
+      typeFilter: type
     });
   }
   handlePriceFilter(priceRange) {
     this.resetFilters();
     this.setState({
-      priceFilter: priceRange,
+      priceFilter: priceRange
     });
   }
 
@@ -52,27 +53,29 @@ class PokemonList extends Component {
       typeFilter: null,
       levelFilter: null,
       priceFilter: null,
-      nameFilter: null,
+      nameFilter: null
     });
   }
 
   toggleTypeHidden() {
     this.setState({
-      typeHidden: !this.state.typeHidden,
+      typeHidden: !this.state.typeHidden
     });
   }
   togglePriceHidden() {
     this.setState({
-      priceHidden: !this.state.priceHidden,
+      priceHidden: !this.state.priceHidden
     });
   }
 
   // Filter methods
 
   filterType() {
-    return this.props.pokemon.filter(
-      poke => poke.type.indexOf(this.state.typeFilter) > -1
-    );
+    console.log(this.props.pokemon);
+    return this.props.pokemon.filter(poke => {
+      console.log(poke, this.state.typeFilter);
+      return poke.type.indexOf(this.state.typeFilter) > -1;
+    });
   }
   filterLevel() {
     return this.props.pokemon.filter(
@@ -94,7 +97,7 @@ class PokemonList extends Component {
     );
   }
   changePage(page) {
-    this.props.history.push('/pokemon/?page=' + page);
+    this.props.history.push("/pokemon/?page=" + page);
   }
 
   currentPokemon() {
@@ -131,7 +134,8 @@ class PokemonList extends Component {
     const pokemon = this.currentPokemon();
     const perPage = 9;
     const pages = Math.ceil(pokemon.length / perPage);
-    const startOffset = (this.props.page - 1) * perPage;
+    const startOffset =
+      pokemon.length < 40 ? 1 : (this.props.page - 1) * perPage;
     let startCount = 0;
 
     return (
@@ -172,6 +176,13 @@ class PokemonList extends Component {
               </div>
             </div>
           )}
+          {this.props.isAdmin ? (
+            <Link to="/addpokemon">
+              <button className="btn btn-info">ADD A NEW POKEMON</button>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
         <Paginating
           changePage={this.changePage}
@@ -190,7 +201,8 @@ const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
   return {
     pokemon: state.pokemon,
-    page: ownProps.history.location.search[pageNum] || 1,
+    isAdmin: state.user.admin,
+    page: ownProps.history.location.search[pageNum] || 1
   };
 };
 

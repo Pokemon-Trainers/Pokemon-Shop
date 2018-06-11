@@ -7,6 +7,9 @@ import BillingInfo from "./BillingInfo";
 import { createOrder } from "../../../store/order";
 import Cart from "../index";
 
+import Stripe from "./Stripe";
+import StripeCheckout from "react-stripe-checkout";
+
 class Checkout extends React.Component {
   constructor() {
     super();
@@ -135,12 +138,14 @@ class Checkout extends React.Component {
 
         {shippingInfo}
         {billingInfo}
+        {Stripe(this.state.shippingName, this.state.email, this.state.total)}
+        <br />
         <button
           type="submit"
           className="btn btn-info"
-          onClick={this.handleToggle}
+          onClick={this.handleSubmit}
         >
-          Next
+          Submit Order
         </button>
       </div>
     );
