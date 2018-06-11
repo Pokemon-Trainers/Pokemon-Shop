@@ -1,5 +1,16 @@
 const router = require('express').Router();
-const { Order, OrderItem } = require("../db/models");
+const { Order, OrderItem } = require('../db/models');
+
+router.get('/', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      include: [{ all: true }],
+    });
+    res.json(orders);
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get('/', async (req, res, next) => {
   try {
@@ -32,13 +43,13 @@ router.post('/:id', async (req, res, next) => {
       await OrderItem.create({
         qty: item.qty,
         pokemonId: item.itemId,
-        orderId: order.id
-      })
-    })
-    res.status(200).json(order)
+        orderId: order.id,
+      });
+    });
+    res.status(200).json(order);
   } catch (error) {
     next(error);
   }
-})
+});
 
 module.exports = router;
