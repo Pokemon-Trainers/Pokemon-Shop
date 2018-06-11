@@ -4,7 +4,7 @@ class ShippingInfo extends React.Component {
   constructor() {
     super();
     this.state = {
-      address: '',
+      address: "",
       city: "",
       state: "",
       zipCode: ""
@@ -12,18 +12,36 @@ class ShippingInfo extends React.Component {
     this.setLocalState = this.setLocalState.bind(this);
   }
 
-  setLocalState(event) {
-    this.setState({
+  static getDerivedStateFromProps(props, localState) {
+    console.log("props", props.shippingAddress);
+    if (props.shippingAddress) {
+      const [address, city, state, zipCode] = props.shippingAddress.split(", ");
+      console.log("destructurted address", address);
+      return {
+        address,
+        city,
+        state,
+        zipCode
+      };
+    } else {
+      return localState;
+    }
+  }
+
+  async setLocalState(event) {
+    await this.setState({
       [event.target.name]: event.target.value
     });
-
     const address = [];
-    for (var key in this.state) {
+    console.log("STATE", this.state);
+    for (let key in this.state) {
+      console.log("state key", key);
       const value = this.state[key];
       address.push(value);
     }
     const combinedAddress = address.join(", ");
-    this.props.handleAddress('shippingAddress', combinedAddress)
+    console.log("combinedAddress", combinedAddress);
+    this.props.handleAddress("shippingAddress", combinedAddress);
   }
 
   render() {
@@ -37,6 +55,7 @@ class ShippingInfo extends React.Component {
               className="form-control"
               name="shippingName"
               onChange={this.props.handleChange}
+              value={this.props.shippingName}
             />
           </div>
           <div>
@@ -46,6 +65,7 @@ class ShippingInfo extends React.Component {
               className="form-control"
               name="email"
               onChange={this.props.handleChange}
+              value={this.props.email}
             />
           </div>
         </div>
@@ -58,6 +78,7 @@ class ShippingInfo extends React.Component {
               name="address"
               className="form-control"
               onChange={this.setLocalState}
+              value={this.state.address}
             />
           </div>
           <div className="flex">
@@ -67,6 +88,7 @@ class ShippingInfo extends React.Component {
               name="city"
               className="form-control"
               onChange={this.setLocalState}
+              value={this.state.city}
             />
             <input
               type="text"
@@ -74,6 +96,7 @@ class ShippingInfo extends React.Component {
               name="state"
               className="form-control"
               onChange={this.setLocalState}
+              value={this.state.state}
             />
             <input
               type="text"
@@ -81,6 +104,7 @@ class ShippingInfo extends React.Component {
               className="form-control"
               onChange={this.setLocalState}
               name="zipCode"
+              value={this.state.zipCode}
             />
           </div>
         </div>
@@ -89,4 +113,3 @@ class ShippingInfo extends React.Component {
   }
 }
 export default ShippingInfo;
-
