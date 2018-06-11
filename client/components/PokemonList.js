@@ -55,6 +55,7 @@ class PokemonList extends Component {
       priceFilter: null,
       nameFilter: null
     });
+    this.props.history.push("/pokemon/?page=" + 1);
   }
 
   toggleTypeHidden() {
@@ -71,11 +72,9 @@ class PokemonList extends Component {
   // Filter methods
 
   filterType() {
-    console.log(this.props.pokemon);
-    return this.props.pokemon.filter(poke => {
-      console.log(poke, this.state.typeFilter);
-      return poke.type.indexOf(this.state.typeFilter) > -1;
-    });
+    return this.props.pokemon.filter(
+      poke => poke.type.indexOf(this.state.typeFilter) > -1
+    );
   }
   filterLevel() {
     return this.props.pokemon.filter(
@@ -126,7 +125,6 @@ class PokemonList extends Component {
       page = 1;
     }
     page = Number(page) + 1;
-    console.log(page);
     return page;
   }
 
@@ -134,8 +132,21 @@ class PokemonList extends Component {
     const pokemon = this.currentPokemon();
     const perPage = 9;
     const pages = Math.ceil(pokemon.length / perPage);
-    const startOffset =
-      pokemon.length < 40 ? 1 : (this.props.page - 1) * perPage;
+    // let startOffset =
+    //   pokemon.length < this.props.pokemon.length
+    //     ? 1
+    //     : (this.props.page - 1) * perPage;
+    let startOffset;
+    let offSetCounter = 0;
+    if (pokemon.length < this.props.pokemon && offSetCounter <= 0) {
+      offSetCounter++;
+      startOffset = 1;
+    } else {
+      startOffset = (this.props.page - 1) * perPage;
+    }
+    // pokemon.length < this.props.pokemon.length
+    //   ? 1
+    //   : (this.props.page - 1) * perPage;
     let startCount = 0;
 
     return (
@@ -149,6 +160,7 @@ class PokemonList extends Component {
             typeHidden={this.state.typeHidden}
             togglePriceHidden={this.togglePriceHidden}
             priceHidden={this.state.priceHidden}
+            page={this.props.page}
           />
 
           {pokemon.length === 0 ? (
@@ -190,6 +202,8 @@ class PokemonList extends Component {
           page={this.props.page}
           minusOnePage={this.minusOnePage}
           plusOnePage={this.plusOnePage}
+          typeFilter={this.state.typeFilter}
+          priceFilter={this.state.priceFilter}
           {...this.props}
         />
       </div>
@@ -199,10 +213,14 @@ class PokemonList extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
+  console.log("ownProps", ownProps);
   return {
     pokemon: state.pokemon,
     isAdmin: state.user.admin,
-    page: ownProps.history.location.search[pageNum] || 1
+    page:
+      state.typeFilter || state.priceFilter
+        ? 1
+        : ownProps.history.location.search[pageNum] || 1
   };
 };
 
