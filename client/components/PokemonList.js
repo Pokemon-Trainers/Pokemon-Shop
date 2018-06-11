@@ -175,7 +175,7 @@ class PokemonList extends Component {
           )}
           {this.props.isAdmin ? (
             <Link to="/addpokemon">
-              <button>ADD A NEW POKEMON</button>
+              <button className="btn btn-info">ADD A NEW POKEMON</button>
             </Link>
           ) : (
             ""

@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { postPokemon } from "../store/pokemon";
+import { changePokemon } from "../store/pokemon";
 
 class EditPokemon extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: "",
       name: "",
       type: [],
       description: "",
@@ -16,6 +17,20 @@ class EditPokemon extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (!props.selectedPokemon) {
+      return state;
+    }
+    state.id = props.selectedPokemon.id;
+    state.name = props.selectedPokemon.name;
+    state.type = props.selectedPokemon.type;
+    state.description = props.selectedPokemon.description;
+    state.imageUrl = props.selectedPokemon.imageUrl;
+    state.level = props.selectedPokemon.level;
+    state.price = props.selectedPokemon.price;
+    return state;
   }
 
   getTypes() {
@@ -52,12 +67,7 @@ class EditPokemon extends React.Component {
     console.log("props inside handle submit", this.props);
     evt.preventDefault();
     this.props.postPokemon({
-      name: this.state.name,
-      type: this.state.type,
-      description: this.state.description,
-      imageUrl: this.state.imageUrl,
-      level: this.state.level,
-      price: this.state.price
+      ...this.state
     });
   }
 
@@ -65,7 +75,7 @@ class EditPokemon extends React.Component {
     console.log("this.state!", this.props.pokemon);
     return (
       <div>
-        <h1>ADD A POKEMON</h1>
+        <h1>Edit POKEMON</h1>
         <form onSubmit={this.handleSubmit}>
           <p>Name</p>
           <input
@@ -115,7 +125,7 @@ class EditPokemon extends React.Component {
             value={this.state.price}
             name="price"
           />
-          <button type="submit">Add Pokemon</button>
+          <button type="submit">Edit Pokemon</button>
         </form>
       </div>
     );
@@ -130,7 +140,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postPokemon: pokemon => dispatch(postPokemon(pokemon))
+    postPokemon: pokemon => dispatch(changePokemon(pokemon))
   };
 };
 

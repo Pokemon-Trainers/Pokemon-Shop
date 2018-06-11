@@ -10,6 +10,7 @@ import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
 import AddPokemon from "./components/AddPokemon";
 import Checkout from "./components/Cart/Checkout";
+import EditPokemon from "./components/EditPokemon";
 
 /**
  * COMPONENT
@@ -62,8 +63,14 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             {/* <Route path="/addpokemon" component={AddPokemon} /> */}
+            {console.log("isADMIN:", this.props.isAdmin)}
             {this.props.isAdmin ? (
               <Route path="/addpokemon" component={AddPokemon} />
+            ) : (
+              ""
+            )}
+            {this.props.isAdmin ? (
+              <Route path="/editpokemon" component={EditPokemon} />
             ) : (
               ""
             )}
