@@ -35,60 +35,70 @@ class UserHome extends React.Component {
     const { user, isAdmin } = this.props;
     return (
       <div>
-        <div className="container">
-          <h3>Welcome, {user.email}!</h3>
-          {isAdmin ? "You are an admin" : ""}
-          <div className="flex margin-bottom">
-            <div className="dropdown">
-              <button
-                className="dropdown-toggle btn btn-info"
-                type="button"
-                name="orders"
-                onClick={this.handleClick}
-                data-toggle="dropdown"
-              >
-                Orders <span className="caret" />
-              </button>
+        <div className="container flex">
+          <div>
+            {isAdmin && (
+              <img src="https://cdn0.iconfinder.com/data/icons/icostrike-characters/512/user_login-512.png" />
+            )}
+          </div>
+          <div>
+            <h3>Welcome, {user.email}!</h3>
+            <div className="flex margin-bottom">
+              <div className="dropdown">
+                <button
+                  className="dropdown-toggle btn btn-info"
+                  type="button"
+                  name="orders"
+                  onClick={this.handleClick}
+                  data-toggle="dropdown"
+                >
+                  Orders <span className="caret" />
+                </button>
 
-              <ul className="dropdown-menu p-3">
-                <li className="pb-2">
-                  <a name="all" onClick={this.handleStatusToggle}>
-                    All
-                  </a>
-                </li>
-                <li className="pb-2">
-                  <a name="pending" onClick={this.handleStatusToggle}>
-                    Pending
-                  </a>
-                </li>
-                <li className="pb-2">
-                  <a name="shipped" onClick={this.handleStatusToggle}>
-                    Shipped
-                  </a>
-                </li>
-                <li className="pb-2">
-                  <a name="delivered" onClick={this.handleStatusToggle}>
-                    Delivered
-                  </a>
-                </li>
-                <li className="pb-2">
-                  <a name="cancelled" onClick={this.handleStatusToggle}>
-                    Cancelled
-                  </a>
-                </li>
-              </ul>
+                <ul className="dropdown-menu p-3">
+                  <li className="pb-2">
+                    <a name="all" onClick={this.handleStatusToggle}>
+                      All
+                    </a>
+                  </li>
+                  <li className="pb-2">
+                    <a name="pending" onClick={this.handleStatusToggle}>
+                      Pending
+                    </a>
+                  </li>
+                  <li className="pb-2">
+                    <a name="shipped" onClick={this.handleStatusToggle}>
+                      Shipped
+                    </a>
+                  </li>
+                  <li className="pb-2">
+                    <a name="delivered" onClick={this.handleStatusToggle}>
+                      Delivered
+                    </a>
+                  </li>
+                  <li className="pb-2">
+                    <a name="cancelled" onClick={this.handleStatusToggle}>
+                      Cancelled
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <button
+                className="btn btn-info"
+                type="button"
+                name="reviews"
+                onClick={this.handleClick}
+              >
+                Reviews
+              </button>
             </div>
-            <button
-              className="btn btn-info"
-              type="button"
-              name="reviews"
-              onClick={this.handleClick}
-            >
-              Reviews
-            </button>
           </div>
 
-          {this.state.view === "orders" ? <Orders status={this.state.status}/> : <Reviews />}
+          {this.state.view === "orders" ? (
+            <Orders status={this.state.status} />
+          ) : (
+            <Reviews />
+          )}
         </div>
       </div>
     );
