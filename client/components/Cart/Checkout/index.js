@@ -135,7 +135,7 @@ class Checkout extends React.Component {
         <h1>Checkout</h1>
         {shippingInfo}
         {billingInfo}
-        {Stripe(this.state.billingName, this.state.email, this.state.total)}
+        {Stripe(this.state.shippingName, this.state.email, this.state.total)}
         <br />
         <button
           type="submit"

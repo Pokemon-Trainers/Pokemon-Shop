@@ -29,11 +29,11 @@ const onToken = (amount, description) => token => {
   }
 };
 
-const StripedCheckout = ({ name, description, amount }) => (
+const StripedCheckout = (name, description, amount) => (
   <StripeCheckout
-    name="Tommy"
-    description="get down on it"
-    amount={fromCurrToCent(200)}
+    name={name}
+    description={description}
+    amount={fromCurrToCent(amount)}
     token={onToken(fromCurrToCent(200), description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
