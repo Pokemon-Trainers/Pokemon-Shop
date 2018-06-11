@@ -51,7 +51,6 @@ class App extends Component {
   }
 
   handleQuantityChange(event) {
-    console.log("event target value inside handleqchcange", event.target.value);
     this.setState({
       quantity: Number(event.target.value)
     });

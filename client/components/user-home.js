@@ -20,9 +20,9 @@ class UserHome extends React.Component {
   }
 
   handleStatusToggle(event) {
-    console.log("this.state.status", this.state.status);
     this.setState({
-      status: event.target.name
+      status: event.target.name,
+      view: 'orders'
     });
   }
 
@@ -31,7 +31,9 @@ class UserHome extends React.Component {
       view: event.target.name
     });
   }
+
   render() {
+    console.log(this.state.view);
     const { user, isAdmin } = this.props;
     return (
       <div>
