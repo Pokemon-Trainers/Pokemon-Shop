@@ -1,57 +1,58 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import Review from './Review/Review';
+import Reviews from "./UserHome/Reviews";
+import Orders from "./UserHome/Orders";
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const { user, filteredReviews, pokemon } = props;
+class UserHome extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      view: "orders"
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-  console.log(filteredReviews);
-  return (
-    <div>
-      <h3>Welcome, {user.email}</h3>
+  handleClick(event) {
+    this.setState({
+      view: event.target.name
+    });
+  }
+  render() {
+    const { user } = this.props;
+    return (
       <div>
-        <h4>Reviews</h4>
-        {filteredReviews.map((review, key) => {
-          const pokemonId = review.pokemonId;
-          const reviewedPokemon = pokemon.find(
-            individualPokemon => individualPokemon.id === pokemonId
-          );
-
-          return (
-            <div
-              className="flex"
-              key={review.id}
-              style={{ paddingBottom: '30px' }}
+        <div className="container">
+          <h3>Welcome, {user.email}!</h3>
+          <div className="flex margin-bottom">
+            <button
+              className="btn btn-info"
+              type="button"
+              name="orders"
+              onClick={this.handleClick}
             >
-              <div>
-                <Link to={`/pokemon/${reviewedPokemon.id}`}>
-                  <img
-                    src={reviewedPokemon.imageUrl}
-                    style={{ width: '200px', margin: '30px' }}
-                  />
-                </Link>
-              </div>
-              <div>
-                <h2>
-                  <Link to={`/pokemon/${reviewedPokemon.id}`}>
-                    {reviewedPokemon.name}
-                  </Link>
-                </h2>
-                <Review key={key} review={review} />
-              </div>
-            </div>
-          );
-        })}
+              Orders
+            </button>
+            <button
+              className="btn btn-info"
+              type="button"
+              name="reviews"
+              onClick={this.handleClick}
+            >
+              Reviews
+            </button>
+          </div>
+
+          {this.state.view === "orders" ? <Orders /> : <Reviews />}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 /**
  * CONTAINER
@@ -62,7 +63,7 @@ const mapState = state => {
     filteredReviews: state.reviews.filter(
       review => review.userId === state.user.id
     ),
-    pokemon: state.pokemon,
+    pokemon: state.pokemon
   };
 };
 
@@ -72,5 +73,5 @@ export default connect(mapState)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string,
+  email: PropTypes.string
 };
