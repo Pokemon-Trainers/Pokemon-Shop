@@ -115,7 +115,7 @@ class Checkout extends React.Component {
           <BillingInfo
             handleAddress={this.handleAddress}
             handleChange={this.handleChange}
-            state={this.state}
+            {...this.state}
           />
         )}
       </div>
@@ -126,7 +126,7 @@ class Checkout extends React.Component {
         <h2>Shipping Options</h2>
       </div>
     );
-    console.log("INDEX STATE SHIPPING", this.state.shippingAddress);
+    console.log("INDEX STATE BILLING", this.state.billingAddress);
     return (
       <div className="container">
         <h1>Checkout</h1>

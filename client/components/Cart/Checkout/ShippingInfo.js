@@ -13,10 +13,8 @@ class ShippingInfo extends React.Component {
   }
 
   static getDerivedStateFromProps(props, localState) {
-    console.log("props", props.shippingAddress);
     if (props.shippingAddress) {
       const [address, city, state, zipCode] = props.shippingAddress.split(", ");
-      console.log("destructurted address", address);
       return {
         address,
         city,
@@ -33,14 +31,11 @@ class ShippingInfo extends React.Component {
       [event.target.name]: event.target.value
     });
     const address = [];
-    console.log("STATE", this.state);
     for (let key in this.state) {
-      console.log("state key", key);
       const value = this.state[key];
       address.push(value);
     }
     const combinedAddress = address.join(", ");
-    console.log("combinedAddress", combinedAddress);
     this.props.handleAddress("shippingAddress", combinedAddress);
   }
 

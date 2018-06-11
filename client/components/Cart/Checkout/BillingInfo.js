@@ -12,20 +12,23 @@ class BillingInfo extends React.Component {
     this.setLocalState = this.setLocalState.bind(this);
   }
 
-  // componentDidUpdate() {
-  //   const address = this.props.state.billingAddress.split(', ')
-  //   this.setState({
-  //     address: address[0],
-  //     city: address[1],
-  //     state: address[2],
-  //     zipCode: address[3]
-  //   })
-  //   console.log('this.state in BillingInfo', this.state)
-  //   console.log('address in BillingInfo', address)
-  // }
+  static getDerivedStateFromProps(props, localState) {
+    if (props.billingAddress) {
+      const [address, city, state, zipCode] = props.billingAddress.split(", ");
+      console.log('address in BillingInfo', address)
+      return {
+        address,
+        city,
+        state,
+        zipCode
+      };
+    } else {
+      return localState;
+    }
+  }
 
-  setLocalState(event) {
-    this.setState({
+  async setLocalState(event) {
+    await this.setState({
       [event.target.name]: event.target.value
     });
 
@@ -48,6 +51,7 @@ class BillingInfo extends React.Component {
             className="form-control"
             name="billingName"
             onChange={this.props.handleChange}
+            value={this.props.billingName}
           />
         </div>
         <div>
@@ -59,6 +63,7 @@ class BillingInfo extends React.Component {
               name="address"
               className="form-control"
               onChange={this.setLocalState}
+              value={this.state.address}
             />
           </div>
           <div className="flex">
@@ -68,6 +73,7 @@ class BillingInfo extends React.Component {
               name="city"
               className="form-control"
               onChange={this.setLocalState}
+              value={this.state.city}
             />
             <input
               type="text"
@@ -75,6 +81,7 @@ class BillingInfo extends React.Component {
               name="state"
               className="form-control"
               onChange={this.setLocalState}
+              value={this.state.state}
             />
             <input
               type="text"
@@ -82,6 +89,7 @@ class BillingInfo extends React.Component {
               className="form-control"
               onChange={this.setLocalState}
               name="zipCode"
+              value={this.state.zipCode}
             />
           </div>
           </div>
