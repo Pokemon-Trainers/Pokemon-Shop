@@ -10,7 +10,7 @@ const STRIPE_PUBLISHABLE =
 const PAYMENT_SERVER_URL =
   process.env.NODE_ENV === "production"
     ? "http://myapidomain.com"
-    : "http://localhost:8080";
+    : "http://localhost:8080/api/stripe/stripe";
 
 const CURRENCY = "USD";
 
@@ -19,7 +19,7 @@ const fromCurrToCent = amount => amount * 100;
 const onToken = (amount, description) => token => {
   try {
     axios.post(
-      "/stripe",
+      PAYMENT_SERVER_URL,
       {
         description,
         source: token.id,

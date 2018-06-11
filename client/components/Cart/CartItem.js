@@ -47,7 +47,7 @@ class CartItem extends Component {
             <h2>{poke.name}</h2>
           </div>
           <div className="col">
-            <span>Price: {poke.price}</span>
+            <span>Price: {poke.price} <img className="currency img-fluid" src="/PokeBallCurrency.png" /></span>
           </div>
           <div className="col">
             <span>

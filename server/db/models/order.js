@@ -1,52 +1,50 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Order = db.define('order', {
+const Order = db.define("order", {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
-      isEmail: true,
-    },
+      isEmail: true
+    }
   },
   billingName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   billingAddress: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   shippingName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   shippingAddress: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   status: {
-    type: Sequelize.ENUM('inCart', 'pending', 'complete'),
-    defaultValue: 'inCart',
+    type: Sequelize.ENUM("pending", "shipped"),
+    defaultValue: "pending"
   },
   total: {
-    type: Sequelize.INTEGER,
-  },
+    type: Sequelize.INTEGER
+  }
 });
-
-
 
 module.exports = Order;
