@@ -33,7 +33,8 @@ const Pokemon = db.define("pokemon", {
     allowNull: false
   },
   basePokemon: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
