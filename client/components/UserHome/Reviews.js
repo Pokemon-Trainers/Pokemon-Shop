@@ -16,7 +16,7 @@ const Reviews = props => {
         );
 
         return (
-          <div className="flex padding-bottom" key={review.id}>
+          <div className="flex margin-bottom" key={review.id}>
             <div>
               <Link to={`/pokemon/${reviewedPokemon.id}`}>
                 <img

@@ -15,7 +15,7 @@ export const UserHome = props => {
     <div>
       <div className="container">
         <h3>Welcome, {user.email}!</h3>
-        <div className="flex padding-bottom">
+        <div className="flex margin-bottom">
           <button className="btn btn-info" type="button">Orders</button>
           <button className="btn btn-info" type="button">Reviews</button>
         </div>

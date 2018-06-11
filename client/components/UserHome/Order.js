@@ -1,8 +1,58 @@
 import React from "react";
-import Item from './Item'
+import Item from "./Item";
 
 const Order = props => {
   const { order } = props;
+
+  const pending = (
+    <div
+      className="progress-bar"
+      role="progressbar"
+      style={{ width: "33%"}}
+      aria-valuenow="33"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <span>Pending</span>
+    </div>
+  );
+
+  const shipped = (
+    <div
+      className="progress-bar"
+      role="progressbar"
+      style={{ width: "66%"}}
+      aria-valuenow="66"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <span>Shipped</span>
+    </div>
+  );
+
+  const delivered = (
+    <div
+      className="progress-bar"
+      role="progressbar"
+      style={{ width: "100%"}}
+      aria-valuenow="100"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <span>Delivered</span>
+    </div>
+  );
+
+  let progress;
+
+  if (order.status === "pending") {
+    progress = pending;
+  } else if (order.status === "shipped") {
+    progress = shipped;
+  } else {
+    progress = delivered;
+  }
+
   return (
     <div className="order">
       <div className="specs flex">
@@ -27,16 +77,14 @@ const Order = props => {
         </div>
       </div>
 
-<div className="progress">
-  <div className="progress-bar" role="progressbar" aria-valuenow="70"
-  aria-valuemin="0" aria-valuemax="100" style={{width:'70%'}}>
-    <span className="sr-only">70% Complete</span>
-  </div>
-</div>
-
+      <div className="progress margin-bottom" style={{ height: "40px" }}>
+        {progress}
+      </div>
 
       <div className="flex pokemon">
-      {order.orderItems.map((item, key) => <Item key={key} pokemonId={item.pokemonId}/>)}
+        {order.orderItems.map((item, key) => (
+          <Item key={key} pokemonId={item.pokemonId} />
+        ))}
       </div>
     </div>
   );

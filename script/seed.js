@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Pokemon, Order, Review } = require('../server/db/models');
+const { User, Pokemon, Order, Review, OrderItem } = require('../server/db/models');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -384,15 +384,43 @@ const order = [
     shippingName: 'Linda Morales',
     shippingAddress: '123 Fake Street',
     email: 'email@email.com',
+    userId: 2,
+    total: 30,
+    status: 'pending'
   },
+  {
+    billingName: 'Sheri Kwong',
+    billingAddress: '123 Fake Street',
+    shippingName: 'Sheri Kwong',
+    shippingAddress: '123 Fake Street',
+    email: 'email@email.com',
+    userId: 2,
+    total: 100,
+    status: 'shipped'
+  }
 ];
 
 const orderItem = [
   {
     orderId: 1,
-    pokemon: 1,
+    pokemonId: 1,
     qty: 2,
   },
+  {
+    orderId: 2,
+    pokemonId: 3,
+    qty: 1,
+  },
+  {
+    orderId: 2,
+    pokemonId: 4,
+    qty: 2,
+  },
+  {
+    orderId: 2,
+    pokemonId: 10,
+    qty: 1,
+  }
 ];
 
 const lorem =
@@ -429,6 +457,8 @@ async function seed() {
   const reviews = await Promise.all(
     review.map(review => Review.create(review))
   );
+
+  const orderItems = await Promise.all(orderItem.map(order => OrderItem.create(order)))
   console.log('Seeding complete');
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

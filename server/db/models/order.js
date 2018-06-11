@@ -39,8 +39,8 @@ const Order = db.define('order', {
     },
   },
   status: {
-    type: Sequelize.ENUM('inCart', 'pending', 'complete'),
-    defaultValue: 'inCart',
+    type: Sequelize.ENUM('pending', 'shipped', 'delivered'),
+    defaultValue: 'pending',
   },
   total: {
     type: Sequelize.INTEGER,

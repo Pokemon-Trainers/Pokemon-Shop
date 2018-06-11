@@ -257,8 +257,8 @@ img.poke {
   border: 1px solid white;
 }
 
-.padding-bottom {
-  padding-bottom: 50px;
+.margin-bottom {
+  margin-bottom: 50px;
 }
 
 .home .option .center {
@@ -290,8 +290,19 @@ img.poke {
 
 .order .pokemon{
   justify-content: space-between;
+  margin-right: 50px;
 }
 
+.progress{
+  border-radius: 10px;
+}
 
+.progress-bar{
+  background-color: #ffcd00;
+  width: 80%;
+  font-size: 20px;
+  height: 40px;
+  border-radius: 10px;
+}
 
 

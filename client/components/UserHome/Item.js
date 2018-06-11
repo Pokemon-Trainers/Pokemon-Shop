@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 const Item = props => {
   const {selectedPokemon} = props;
+  
   return (
     <div className="flex">
       <div>
