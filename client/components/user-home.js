@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+import Review from "./Review/Review";
 import { connect } from "react-redux";
 
 import Reviews from "./UserHome/Reviews";
@@ -23,11 +26,12 @@ class UserHome extends React.Component {
     });
   }
   render() {
-    const { user } = this.props;
+    const { user, isAdmin } = this.props;
     return (
       <div>
         <div className="container">
           <h3>Welcome, {user.email}!</h3>
+          {isAdmin ? "You are an admin" : ""}
           <div className="flex margin-bottom">
             <button
               className="btn btn-info"
@@ -59,6 +63,8 @@ class UserHome extends React.Component {
  */
 const mapState = state => {
   return {
+    email: state.user.email,
+    isAdmin: state.user.admin,
     user: state.user,
     filteredReviews: state.reviews.filter(
       review => review.userId === state.user.id
