@@ -83,7 +83,6 @@ class IndividualPokemon extends React.Component {
               <input
                 type="number"
                 min="1"
-                value="1"
                 onChange={this.props.handleQuantityChange}
                 className="form-control"
                 placeholder="1"
