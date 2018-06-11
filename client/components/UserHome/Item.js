@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 const Item = props => {
   const { selectedPokemon } = props;
 
-  if (!selectedPokemon && !selectedPokemon.id) return <div>Loading...</div>
-  
+  console.log('selectedPokemon', props.pokemon)
+
+  if (!selectedPokemon) return <div>Loading...</div>
+
     const loaded = (
       <div className="flex">
         <div>
@@ -27,6 +29,7 @@ const Item = props => {
 
 const mapState = (state, props) => {
   return {
+    pokemon: state.pokemon,
     selectedPokemon: state.pokemon.find(
       pokemon => pokemon.id === props.pokemonId
     )

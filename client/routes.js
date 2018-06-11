@@ -10,11 +10,8 @@ import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
 import AddPokemon from "./components/AddPokemon";
 import Checkout from "./components/Cart/Checkout";
-<<<<<<< HEAD
 import OrderDetails from './components/UserHome/OrderDetails'
-=======
 import EditPokemon from "./components/EditPokemon";
->>>>>>> master
 
 /**
  * COMPONENT
@@ -57,12 +54,8 @@ class Routes extends Component {
         <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
-<<<<<<< HEAD
         <Route path="/checkout" component={Checkout}/>
         <Route path="/orders/:id" component={OrderDetails}/>
-=======
-        <Route path="/checkout" component={Checkout} />
->>>>>>> master
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
