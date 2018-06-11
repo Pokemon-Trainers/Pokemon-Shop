@@ -62,14 +62,20 @@ class EditPokemon extends React.Component {
             name="price"
           />
           <p>Description</p>
-          <input
+          <textarea
             onChange={this.handleChange}
             value={this.state.description}
             name="description"
           />
-          <button onClick={this.handleSubmit} type="submit">
-            Edit Pokemon
-          </button>
+          <div>
+            <button
+              className="edit-btn btn btn-warning"
+              onClick={this.handleSubmit}
+              type="submit"
+            >
+              Edit Pokemon
+            </button>
+          </div>
         </form>
       </div>
     );

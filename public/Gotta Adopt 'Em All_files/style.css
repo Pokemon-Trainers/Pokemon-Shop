@@ -190,3 +190,8 @@ img.poke {
   border: 1px solid lightgray;
   width: 50%;
 }
+
+.edit-btn {
+  display: block !important;
+  margin: 2px;
+}

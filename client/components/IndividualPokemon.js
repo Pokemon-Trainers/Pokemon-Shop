@@ -76,6 +76,35 @@ class IndividualPokemon extends React.Component {
                   />
                 </p>
                 <p>{pokemon.description}</p>
+                <div className="input-group">
+                  <input
+                    type="number"
+                    min="1"
+                    onChange={this.props.handleQuantityChange}
+                    className="form-control"
+                    placeholder="1"
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.props.handleClick}
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+                {this.props.isAdmin ? (
+                  <div>
+                    <button
+                      type="button"
+                      className="edit-btn btn btn-info"
+                      onClick={this.handleToggle}
+                    >
+                      EDIT POKEMON
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
               <EditPokemon
@@ -83,35 +112,6 @@ class IndividualPokemon extends React.Component {
                 selectedPokemon={this.props.selectedPokemon}
                 this
               />
-            )}
-            <div className="input-group">
-              <input
-                type="number"
-                min="1"
-                onChange={this.props.handleQuantityChange}
-                className="form-control"
-                placeholder="1"
-              />
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.props.handleClick}
-              >
-                Add To Cart
-              </button>
-            </div>
-            {this.props.isAdmin ? (
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.handleToggle}
-                >
-                  EDIT POKEMON
-                </button>
-              </div>
-            ) : (
-              ""
             )}
             {this.props.isAdmin ? (
               <button
