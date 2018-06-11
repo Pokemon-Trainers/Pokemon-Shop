@@ -16,6 +16,9 @@ class Orders extends React.Component {
     return (
       <div>
         <h4>Orders</h4>
+
+        {filteredOrders.length === 0 && <div>You have no orders...</div>}
+
         {filteredOrders.map((order, key) => <Order  order={order} key={key}/>)}
       </div>
     );

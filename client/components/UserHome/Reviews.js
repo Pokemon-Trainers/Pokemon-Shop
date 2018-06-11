@@ -9,6 +9,9 @@ const Reviews = props => {
   return (
     <div>
       <h4>Reviews</h4>
+
+      {filteredReviews.length === 0 && <div>You have no reviews...</div>}
+
       {filteredReviews.map((review, key) => {
         const pokemonId = review.pokemonId;
         const reviewedPokemon = pokemon.find(
