@@ -226,17 +226,11 @@ const parseSearchString = str => {
 
 const mapState = (state, ownProps) => {
   const pageNum = parseSearchString(ownProps.history.location.search).page;
-
+  console.log(pageNum);
   return {
     pokemon: state.pokemon,
     isAdmin: state.user.admin,
-    page: pageNum
-    // pageNum === -1
-    //   ? 1
-    //   : ownProps.history.location.search[pageNum - 1] === "="
-    //     ? ownProps.history.location.search[pageNum]
-    //     : Number(ownProps.history.location.search[pageNum - 1]) +
-    //       Number(ownProps.history.location.search[pageNum])
+    page: !pageNum ? 1 : pageNum
   };
 };
 
