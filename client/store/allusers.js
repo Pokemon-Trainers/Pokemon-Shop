@@ -1,0 +1,46 @@
+import axios from "axios";
+import history from "../history";
+
+/**
+ * ACTION TYPES
+ */
+
+const GET_ALL_USERS = "GET_ALL_USERS";
+const UPDATE_USER = "UPDATE_USER";
+
+/**
+ * ACTION CREATORS
+ */
+const getAllUsers = users => ({ type: GET_ALL_USERS, users });
+const updateUser = user => ({ type: UPDATE_USER, user });
+
+// const removeUser = () => ({ type: REMOVE_USER });
+
+/**
+ * THUNK CREATORS
+ */
+
+export const fetchUsers = () => {
+  return async dispatch => {
+    const { data } = await axios.get("/api/users");
+    dispatch(getAllUsers(data));
+  };
+};
+
+export const updatingUser = user => {
+  return async dispatch => {
+    const { data } = await axios.put(`/api/users/${user.id}`, user);
+    dispatch(updateUser(data));
+  };
+};
+
+export default function(state = [], action) {
+  switch (action.type) {
+    case GET_ALL_USERS:
+      return action.users;
+    case UPDATE_USER:
+      return action.user;
+    default:
+      return state;
+  }
+}

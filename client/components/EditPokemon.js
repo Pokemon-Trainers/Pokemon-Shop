@@ -72,7 +72,14 @@ class EditPokemon extends React.Component {
               onClick={this.handleSubmit}
               type="submit"
             >
-              Edit Pokemon
+              Update Pokemon
+            </button>
+            <button
+              className="btn btn-danger"
+              type="button"
+              onClick={this.handleDelete}
+            >
+              DELETE POKEMON
             </button>
           </div>
         </form>

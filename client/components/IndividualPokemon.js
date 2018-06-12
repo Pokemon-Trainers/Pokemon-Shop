@@ -92,7 +92,7 @@ class IndividualPokemon extends React.Component {
                     Add To Cart
                   </button>
                 </div>
-                {this.props.user.isAdmin && !pokemon.basePokemon ? (
+                {this.props.user.admin && !pokemon.basePokemon ? (
                   <div>
                     <button
                       type="button"
@@ -110,19 +110,7 @@ class IndividualPokemon extends React.Component {
               <EditPokemon
                 handleToggle={this.handleToggle}
                 selectedPokemon={this.props.selectedPokemon}
-                this
               />
-            )}
-            {this.props.user.isAdmin && !pokemon.basePokemon ? (
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={this.handleDelete}
-              >
-                DELETE POKEMON
-              </button>
-            ) : (
-              ""
             )}
           </div>
         </div>

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 
 import Reviews from "./UserHome/Reviews";
 import Orders from "./UserHome/Orders";
+import AllUsers from "./Admin/AllUsers";
 
 class UserHome extends React.Component {
   constructor() {
@@ -22,7 +23,7 @@ class UserHome extends React.Component {
   handleStatusToggle(event) {
     this.setState({
       status: event.target.name,
-      view: 'orders'
+      view: "orders"
     });
   }
 
@@ -38,7 +39,10 @@ class UserHome extends React.Component {
     return (
       <div>
         <div className="container">
-          <h3>Welcome, {user.email}! {isAdmin && <img src="http://i67.tinypic.com/bhx5za.png" />}</h3>
+          <h3>
+            Welcome, {user.email}!{" "}
+            {isAdmin && <img src="http://i67.tinypic.com/bhx5za.png" />}
+          </h3>
 
           <div className="flex margin-bottom">
             <div className="dropdown">
@@ -88,9 +92,33 @@ class UserHome extends React.Component {
             >
               Reviews
             </button>
+
+            <button
+              className="btn btn-info"
+              type="button"
+              name="users"
+              onClick={this.handleClick}
+            >
+              {/* <AllUsers status={this.state.status} /> */}
+              Users
+            </button>
           </div>
 
-          {this.state.view === "orders" ? <Orders status={this.state.status}/> : <Reviews />}
+          {/* {this.state.view === "orders" ? (
+            <Orders status={this.state.status} />
+          ) : (
+            <Reviews />
+          )} */}
+          {this.state.view === "orders" ? (
+            <Orders status={this.state.status} />
+          ) : null}
+          {this.state.view === "reviews" ? (
+            // <AllUsers status={this.state.status} />
+            <Reviews />
+          ) : null}
+          {this.state.view === "users" ? (
+            <AllUsers status={this.state.status} />
+          ) : null}
         </div>
       </div>
     );
