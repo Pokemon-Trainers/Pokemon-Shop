@@ -1,8 +1,7 @@
-const router = require("express").Router();
-const { stripeSecret } = require("../../secrets");
-const stripe = require("stripe")("sk_test_tnNhjfVp9BOJLcgXTnLbxRWI");
+const router = require('express').Router();
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-router.post("/stripe", async (req, res, next) => {
+router.post('/stripe', async (req, res, next) => {
   try {
     const charge = await stripe.charges.create(req.body);
 

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PokemonCard from "./PokemonCard";
-import Sidebar from "./Sidebar";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PokemonCard from './PokemonCard';
+import Sidebar from './Sidebar';
 // import { Pagination } from "react-bootstrap";
-import { push } from "react-router-redux";
-import Paginating from "./Paginating";
-import { Link } from "react-router-dom";
+import { push } from 'react-router-redux';
+import Paginating from './Paginating';
+import { Link } from 'react-router-dom';
 
 class PokemonList extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class PokemonList extends Component {
       priceFilter: null,
       nameFilter: null,
       typeHidden: true,
-      priceHidden: true
+      priceHidden: true,
     };
     this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
@@ -38,13 +38,13 @@ class PokemonList extends Component {
   handleTypeFilter(type) {
     this.resetFilters();
     this.setState({
-      typeFilter: type
+      typeFilter: type,
     });
   }
   handlePriceFilter(priceRange) {
     this.resetFilters();
     this.setState({
-      priceFilter: priceRange
+      priceFilter: priceRange,
     });
   }
 
@@ -53,19 +53,19 @@ class PokemonList extends Component {
       typeFilter: null,
       levelFilter: null,
       priceFilter: null,
-      nameFilter: null
+      nameFilter: null,
     });
-    this.props.history.push("/pokemon/?page=" + 1);
+    this.props.history.push('/pokemon/?page=' + 1);
   }
 
   toggleTypeHidden() {
     this.setState({
-      typeHidden: !this.state.typeHidden
+      typeHidden: !this.state.typeHidden,
     });
   }
   togglePriceHidden() {
     this.setState({
-      priceHidden: !this.state.priceHidden
+      priceHidden: !this.state.priceHidden,
     });
   }
 
@@ -96,7 +96,7 @@ class PokemonList extends Component {
     );
   }
   changePage(page) {
-    this.props.history.push("/pokemon/?page=" + page);
+    this.props.history.push('/pokemon/?page=' + page);
   }
 
   currentPokemon() {
@@ -150,62 +150,60 @@ class PokemonList extends Component {
     let startCount = 0;
 
     return (
-      <div className="container mb-5">
-        <div className="row">
-          <Sidebar
-            handleTypeFilter={this.handleTypeFilter}
-            handlePriceFilter={this.handlePriceFilter}
-            resetFilters={this.resetFilters}
-            toggleTypeHidden={this.toggleTypeHidden}
-            typeHidden={this.state.typeHidden}
-            togglePriceHidden={this.togglePriceHidden}
-            priceHidden={this.state.priceHidden}
-            page={this.props.page}
-          />
-
-          {pokemon.length === 0 ? (
-            <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <p>
-                This page is either loading or there are no Pokemon found...
-              </p>
-            </div>
-          ) : (
-            <div className="col-9 col-sm-7 col-md-9 mx-auto">
-              <div className="row">
-                {pokemon.map((poke, index) => {
-                  if (index >= startOffset && startCount < perPage) {
-                    startCount++;
-                    return (
-                      <div
-                        className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
-                        key={poke.id}
-                      >
-                        <PokemonCard pokemon={poke} />
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-            </div>
-          )}
-          {this.props.isAdmin ? (
-            <Link to="/addpokemon">
-              <button className="btn btn-info">ADD A NEW POKEMON</button>
-            </Link>
-          ) : (
-            ""
-          )}
-        </div>
-        <Paginating
-          changePage={this.changePage}
-          pages={pages}
+      <div className="row">
+        <Sidebar
+          handleTypeFilter={this.handleTypeFilter}
+          handlePriceFilter={this.handlePriceFilter}
+          resetFilters={this.resetFilters}
+          toggleTypeHidden={this.toggleTypeHidden}
+          typeHidden={this.state.typeHidden}
+          togglePriceHidden={this.togglePriceHidden}
+          priceHidden={this.state.priceHidden}
           page={this.props.page}
-          minusOnePage={this.minusOnePage}
-          plusOnePage={this.plusOnePage}
-          typeFilter={this.state.typeFilter}
-          priceFilter={this.state.priceFilter}
-          {...this.props}
         />
+
+        {pokemon.length === 0 ? (
+          <div className="col-9 col-sm-7 col-md-9 mx-auto">
+            <p>This page is either loading or there are no Pokemon found...</p>
+          </div>
+        ) : (
+          <div className="col-9 col-sm-7 col-md-9 mx-auto">
+            <div className="row">
+              {pokemon.map((poke, index) => {
+                if (index >= startOffset && startCount < perPage) {
+                  startCount++;
+                  return (
+                    <div
+                      className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
+                      key={poke.id}
+                    >
+                      <PokemonCard pokemon={poke} />
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            <div className="mt-2">
+              <Paginating
+                changePage={this.changePage}
+                pages={pages}
+                page={this.props.page}
+                minusOnePage={this.minusOnePage}
+                plusOnePage={this.plusOnePage}
+                typeFilter={this.state.typeFilter}
+                priceFilter={this.state.priceFilter}
+                {...this.props}
+              />
+            </div>
+          </div>
+        )}
+        {this.props.isAdmin ? (
+          <Link to="/addpokemon">
+            <button className="btn btn-info">ADD A NEW POKEMON</button>
+          </Link>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
@@ -216,8 +214,8 @@ const parseSearchString = str => {
   // step 1, only keep everything after pos 0
   return str
     .slice(1)
-    .split("&")
-    .map(x => x.split("="))
+    .split('&')
+    .map(x => x.split('='))
     .reduce((obj, pair) => {
       obj[pair[0]] = pair[1];
       return obj;
@@ -230,7 +228,7 @@ const mapState = (state, ownProps) => {
   return {
     pokemon: state.pokemon,
     isAdmin: state.user.admin,
-    page: !pageNum ? 1 : pageNum
+    page: !pageNum ? 1 : pageNum,
   };
 };
 
