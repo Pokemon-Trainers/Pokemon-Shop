@@ -92,7 +92,7 @@ class IndividualPokemon extends React.Component {
                     Add To Cart
                   </button>
                 </div>
-                {this.props.isAdmin ? (
+                {this.props.user.isAdmin && !pokemon.basePokemon ? (
                   <div>
                     <button
                       type="button"
@@ -113,7 +113,7 @@ class IndividualPokemon extends React.Component {
                 this
               />
             )}
-            {this.props.isAdmin ? (
+            {this.props.user.isAdmin && !pokemon.basePokemon ? (
               <button
                 className="btn btn-danger"
                 type="button"
@@ -149,7 +149,7 @@ const mapStateToProps = (state, ownProps) => {
     selectedPokemon: state.pokemon.find(pokemon => pokemon.id === id),
     reviews,
     avg,
-    isAdmin: state.user.admin
+    user: state.user
   };
 };
 
