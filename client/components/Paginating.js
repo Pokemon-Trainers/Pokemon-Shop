@@ -59,7 +59,6 @@ class Paginating extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
-  console.log("ownProps", ownProps);
   return {
     page:
       ownProps.typeFilter || ownProps.priceFilter

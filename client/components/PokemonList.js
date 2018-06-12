@@ -213,7 +213,6 @@ class PokemonList extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
-  console.log("ownProps", ownProps);
   return {
     pokemon: state.pokemon,
     isAdmin: state.user.admin,

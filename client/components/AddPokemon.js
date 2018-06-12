@@ -38,7 +38,6 @@ class AddPokemon extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log(this.props.pokemon);
     const basePokemon = this.props.pokemon.find(
       poke => `${poke.id}` === this.state.id
     );
@@ -59,8 +58,6 @@ class AddPokemon extends React.Component {
   }
 
   render() {
-    console.log("this.state level", this.state.level);
-    console.log("this.state id", this.state.id);
     return (
       <div>
         <h1>ADD A POKEMON</h1>

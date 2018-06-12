@@ -10,6 +10,7 @@ import PokemonList from "./components/PokemonList";
 import IndividualPokemon from "./components/IndividualPokemon";
 import AddPokemon from "./components/AddPokemon";
 import Checkout from "./components/Cart/Checkout";
+import OrderDetails from './components/UserHome/OrderDetails'
 import EditPokemon from "./components/EditPokemon";
 
 /**
@@ -45,7 +46,6 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-    console.log("isloggedin", isLoggedIn);
 
     return (
       <Switch>
@@ -53,7 +53,8 @@ class Routes extends Component {
         <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path="/checkout" component={Checkout}/>
+        <Route path="/orders/:id" component={OrderDetails}/>
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
@@ -63,7 +64,6 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             {/* <Route path="/addpokemon" component={AddPokemon} /> */}
-            {console.log("isADMIN:", this.props.isAdmin)}
             {this.props.isAdmin ? (
               <Route path="/addpokemon" component={AddPokemon} />
             ) : (
