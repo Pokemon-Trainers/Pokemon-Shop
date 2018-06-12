@@ -1,7 +1,7 @@
-import React from 'react';
-import Type from './categories/Type';
-import Price from './categories/Price';
-import Level from './categories/Level';
+import React from "react";
+import Type from "./categories/Type";
+import Price from "./categories/Price";
+import Level from "./categories/Level";
 
 const Sidebar = props => {
   const {
@@ -12,7 +12,7 @@ const Sidebar = props => {
     toggleTypeHidden,
     typeHidden,
     priceHidden,
-    togglePriceHidden,
+    togglePriceHidden
   } = props;
 
   return (
@@ -33,7 +33,7 @@ const Sidebar = props => {
               id="Type"
               onClick={toggleTypeHidden}
             >
-              Type (15)
+              Type (17)
             </button>
             {!typeHidden && <Type handleTypeFilter={handleTypeFilter} />}
 

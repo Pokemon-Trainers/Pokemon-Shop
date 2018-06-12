@@ -3,7 +3,6 @@ const { Pokemon } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
-    console.log(req.body);
     const pokemon = await Pokemon.findAll();
     res.json(pokemon);
   } catch (err) {
@@ -12,8 +11,6 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  console.log("body", req.body);
-  console.log(req.body.level);
 
   try {
     const newPokemon = await Pokemon.create({

@@ -4,19 +4,33 @@ import { fetchOrders } from "../../store/order";
 import Order from "./order";
 
 class Orders extends React.Component {
-  componentDidMount() {
-    this.props.fetchOrders();
-  }
 
   render() {
-    const filteredOrders = this.props.orders.filter(
-      order => order.userId === this.props.userId
-    );
+    let orders;
+
+    if (this.props.user.admin) {
+      orders = this.props.orders
+    } else {
+        orders = this.props.orders.filter(
+          order => order.user.id === this.props.user.id
+        );
+    }
+
+    let filteredOrders;
+
+    if (this.props.status !== 'all') {
+      filteredOrders = orders.filter(order => order.status === this.props.status);
+    } else {
+      filteredOrders = orders;
+    }
 
     return (
       <div>
         <h4>Orders</h4>
-        {filteredOrders.map((order, key) => <Order order={order} key={key} />)}
+
+        {filteredOrders.length === 0 && <div>You have no orders...</div>}
+
+        {filteredOrders.map((order, key) => <Order  order={order} key={key}/>)}
       </div>
     );
   }
@@ -25,7 +39,7 @@ class Orders extends React.Component {
 const mapState = state => {
   return {
     orders: state.orders,
-    userId: state.user.id
+    user: state.user
   };
 };
 

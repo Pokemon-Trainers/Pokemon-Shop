@@ -45,7 +45,6 @@ class EditPokemon extends React.Component {
   }
 
   render() {
-    console.log("history", this.props.history);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
