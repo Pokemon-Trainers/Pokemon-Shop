@@ -34,7 +34,7 @@ class Review extends React.Component {
   render() {
     const { user, review } = this.props;
     const displayReview = (
-      <div>
+      <div className="container-body">
         <ReactStars
           count={5}
           value={Number(review.rating)}

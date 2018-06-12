@@ -48,7 +48,7 @@ class IndividualPokemon extends React.Component {
             <img src={pokemon.imageUrl} />
           </div>
           <div className="col">
-            <h1>{pokemon.name}</h1>
+            <h1 className="font">{pokemon.name}</h1>
             <div className="container-body">
             <ReactStars
               count={5}
