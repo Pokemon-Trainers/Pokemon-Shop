@@ -25,10 +25,10 @@ class Paginating extends Component {
             <button
               className="btn btn-info"
               onClick={() => {
-                if (Number(page) === 0) {
-                  let newPage = minusOnePage(Number(page) + 10);
-                  changePage(newPage);
-                }
+                // if (Number(page) === 0) {
+                //   let newPage = minusOnePage(Number(page));
+                //   changePage(newPage);
+                // }
                 if (page > 1 && page <= pages) {
                   let newPage = minusOnePage(page);
                   changePage(newPage);
@@ -68,13 +68,21 @@ class Paginating extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
+  console.log("pageNum", ownProps.history.location.search[pageNum]);
+  console.log(
+    "pageNum - 1",
+    ownProps.history.location.search[pageNum - 1] * 10
+  );
   return {
     page:
       ownProps.typeFilter || ownProps.priceFilter
         ? 1
         : ownProps.history.location.search[pageNum - 1] === "="
           ? ownProps.history.location.search[pageNum]
-          : Number(ownProps.history.location.search[pageNum]) + 10
+          : Number(
+              ownProps.history.location.search[pageNum - 1] +
+                ownProps.history.location.search[pageNum]
+            )
   };
 };
 
