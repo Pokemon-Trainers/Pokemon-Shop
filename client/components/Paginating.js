@@ -17,6 +17,7 @@ class Paginating extends Component {
       typeFilter,
       priceFilter
     } = this.props;
+    console.log(page);
     return (
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-center">
@@ -24,6 +25,10 @@ class Paginating extends Component {
             <button
               className="btn btn-info"
               onClick={() => {
+                if (Number(page) === 0) {
+                  let newPage = minusOnePage(Number(page) + 10);
+                  changePage(newPage);
+                }
                 if (page > 1 && page <= pages) {
                   let newPage = minusOnePage(page);
                   changePage(newPage);
@@ -41,6 +46,10 @@ class Paginating extends Component {
             <button
               className="btn btn-info"
               onClick={() => {
+                if (!page) {
+                  let newPage = plusOnePage(1);
+                  changePage(newPage);
+                }
                 if (page >= 1 && page < pages) {
                   let newPage = plusOnePage(page);
                   changePage(newPage);
@@ -59,12 +68,13 @@ class Paginating extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
-  console.log("ownProps", ownProps);
   return {
     page:
       ownProps.typeFilter || ownProps.priceFilter
         ? 1
-        : ownProps.history.location.search[pageNum] || 1
+        : ownProps.history.location.search[pageNum - 1] === "="
+          ? ownProps.history.location.search[pageNum]
+          : Number(ownProps.history.location.search[pageNum]) + 10
   };
 };
 

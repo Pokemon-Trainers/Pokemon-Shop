@@ -130,7 +130,7 @@ class PokemonList extends Component {
 
   render() {
     const pokemon = this.currentPokemon();
-    const perPage = 9;
+    const perPage = 15;
     const pages = Math.ceil(pokemon.length / perPage);
     // let startOffset =
     //   pokemon.length < this.props.pokemon.length
@@ -213,14 +213,16 @@ class PokemonList extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
-  console.log("ownProps", ownProps);
+  console.log("Paging", pageNum);
   return {
     pokemon: state.pokemon,
     isAdmin: state.user.admin,
     page:
-      state.typeFilter || state.priceFilter
+      pageNum === -1
         ? 1
-        : ownProps.history.location.search[pageNum] || 1
+        : ownProps.history.location.search[pageNum - 1] === "="
+          ? ownProps.history.location.search[pageNum]
+          : Number(ownProps.history.location.search[pageNum]) + 10
   };
 };
 
