@@ -12,3 +12,21 @@ router.get("/", (req, res, next) => {
     .then(users => res.json(users))
     .catch(next);
 });
+
+router.patch("/:id", async (req, res, next) => {
+  const foundUser = await User.findById(req.params.id);
+  try {
+    if (!foundUser) {
+      res.sendStatus(404);
+    } else {
+      const update = await foundUser.update({
+        admin: req.body.user.admin,
+        email: req.body.user.email
+      });
+
+      res.json(update);
+    }
+  } catch (err) {
+    next(err);
+  }
+});

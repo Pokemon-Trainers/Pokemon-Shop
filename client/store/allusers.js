@@ -29,7 +29,9 @@ export const fetchUsers = () => {
 
 export const updatingUser = user => {
   return async dispatch => {
-    const { data } = await axios.put(`/api/users/${user.id}`, user);
+    console.log("USER IN THUNK", user);
+    const { data } = await axios.patch(`/api/users/${user.id}`, { user });
+    console.log("data inside updateuser", data);
     dispatch(updateUser(data));
   };
 };
@@ -39,7 +41,17 @@ export default function(state = [], action) {
     case GET_ALL_USERS:
       return action.users;
     case UPDATE_USER:
-      return action.user;
+      console.log("action.user !!", action.user);
+      return state.map(user => {
+        if (user.id === action.user.id) {
+          return {
+            ...user,
+            admin: action.user.admin,
+            email: action.user.email
+          };
+        }
+        return { ...user };
+      });
     default:
       return state;
   }

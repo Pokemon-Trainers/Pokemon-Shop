@@ -42,10 +42,10 @@ class AllUsers extends React.Component {
     });
   }
 
-  handleSave(event) {
+  handleSave(event, user) {
     event.preventDefault();
-    console.log("savee", event);
-    this.props.updatingUser();
+    console.log("hadnlesave User", user);
+    this.props.updatingUser({ ...user, admin: !user.admin });
     this.setState({
       admin: true
     });
@@ -69,42 +69,31 @@ class AllUsers extends React.Component {
         <h1>All Users</h1>
         {this.props.users &&
           this.props.users.map(user => (
-            <li key={user.id}>
-              {user.email}
-              <p>{user.admin ? "admin" : "not an Admin"}</p>
-              <span>
-                {!user.admin ? (
-                  <form>
-                    <p>Make an admin</p>
-                    <label>
-                      YES
-                      <input
-                        type="radio"
-                        name="adminselector"
-                        value="yes"
-                        onChange={this.handleOptionsChange}
-                        // checked={this.state.selectedOption === "yes"}
-                      />
-                    </label>
-
-                    <label>
-                      NO
-                      <input
-                        type="radio"
-                        name="adminselector"
-                        value="no"
-                        onChange={this.handleOptionsChange}
-                        // checked={this.state.selectedOption === "no"}
-                      />
-                    </label>
-
-                    <button onClick={this.handleSave}>Save</button>
-                  </form>
-                ) : (
-                  <button>Remove As Admin</button>
-                )}
-              </span>
-            </li>
+            <div key={user.id}>
+              {this.props.user.id !== user.id && (
+                <li>
+                  {user.email}
+                  <p>{user.admin ? "admin" : "not an Admin"}</p>
+                  <span>
+                    {!user.admin ? (
+                      <button
+                        type="button"
+                        onClick={event => this.handleSave(event, user)}
+                      >
+                        Make Admin
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={event => this.handleSave(event, user)}
+                      >
+                        Remove As Admin
+                      </button>
+                    )}
+                  </span>
+                </li>
+              )}
+            </div>
           ))}
         {/* {this.props.user.admin ? "Not an admin" : "Admin"} */}
         {/* {!this.state.toggleUpdate ? (
