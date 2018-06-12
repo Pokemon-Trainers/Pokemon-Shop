@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import { removeReview } from "../../store/review";
 import { fetchUsers, updatingUser } from "../../store/allusers";
 
 class AllUsers extends React.Component {
