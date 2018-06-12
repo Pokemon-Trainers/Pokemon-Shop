@@ -38,7 +38,7 @@ class CartItem extends Component {
   render() {
     const { poke, removeCartItem } = this.props;
     return (
-      <div className="container container-body">
+      <div className="container">
         <div className="row">
           <div className="col flex alignItems">
             <img className="order-img" src={poke.imageUrl} />

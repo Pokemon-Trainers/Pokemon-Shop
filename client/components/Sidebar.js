@@ -1,7 +1,7 @@
-import React from 'react';
-import Type from './categories/Type';
-import Price from './categories/Price';
-import Level from './categories/Level';
+import React from "react";
+import Type from "./categories/Type";
+import Price from "./categories/Price";
+import Level from "./categories/Level";
 
 const Sidebar = props => {
   const {
@@ -12,39 +12,30 @@ const Sidebar = props => {
     toggleTypeHidden,
     typeHidden,
     priceHidden,
-    togglePriceHidden,
+    togglePriceHidden
   } = props;
 
   return (
     <div className="col-sm-5 col-md-3 d-none d-sm-block">
       <div className="row ">
         <div className="col-12">
-          <h3>Categories</h3>
+          <h3 className="font">Categories</h3>
           <div className="nav-sidebar mx-auto">
             <button
+              type="button"
               onClick={resetFilters}
-              className="btn btn-outline-primary mx-auto"
+              className="btn btn-info mx-auto mt-3"
             >
               Reset Filters
             </button>
-            <button
-              type="button"
-              className="btn btn-link"
-              id="Type"
-              onClick={toggleTypeHidden}
-            >
-              Type (15)
-            </button>
-            {!typeHidden && <Type handleTypeFilter={handleTypeFilter} />}
+            <h4 className="mt-3">
+              <a onClick={toggleTypeHidden}>Type (15)</a>
+              {!typeHidden && <Type handleTypeFilter={handleTypeFilter} />}
+            </h4>
 
-            <button
-              type="button"
-              className="btn btn-link"
-              id="Type"
-              onClick={togglePriceHidden}
-            >
-              Price (10)
-            </button>
+            <h4 className="mt-3">
+              <a onClick={togglePriceHidden}>Price (10)</a>
+            </h4>
 
             {!priceHidden && <Price handlePriceFilter={handlePriceFilter} />}
 

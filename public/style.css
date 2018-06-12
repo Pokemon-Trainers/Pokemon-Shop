@@ -5,7 +5,10 @@
 
 body {
   font-family: "Arvo", serif;
-  /* background-color: #7dad71; */
+  background: linear-gradient(#7dad71 25%, #fff);
+  background-size:  auto 100px;
+  background-repeat: no-repeat;
+  background-position-y: 200px;
 }
 
 a {
@@ -180,7 +183,7 @@ img.poke {
 
 .header {
   background-image: url("background.jpg");
-  /* background-size: cover; */
+  background-size: cover;
   background-position: 0 63%;
   margin-bottom: 50px;
   height: 200px;
@@ -215,14 +218,6 @@ img.poke {
 
 .flex {
   display: flex;
-}
-
-.container-body {
-  background-color: white;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  padding: 30px;
-  border: 2px solid #2b58a1;
 }
 
 .top-nav {
@@ -281,9 +276,8 @@ img.poke {
   font-size: 18px;
 }
 
-#Type {
-  font-size: 30px;
-  width: 100%;
+.btn-link {
+  color: #000;
 }
 
 .review {

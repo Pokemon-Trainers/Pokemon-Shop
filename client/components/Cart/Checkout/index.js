@@ -132,7 +132,7 @@ class Checkout extends React.Component {
     );
 
     return (
-      <div className="container container-body">
+      <div className="container">
         <h1>Checkout</h1>
         <div className="progress margin-bottom">{this.state.toggle === 'shipping' ? shippingProgress : billingProgress}</div>
 

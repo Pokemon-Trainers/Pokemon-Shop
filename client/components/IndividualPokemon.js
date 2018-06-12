@@ -49,7 +49,6 @@ class IndividualPokemon extends React.Component {
           </div>
           <div className="col">
             <h1 className="font">{pokemon.name}</h1>
-            <div className="container-body">
             <ReactStars
               count={5}
               value={Number(avg)}
@@ -126,7 +125,6 @@ class IndividualPokemon extends React.Component {
               ""
             )}
             </div>
-          </div>
         </div>
         <div className="row">
           <Reviews selectedPokemon={pokemon} reviews={reviews} />

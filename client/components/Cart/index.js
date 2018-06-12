@@ -62,13 +62,9 @@ class Cart extends Component {
     );
 
     return (
-      <div className="container container-body">
-        <div className="row">
-          <div className="col-12">
+      <div className="container">
             <h1>Cart</h1>
-          </div>
           {this.props.cart.length ? filledCart : emptyCart}
-        </div>
       </div>
     );
   }

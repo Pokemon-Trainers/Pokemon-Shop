@@ -171,6 +171,13 @@ class PokemonList extends Component {
             </div>
           ) : (
             <div className="col-9 col-sm-7 col-md-9 mx-auto">
+
+                        {this.props.isAdmin && (<div className="flex" style={{justifyContent: 'flex-end'}}>
+            <Link to="/addpokemon">
+              <button className="btn btn-info">Add a New Pokemon</button>
+            </Link></div>
+          )}
+
               <div className="row">
                 {pokemon.map((poke, index) => {
                   if (index >= startOffset && startCount < perPage) {
@@ -186,26 +193,20 @@ class PokemonList extends Component {
                   }
                 })}
               </div>
+              <Paginating
+                changePage={this.changePage}
+                pages={pages}
+                page={this.props.page}
+                minusOnePage={this.minusOnePage}
+                plusOnePage={this.plusOnePage}
+                typeFilter={this.state.typeFilter}
+                priceFilter={this.state.priceFilter}
+                {...this.props}
+              />
             </div>
           )}
-          {this.props.isAdmin ? (
-            <Link to="/addpokemon">
-              <button className="btn btn-info">ADD A NEW POKEMON</button>
-            </Link>
-          ) : (
-            ""
-          )}
+
         </div>
-        <Paginating
-          changePage={this.changePage}
-          pages={pages}
-          page={this.props.page}
-          minusOnePage={this.minusOnePage}
-          plusOnePage={this.plusOnePage}
-          typeFilter={this.state.typeFilter}
-          priceFilter={this.state.priceFilter}
-          {...this.props}
-        />
       </div>
     );
   }

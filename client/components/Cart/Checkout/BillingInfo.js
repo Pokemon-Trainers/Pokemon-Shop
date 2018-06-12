@@ -42,7 +42,7 @@ class BillingInfo extends React.Component {
 
   render() {
     return (
-      <div className="container container-body  margin-bottom">
+      <div className="container  margin-bottom">
         <div>
           Name:<br />
           <input
