@@ -252,9 +252,13 @@ img.poke {
   border: 1px solid white;
 }
 
-.btn-info:active {
+.btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle {
   background-color: #ffcd00;
   border: 1px solid white;
+}
+
+.btn-info.focus, .btn-info:focus {
+  box-shadow: 0 0 0 0.2rem rgb(190, 190, 190)
 }
 
 .margin-bottom {
@@ -268,30 +272,32 @@ img.poke {
 .order {
   margin-bottom: 50px;
   border-radius: 10px;
+  border: 1px solid lightgray;
 }
 
 .order p{
   margin-bottom: 0;
 }
 
+.container .padding {
+  padding: 20px;
+}
+
 .order .specs{
   background-color: #356abd;
-  border-radius: 10px;
-  justify-content: space-between;
+  border-radius:10px 10px 0px 0px;
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: white;
 }
 
-.order .img{
+.order-img{
   width: 100px;
   margin: 20px;
 }
 
-.order .pokemon{
-  justify-content: space-between;
-  /* margin-right: 50px; */
-  width: 33%;
+.order .body {
+  padding: 20px;
 }
 
 .progress{

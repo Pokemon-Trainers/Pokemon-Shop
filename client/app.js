@@ -5,8 +5,9 @@ import { Navbar } from "./components";
 import Routes from "./routes";
 import { fetchCart, updateCart } from "./store/cart";
 
-import { fetchPokemon } from "./store/pokemon";
-import { fetchReviews } from "./store/review";
+import { fetchPokemon } from './store/pokemon';
+import { fetchReviews } from './store/review';
+import { fetchOrders } from './store/order';
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends Component {
     this.props.fetchPokemon();
     this.props.fetchReviews();
     this.props.fetchCart();
+    this.props.fetchOrders();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -49,7 +51,6 @@ class App extends Component {
   }
 
   handleQuantityChange(event) {
-    console.log("event target value inside handleqchcange", event.target.value);
     this.setState({
       quantity: Number(event.target.value)
     });
@@ -118,7 +119,10 @@ const mapDispatch = dispatch => {
     },
 
     fetchReviews: () => dispatch(fetchReviews()),
-    fetchCart: () => dispatch(fetchCart())
+
+    fetchCart: () => dispatch(fetchCart()),
+
+    fetchOrders: () => dispatch(fetchOrders())
   };
 };
 
