@@ -195,3 +195,12 @@ img.poke {
   display: block !important;
   margin: 2px;
 }
+
+.notadmin {
+  font-size: 12px !important;
+  padding-top: 7px !important;
+}
+
+.adminbtn {
+  font-size: 13px !important;
+}
