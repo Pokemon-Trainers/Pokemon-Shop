@@ -61,7 +61,7 @@ class Cart extends Component {
     );
 
     return (
-      <div className="container">
+      <div className="container container-body">
         <div className="row">
           <div className="col-12">
             <h1>Cart</h1>

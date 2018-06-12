@@ -42,13 +42,14 @@ class IndividualPokemon extends React.Component {
     const { reviews, avg } = this.props;
     const loading = <p>This page is either loading or not available...</p>;
     return (
-      <div className="mb-5">
+      <div className="container mb-5">
         <div className="row">
           <div className="col">
             <img src={pokemon.imageUrl} />
           </div>
           <div className="col">
             <h1>{pokemon.name}</h1>
+            <div className="container-body">
             <ReactStars
               count={5}
               value={Number(avg)}
@@ -124,6 +125,7 @@ class IndividualPokemon extends React.Component {
             ) : (
               ""
             )}
+            </div>
           </div>
         </div>
         <div className="row">
