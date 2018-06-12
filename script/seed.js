@@ -1104,16 +1104,6 @@ const pokemon = [
   },
   {
     name: "Koffing",
-    type: ["Fighting"],
-    description:
-      "If Koffing becomes agitated, it raises the toxicity of its internal gases and jets them out from all over its body. This Pokémon may also overinflate its round body, then explode.",
-    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/109.png",
-    level: 13,
-    price: 47,
-    basePokemon: true
-  },
-  {
-    name: "Koffing",
     type: ["Poison"],
     description:
       "If Koffing becomes agitated, it raises the toxicity of its internal gases and jets them out from all over its body. This Pokémon may also overinflate its round body, then explode.",
@@ -1123,7 +1113,7 @@ const pokemon = [
     basePokemon: true
   },
   {
-    name: "Koffing",
+    name: "Weezing",
     type: ["Poison"],
     description:
       "Weezing loves the gases given off by rotted kitchen garbage. This Pokémon will find a dirty, unkempt house and make it its home. At night, when the people in the house are asleep, it will go through the trash.",
@@ -1210,16 +1200,6 @@ const pokemon = [
     imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/118.png",
     level: 7,
     price: 8,
-    basePokemon: true
-  },
-  {
-    name: "Seaking",
-    type: ["Water"],
-    description:
-      "In the autumn, Seaking males can be seen performing courtship dances in riverbeds to woo females. During this season, this Pokémon's body coloration is at its most beautiful.",
-    imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/119.png",
-    level: 13,
-    price: 18,
     basePokemon: true
   },
   {
