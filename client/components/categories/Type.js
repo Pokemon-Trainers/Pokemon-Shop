@@ -4,18 +4,20 @@ const typeArray = [
   // 'Reset Filter',
   "Bug",
   "Dragon",
-  "Ice",
+  "Electric",
+  "Fairy",
   "Fighting",
   "Fire",
   "Flying",
-  "Grass",
   "Ghost",
+  "Grass",
   "Ground",
-  "Electric",
+  "Ice",
   "Normal",
   "Poison",
   "Psychic",
   "Rock",
+  "Steel",
   "Water"
 ];
 

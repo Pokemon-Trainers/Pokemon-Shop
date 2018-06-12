@@ -211,15 +211,26 @@ class PokemonList extends Component {
   }
 }
 
+const parseSearchString = str => {
+  // assume string looks like "?key=value&keyTwo=valueTwo"
+  // step 1, only keep everything after pos 0
+  return str
+    .slice(1)
+    .split("&")
+    .map(x => x.split("="))
+    .reduce((obj, pair) => {
+      obj[pair[0]] = pair[1];
+      return obj;
+    }, {});
+};
+
 const mapState = (state, ownProps) => {
-  let pageNum = ownProps.history.location.search.length - 1;
+  const pageNum = parseSearchString(ownProps.history.location.search).page;
+  console.log(pageNum);
   return {
     pokemon: state.pokemon,
     isAdmin: state.user.admin,
-    page:
-      state.typeFilter || state.priceFilter
-        ? 1
-        : ownProps.history.location.search[pageNum] || 1
+    page: !pageNum ? 1 : pageNum
   };
 };
 
