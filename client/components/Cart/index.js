@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import CartItem from "./CartItem";
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom';
-import { removeFromCart, addToCart } from "../../store/cart";
+import React, { Component } from 'react';
+import CartItem from './CartItem';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { removeFromCart, addToCart } from '../../store/cart';
 
 class Cart extends Component {
   constructor() {
     super();
     this.state = {
-      totalPrice: 0
+      totalPrice: 0,
     };
   }
   // getDerivedStateFromProps is a react function that is a new version of componentwillrecieveprops  and the static means there is no 'this'
@@ -44,14 +44,19 @@ class Cart extends Component {
                 {poke.id === item.itemId ? (
                   <CartItem item={item} poke={poke} />
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             ))}
           </div>
         ))}
-        <h4>Total: {this.state.totalPrice}</h4>
-        <Link to='/checkout'><button>Proceed to Checkout</button></Link>
+        <h4>
+          Total: {this.state.totalPrice}{' '}
+          <img className="currency img-fluid" src="/PokeBallCurrency.png" />
+        </h4>
+        <Link to="/checkout">
+          <button className="btn btn-info">Proceed to Checkout</button>
+        </Link>
       </div>
     );
 
@@ -73,9 +78,8 @@ class Cart extends Component {
 const mapPropToCart = state => {
   return {
     cart: state.cart,
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 
 export default connect(mapPropToCart)(Cart);
-

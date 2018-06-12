@@ -39,10 +39,10 @@ const Sidebar = props => {
 
             {!priceHidden && <Price handlePriceFilter={handlePriceFilter} />}
 
-            <Level />
-          </div>
-        </div>
+        {!priceHidden && <Price handlePriceFilter={handlePriceFilter} />}
       </div>
+
+      <Level />
     </div>
   );
 };
