@@ -1,26 +1,26 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import ShippingInfo from "./ShippingInfo";
-import BillingInfo from "./BillingInfo";
+import ShippingInfo from './ShippingInfo';
+import BillingInfo from './BillingInfo';
 
-import { createOrder } from "../../../store/order";
-import Cart from "../index";
+import { createOrder } from '../../../store/order';
+import Cart from '../index';
 
-import Stripe from "./Stripe";
-import StripeCheckout from "react-stripe-checkout";
+import Stripe from './Stripe';
+import StripeCheckout from 'react-stripe-checkout';
 
 class Checkout extends React.Component {
   constructor() {
     super();
     this.state = {
       toggle: 'shipping',
-      shippingName: "",
-      shippingAddress: "",
-      billingName: "",
-      billingAddress: "",
-      email: "",
-      total: 0
+      shippingName: '',
+      shippingAddress: '',
+      billingName: '',
+      billingAddress: '',
+      email: '',
+      total: 0,
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -44,7 +44,7 @@ class Checkout extends React.Component {
   handleToggle(event) {
     if (this.state.toggle === 'shipping') {
       this.setState({
-        toggle: 'billing'
+        toggle: 'billing',
       });
     } else {
       this.setState({
@@ -55,13 +55,13 @@ class Checkout extends React.Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
   handleAddress(type, address) {
     this.setState({
-      [type]: address
+      [type]: address,
     });
   }
 
@@ -74,7 +74,7 @@ class Checkout extends React.Component {
       email: this.state.email,
       cart: this.props.cart,
       userId: this.props.user.id,
-      total: this.state.total
+      total: this.state.total,
     });
   }
 
@@ -109,7 +109,7 @@ class Checkout extends React.Component {
       <div
         className="progress-bar"
         role="progressbar"
-        style={{ width: "33%" }}
+        style={{ width: '33%' }}
         aria-valuenow="33"
         aria-valuemin="0"
         aria-valuemax="100"
@@ -122,7 +122,7 @@ class Checkout extends React.Component {
       <div
         className="progress-bar"
         role="progressbar"
-        style={{ width: "66%" }}
+        style={{ width: '66%' }}
         aria-valuenow="66"
         aria-valuemin="0"
         aria-valuemax="100"
@@ -134,11 +134,23 @@ class Checkout extends React.Component {
     return (
       <div className="container">
         <h1>Checkout</h1>
-        <div className="progress margin-bottom">{this.state.toggle === 'shipping' ? shippingProgress : billingProgress}</div>
+        <div className="progress margin-bottom">
+          {this.state.toggle === 'shipping'
+            ? shippingProgress
+            : billingProgress}
+        </div>
 
         {shippingInfo}
         {billingInfo}
-        {Stripe(this.state.shippingName, this.state.email, this.state.total)}
+        {this.state.email &&
+          this.state.shippingAddress && (
+            <button className="btn btn-info" onClick={this.handleToggle}>
+              Next
+            </button>
+          )}
+
+        {this.state.billingAddress &&
+          Stripe(this.state.shippingName, this.state.email, this.state.total)}
         <br />
         <button
           type="submit"
@@ -156,13 +168,13 @@ const mapState = state => {
   return {
     cart: state.cart,
     user: state.user,
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    createOrder: order => dispatch(createOrder(order))
+    createOrder: order => dispatch(createOrder(order)),
   };
 };
 
