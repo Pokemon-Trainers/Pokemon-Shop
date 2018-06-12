@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { removeReview } from "../../store/review";
 import { fetchUsers, updatingUser } from "../../store/allusers";
 
-// import UpdateReview from "./UpdateReview";
 class AllUsers extends React.Component {
   constructor() {
     super();
@@ -14,26 +13,11 @@ class AllUsers extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleSave = this.handleSave.bind(this);
-
     this.handleOptionsChange = this.handleOptionsChange.bind(this);
-
-    this.handleUpdateToggle = this.handleUpdateToggle.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUsers();
-  }
-
-  handleUpdateToggle() {
-    if (!this.state.toggleUpdate) {
-      this.setState({
-        toggleUpdate: true
-      });
-    } else {
-      this.setState({
-        toggleUpdate: false
-      });
-    }
   }
 
   handleOptionsChange(event) {
@@ -44,7 +28,6 @@ class AllUsers extends React.Component {
 
   handleSave(event, user) {
     event.preventDefault();
-    console.log("hadnlesave User", user);
     this.props.updatingUser({ ...user, admin: !user.admin });
     this.setState({
       admin: true
@@ -57,13 +40,6 @@ class AllUsers extends React.Component {
   }
 
   render() {
-    // const { user, review } = this.props;
-    // const displayReview = (
-    //   <div>
-
-    //   </div>
-    // );
-    console.log("props.users", this.props.users);
     return (
       <div className="">
         <h1>All Users</h1>
@@ -95,15 +71,6 @@ class AllUsers extends React.Component {
               )}
             </div>
           ))}
-        {/* {this.props.user.admin ? "Not an admin" : "Admin"} */}
-        {/* {!this.state.toggleUpdate ? (
-          displayReview
-        ) : (
-          <UpdateReview
-            handleUpdateToggle={this.handleUpdateToggle}
-            review={review}
-          />
-        )} */}
       </div>
     );
   }

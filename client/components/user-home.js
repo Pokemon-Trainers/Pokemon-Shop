@@ -93,29 +93,21 @@ class UserHome extends React.Component {
               Reviews
             </button>
 
-            <button
-              className="btn btn-info"
-              type="button"
-              name="users"
-              onClick={this.handleClick}
-            >
-              {/* <AllUsers status={this.state.status} /> */}
-              Users
-            </button>
+            {isAdmin && (
+              <button
+                className="btn btn-info"
+                type="button"
+                name="users"
+                onClick={this.handleClick}
+              >
+                Users
+              </button>
+            )}
           </div>
-
-          {/* {this.state.view === "orders" ? (
-            <Orders status={this.state.status} />
-          ) : (
-            <Reviews />
-          )} */}
           {this.state.view === "orders" ? (
             <Orders status={this.state.status} />
           ) : null}
-          {this.state.view === "reviews" ? (
-            // <AllUsers status={this.state.status} />
-            <Reviews />
-          ) : null}
+          {this.state.view === "reviews" ? <Reviews /> : null}
           {this.state.view === "users" ? (
             <AllUsers status={this.state.status} />
           ) : null}
