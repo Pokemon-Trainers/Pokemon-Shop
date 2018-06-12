@@ -10,10 +10,12 @@ import pokemonReducer from "./pokemon";
 import cartReducer from "./cart";
 import reviewReducer from "./review";
 import orderReducer from "./order";
+import allusers from "./allusers";
 import { BrowserRouter } from "react-router-dom";
 
 const reducer = combineReducers({
   user: user,
+  users: allusers,
   pokemon: pokemonReducer,
   cart: cartReducer,
   reviews: reviewReducer,
