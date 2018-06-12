@@ -44,6 +44,8 @@ const Sidebar = props => {
 
       <Level />
     </div>
+    </div>
+    </div>
   );
 };
 
