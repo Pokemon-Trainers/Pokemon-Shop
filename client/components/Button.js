@@ -7,16 +7,16 @@ const Button = props => {
   for (let i = 0; i < pages; i++) {
     numOfPages.push(i + 1);
   }
-
   return (
     <div className="inline-display:before">
       <ul className="pagination justify-content-center">
         {numOfPages.map(num => {
           return (
-            <li key={num} className="page-item">
+            <li key={Number(num)} className="page-item">
               <button
-                value={num}
-                className="btn btn-info" onClick={evt => {
+                value={Number(num)}
+                className="btn btn-info"
+                onClick={evt => {
                   changePage(evt.target.value);
                 }}
               >
