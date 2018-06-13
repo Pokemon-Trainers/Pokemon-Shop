@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { changePokemon } from "../store/pokemon";
+import { changePokemon, removePokemon } from "../store/pokemon";
 
 class EditPokemon extends React.Component {
   constructor() {
@@ -15,6 +15,7 @@ class EditPokemon extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -42,6 +43,14 @@ class EditPokemon extends React.Component {
     this.props.postPokemon({
       ...this.state
     });
+  }
+
+  handleDelete(event) {
+    event.preventDefault();
+    if (window.confirm("Are you sure you wish to delete this Pokemon?"))
+      this.props.history.push("/pokemon");
+
+    this.props.removePokemon(this.props.selectedPokemon.id);
   }
 
   render() {
@@ -96,7 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postPokemon: pokemon => dispatch(changePokemon(pokemon))
+    postPokemon: pokemon => dispatch(changePokemon(pokemon)),
+    removePokemon: pokemonId => dispatch(removePokemon(pokemonId))
   };
 };
 
