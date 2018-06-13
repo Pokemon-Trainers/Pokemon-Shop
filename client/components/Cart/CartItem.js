@@ -40,16 +40,16 @@ class CartItem extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col">
-            <img className="img img-fluid p-3 mb-3 poke" src={poke.imageUrl} />
+          <div className="col flex alignItems">
+            <img className="order-img" src={poke.imageUrl} />
           </div>
-          <div className="col">
+          <div className="col flex alignItems">
             <h2>{poke.name}</h2>
           </div>
-          <div className="col">
+          <div className="col flex alignItems">
             <span>Price: {poke.price} <img className="currency img-fluid" src="/PokeBallCurrency.png" /></span>
           </div>
-          <div className="col">
+          <div className="col flex alignItems">
             <span>
               Quantity :{" "}
               <input
@@ -61,7 +61,7 @@ class CartItem extends Component {
               />
             </span>
           </div>
-          <div className="col-1">
+          <div className="col-1 flex alignItems">
             <button
               onClick={() => removeCartItem(poke.id)}
               type="button"
