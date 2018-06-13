@@ -34,6 +34,7 @@ class Cart extends Component {
   }
 
   render() {
+    console.log(this.props.cart);
     const filledCart = (
       <div>
         {this.props.cart.map(item => (
@@ -67,12 +68,8 @@ class Cart extends Component {
 
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-12">
             <h1>Cart</h1>
-          </div>
           {this.props.cart.length ? filledCart : emptyCart}
-        </div>
       </div>
     );
   }
