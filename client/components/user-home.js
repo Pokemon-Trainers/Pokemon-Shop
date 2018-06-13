@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import Review from "./Review/Review";
-import { connect } from "react-redux";
+import Review from './Review/Review';
+import { connect } from 'react-redux';
 
-import Reviews from "./UserHome/Reviews";
-import Orders from "./UserHome/Orders";
-import AllUsers from "./Admin/AllUsers";
+import Reviews from './UserHome/Reviews';
+import Orders from './UserHome/Orders';
+import AllUsers from './Admin/AllUsers';
 
 class UserHome extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: "orders",
-      status: "all"
+      view: 'orders',
+      status: 'all',
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleStatusToggle = this.handleStatusToggle.bind(this);
@@ -23,13 +23,13 @@ class UserHome extends React.Component {
   handleStatusToggle(event) {
     this.setState({
       status: event.target.name,
-      view: "orders"
+      view: 'orders',
     });
   }
 
   handleClick(event) {
     this.setState({
-      view: event.target.name
+      view: event.target.name,
     });
   }
 
@@ -39,16 +39,13 @@ class UserHome extends React.Component {
     return (
       <div>
         <div className="container">
-          <h3>
-            Welcome, {user.email}!{" "}
-            {isAdmin && <img src="http://i67.tinypic.com/bhx5za.png" />}
-          </h3>
+          <h3>Welcome, {user.email}</h3>
+          {isAdmin && <img src="http://i67.tinypic.com/bhx5za.png" />}
 
           <div className="flex margin-bottom">
             <div className="dropdown">
               <button
                 className="dropdown-toggle btn btn-info"
-                type="button"
                 name="orders"
                 onClick={this.handleClick}
                 data-toggle="dropdown"
@@ -86,7 +83,6 @@ class UserHome extends React.Component {
             </div>
             <button
               className="btn btn-info"
-              type="button"
               name="reviews"
               onClick={this.handleClick}
             >
@@ -96,7 +92,6 @@ class UserHome extends React.Component {
             {isAdmin && (
               <button
                 className="btn btn-info"
-                type="button"
                 name="users"
                 onClick={this.handleClick}
               >
@@ -104,11 +99,11 @@ class UserHome extends React.Component {
               </button>
             )}
           </div>
-          {this.state.view === "orders" ? (
+          {this.state.view === 'orders' ? (
             <Orders status={this.state.status} />
           ) : null}
-          {this.state.view === "reviews" ? <Reviews /> : null}
-          {this.state.view === "users" ? (
+          {this.state.view === 'reviews' ? <Reviews /> : null}
+          {this.state.view === 'users' ? (
             <AllUsers status={this.state.status} />
           ) : null}
         </div>
@@ -128,7 +123,7 @@ const mapState = state => {
     filteredReviews: state.reviews.filter(
       review => review.userId === state.user.id
     ),
-    pokemon: state.pokemon
+    pokemon: state.pokemon,
   };
 };
 
@@ -138,5 +133,5 @@ export default connect(mapState)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  email: PropTypes.string,
 };
