@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import ReactStars from "react-stars";
 import { withRouter, Link } from "react-router-dom";
 import EditPokemon from "./EditPokemon";
-import { removePokemon } from "../store/pokemon";
 
 import Reviews from "./Review/Reviews";
 
@@ -14,15 +13,6 @@ class IndividualPokemon extends React.Component {
       toggleUpdate: false
     };
     this.handleToggle = this.handleToggle.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleDelete(event) {
-    event.preventDefault();
-    if (window.confirm("Are you sure you wish to delete this Pokemon?"))
-      this.props.history.push("/pokemon");
-
-    this.props.removePokemon(this.props.selectedPokemon.id);
   }
 
   handleToggle() {
@@ -86,20 +76,20 @@ class IndividualPokemon extends React.Component {
                   />
                   <button
                     type="button"
-                    className="btn btn-info"
+                    className="ml-3 btn btn-info"
                     onClick={this.props.handleClick}
                   >
                     Add To Cart
                   </button>
                 </div>
                 {this.props.user.admin && !pokemon.basePokemon ? (
-                  <div>
+                  <div className="mt-4">
                     <button
                       type="button"
                       className="edit-btn btn btn-info"
                       onClick={this.handleToggle}
                     >
-                      EDIT POKEMON
+                      Edit Pokemon
                     </button>
                   </div>
                 ) : (
@@ -112,7 +102,7 @@ class IndividualPokemon extends React.Component {
                 selectedPokemon={this.props.selectedPokemon}
               />
             )}
-            </div>
+          </div>
         </div>
         <div className="row">
           <Reviews selectedPokemon={pokemon} reviews={reviews} />
@@ -141,14 +131,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return dispatch => ({
-    removePokemon: pokemonId => dispatch(removePokemon(pokemonId))
-  });
-};
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(IndividualPokemon)
-);
+export default withRouter(connect(mapStateToProps)(IndividualPokemon));
