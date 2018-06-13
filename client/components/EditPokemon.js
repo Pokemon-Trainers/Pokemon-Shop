@@ -55,41 +55,63 @@ class EditPokemon extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <form onSubmit={this.handleSubmit}>
-          <p>Level</p>
-          <input
-            onChange={this.handleChange}
-            value={this.state.level}
-            name="level"
-          />
-          <p>Price</p>
-          <input
-            onChange={this.handleChange}
-            value={this.state.price}
-            name="price"
-          />
-          <p>Description</p>
-          <textarea
-            onChange={this.handleChange}
-            value={this.state.description}
-            name="description"
-          />
-          <div>
-            <button
-              className="edit-btn btn btn-warning"
-              onClick={this.handleSubmit}
-              type="submit"
-            >
-              Update Pokemon
-            </button>
-            <button
-              className="btn btn-danger"
-              type="button"
-              onClick={this.handleDelete}
-            >
-              DELETE POKEMON
-            </button>
+          <div className="row">
+            <div className="">
+              <p>Level :</p>
+            </div>
+            <div className="">
+              <input
+                onChange={this.handleChange}
+                value={this.state.level}
+                name="level"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="">
+              <p>Price :</p>
+            </div>
+            <div className="">
+              <input
+                onChange={this.handleChange}
+                value={this.state.price}
+                name="price"
+              />
+            </div>
+          </div>
+          {/* <div className="row"> */}
+          <div className="row">
+            <div>
+              <p>Description</p>
+            </div>
+            <div>
+              <textarea
+                onChange={this.handleChange}
+                value={this.state.description}
+                name="description"
+              />
+            </div>
+
+            <div>
+              <button
+                className="edit-btn btn btn-warning"
+                onClick={this.handleSubmit}
+                type="submit"
+              >
+                Update Pokemon
+              </button>
+            </div>
+            <div>
+              <button
+                className="btn btn-danger"
+                type="button"
+                onClick={this.handleDelete}
+              >
+                Delete Pokemon
+              </button>
+            </div>
           </div>
         </form>
       </div>

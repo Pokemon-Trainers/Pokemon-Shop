@@ -76,20 +76,20 @@ class IndividualPokemon extends React.Component {
                   />
                   <button
                     type="button"
-                    className="btn btn-info"
+                    className="ml-3 btn btn-info"
                     onClick={this.props.handleClick}
                   >
                     Add To Cart
                   </button>
                 </div>
                 {this.props.user.admin && !pokemon.basePokemon ? (
-                  <div>
+                  <div className="mt-4">
                     <button
                       type="button"
                       className="edit-btn btn btn-info"
                       onClick={this.handleToggle}
                     >
-                      EDIT POKEMON
+                      Edit Pokemon
                     </button>
                   </div>
                 ) : (
