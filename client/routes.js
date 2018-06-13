@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, matchPath } from "react-router-dom";
-import PropTypes from "prop-types";
-import { Login, Signup, UserHome } from "./components";
-import { me } from "./store";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Login, Signup, UserHome } from './components';
+import { me } from './store';
 
-import Cart from "./components/Cart";
-import PokemonList from "./components/PokemonList";
-import IndividualPokemon from "./components/IndividualPokemon";
-import AddPokemon from "./components/AddPokemon";
-import Checkout from "./components/Cart/Checkout";
-import OrderDetails from './components/UserHome/OrderDetails'
-import EditPokemon from "./components/EditPokemon";
+import Cart from './components/Cart';
+import PokemonList from './components/PokemonList';
+import IndividualPokemon from './components/IndividualPokemon';
+import AddPokemon from './components/AddPokemon';
+import Checkout from './components/Cart/Checkout';
+import OrderDetails from './components/UserHome/OrderDetails';
+import EditPokemon from './components/EditPokemon';
 
 /**
  * COMPONENT
@@ -21,7 +21,7 @@ class Routes extends Component {
     super();
 
     this.state = {
-      total: 0
+      total: 0,
     };
     this.MyPokemonList = this.MyPokemonList.bind(this);
     this.IndividualPokemon = this.IndividualPokemon.bind(this);
@@ -53,8 +53,8 @@ class Routes extends Component {
         <Route exact path="/pokemon/:id" render={this.IndividualPokemon} />
         <Route path="/pokemon" render={this.MyPokemonList} />
         <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout}/>
-        <Route path="/orders/:id" component={OrderDetails}/>
+        <Route path="/checkout" component={Checkout} />
+        <Route path="/orders/:id" component={OrderDetails} />
 
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
@@ -62,17 +62,18 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Redirect exact from="/" to="/home" />
             <Route path="/home" component={UserHome} />
             {/* <Route path="/addpokemon" component={AddPokemon} /> */}
             {this.props.isAdmin ? (
               <Route path="/addpokemon" component={AddPokemon} />
             ) : (
-              ""
+              ''
             )}
             {this.props.isAdmin ? (
               <Route path="/editpokemon" component={EditPokemon} />
             ) : (
-              ""
+              ''
             )}
           </Switch>
         )}
@@ -91,7 +92,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    isAdmin: state.user.admin
+    isAdmin: state.user.admin,
   };
 };
 
@@ -99,7 +100,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me());
-    }
+    },
   };
 };
 
@@ -117,5 +118,5 @@ export default withRouter(
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };
