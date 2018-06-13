@@ -190,3 +190,17 @@ img.poke {
   border: 1px solid lightgray;
   width: 50%;
 }
+
+.edit-btn {
+  display: block !important;
+  margin: 2px;
+}
+
+.notadmin {
+  font-size: 12px !important;
+  padding-top: 7px !important;
+}
+
+.adminbtn {
+  font-size: 13px !important;
+}

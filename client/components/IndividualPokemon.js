@@ -76,53 +76,41 @@ class IndividualPokemon extends React.Component {
                   />
                 </p>
                 <p>{pokemon.description}</p>
+                <div className="input-group">
+                  <input
+                    type="number"
+                    min="1"
+                    onChange={this.props.handleQuantityChange}
+                    className="form-control"
+                    placeholder="1"
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.props.handleClick}
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+                {this.props.user.admin && !pokemon.basePokemon ? (
+                  <div>
+                    <button
+                      type="button"
+                      className="edit-btn btn btn-info"
+                      onClick={this.handleToggle}
+                    >
+                      EDIT POKEMON
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
               <EditPokemon
                 handleToggle={this.handleToggle}
                 selectedPokemon={this.props.selectedPokemon}
-                this
               />
-            )}
-            <div className="input-group">
-              <input
-                type="number"
-                min="1"
-                onChange={this.props.handleQuantityChange}
-                className="form-control"
-                placeholder="1"
-              />
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.props.handleClick}
-              >
-                Add To Cart
-              </button>
-            </div>
-            {this.props.isAdmin ? (
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.handleToggle}
-                >
-                  EDIT POKEMON
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
-            {this.props.isAdmin ? (
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={this.handleDelete}
-              >
-                DELETE POKEMON
-              </button>
-            ) : (
-              ""
             )}
             </div>
         </div>
@@ -149,7 +137,7 @@ const mapStateToProps = (state, ownProps) => {
     selectedPokemon: state.pokemon.find(pokemon => pokemon.id === id),
     reviews,
     avg,
-    isAdmin: state.user.admin
+    user: state.user
   };
 };
 
