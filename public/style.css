@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "Pokemon";
-  src: url("font.ttf") format("truetype");
+  font-family: 'Pokemon';
+  src: url('font.ttf') format('truetype');
 }
 
 body {
-  font-family: "Arvo", serif;
-  background: linear-gradient(#7dad71 25%, #fff);
-  background-size:  auto 100px;
+  font-family: 'Arvo', serif;
+  /* background: linear-gradient(#7dad71 25%, #fff); */
+  background-size: auto 100px;
   background-repeat: no-repeat;
   background-position-y: 200px;
 }
@@ -21,25 +21,25 @@ a:hover {
   color: #2b58a1;
 }
 
-h1.font{
+h1.font {
   color: #ffcd00;
-  font-family: "Pokemon";
+  font-family: 'Pokemon';
   -webkit-text-stroke: 1px #2b58a1;
   font-weight: bold;
   letter-spacing: 5px;
 }
 
-h2.font{
+h2.font {
   color: #ffcd00;
-  font-family: "Pokemon";
+  font-family: 'Pokemon';
   -webkit-text-stroke: 1px #2b58a1;
   font-weight: bold;
   letter-spacing: 4px;
 }
 
-h3.font{
+h3.font {
   color: #ffcd00;
-  font-family: "Pokemon";
+  font-family: 'Pokemon';
   -webkit-text-stroke: 1px #2b58a1;
   font-weight: bold;
   letter-spacing: 3px;
@@ -65,14 +65,14 @@ form div {
 }
 
 .pokeCard::after {
-  content: "";
+  content: '';
   z-index: -1;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url("pokemonCardBackgroundGray.png");
+  background-image: url('pokemonCardBackgroundGray.png');
   background-size: cover;
   opacity: 0.4;
 }
@@ -163,7 +163,7 @@ img.poke {
 
 .background {
   background: linear-gradient(rgba(20, 20, 20, 0.5), rgb(255, 255, 255)),
-    url("http://i67.tinypic.com/2vd1ndg.png");
+    url('http://i67.tinypic.com/2vd1ndg.png');
   background-attachment: fixed;
   background-size: cover;
 }
@@ -182,7 +182,7 @@ img.poke {
 }
 
 .header {
-  background-image: url("background.jpg");
+  background-image: url('background.jpg');
   background-size: cover;
   background-position: 0 63%;
   margin-bottom: 50px;
@@ -197,17 +197,17 @@ img.poke {
 }
 
 .header .cloud1 {
-  background-image: url("cloud1.png");
+  background-image: url('cloud1.png');
   background-size: contain;
 }
 
 .header .cloud2 {
-  background-image: url("cloud2.png");
+  background-image: url('cloud2.png');
   background-size: contain;
 }
 
 .header .cloud3 {
-  background-image: url("cloud3.png");
+  background-image: url('cloud3.png');
   background-size: cover;
 }
 
@@ -367,5 +367,5 @@ img.poke {
 }
 
 .alignItems {
-  align-items: center
+  align-items: center;
 }
