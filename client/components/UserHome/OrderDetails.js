@@ -81,19 +81,16 @@ const OrderDetails = props => {
           <p>{order.total}</p>
         </div>
       </div>
-      <div>
+
         <div className="progress margin-bottom">{progress}</div>
 
-        <div className="order">
           <div className="row p-2">
             {order.items &&
               order.items.map((item, key) => (
                 <Item key={key} pokemonId={item.pokemonId} />
               ))}
           </div>
-        </div>
       </div>
-    </div>
   );
 };
 

@@ -150,40 +150,49 @@ class PokemonList extends Component {
     let startCount = 0;
 
     return (
-      <div className="row">
-        <Sidebar
-          handleTypeFilter={this.handleTypeFilter}
-          handlePriceFilter={this.handlePriceFilter}
-          resetFilters={this.resetFilters}
-          toggleTypeHidden={this.toggleTypeHidden}
-          typeHidden={this.state.typeHidden}
-          togglePriceHidden={this.togglePriceHidden}
-          priceHidden={this.state.priceHidden}
-          page={this.props.page}
-        />
+      <div className="container mb-5">
+        <div className="row">
+          <Sidebar
+            handleTypeFilter={this.handleTypeFilter}
+            handlePriceFilter={this.handlePriceFilter}
+            resetFilters={this.resetFilters}
+            toggleTypeHidden={this.toggleTypeHidden}
+            typeHidden={this.state.typeHidden}
+            togglePriceHidden={this.togglePriceHidden}
+            priceHidden={this.state.priceHidden}
+            page={this.props.page}
+          />
 
-        {pokemon.length === 0 ? (
-          <div className="col-9 col-sm-7 col-md-9 mx-auto">
-            <p>This page is either loading or there are no Pokemon found...</p>
-          </div>
-        ) : (
-          <div className="col-9 col-sm-7 col-md-9 mx-auto">
-            <div className="row">
-              {pokemon.map((poke, index) => {
-                if (index >= startOffset && startCount < perPage) {
-                  startCount++;
-                  return (
-                    <div
-                      className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
-                      key={poke.id}
-                    >
-                      <PokemonCard pokemon={poke} />
-                    </div>
-                  );
-                }
-              })}
+          {pokemon.length === 0 ? (
+            <div className="col-9 col-sm-7 col-md-9 mx-auto">
+              <p>
+                This page is either loading or there are no Pokemon found...
+              </p>
             </div>
-            <div className="mt-2">
+          ) : (
+            <div className="col-9 col-sm-7 col-md-9 mx-auto">
+
+                        {this.props.isAdmin && (<div className="flex" style={{justifyContent: 'flex-end'}}>
+            <Link to="/addpokemon">
+              <button className="btn btn-info">Add a New Pokemon</button>
+            </Link></div>
+          )}
+
+              <div className="row">
+                {pokemon.map((poke, index) => {
+                  if (index >= startOffset && startCount < perPage) {
+                    startCount++;
+                    return (
+                      <div
+                        className="col-12 col-sm-12 col-md-6 col-lg-4 p-1"
+                        key={poke.id}
+                      >
+                        <PokemonCard pokemon={poke} />
+                      </div>
+                    );
+                  }
+                })}
+              </div>
               <Paginating
                 changePage={this.changePage}
                 pages={pages}
@@ -195,15 +204,9 @@ class PokemonList extends Component {
                 {...this.props}
               />
             </div>
-          </div>
-        )}
-        {this.props.isAdmin ? (
-          <Link to="/addpokemon">
-            <button className="btn btn-info">ADD A NEW POKEMON</button>
-          </Link>
-        ) : (
-          ''
-        )}
+          )}
+
+        </div>
       </div>
     );
   }

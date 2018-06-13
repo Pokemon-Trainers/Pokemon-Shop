@@ -33,8 +33,8 @@ class Reviews extends React.Component {
   render() {
     const { reviews } = this.props;
     return (
-      <div className="col-10 mx-auto">
-        <h2>Reviews</h2>
+      <div className="col mx-auto mt-10">
+        <h2 className="font">Reviews</h2>
         {reviews.length ? (
           reviews.map(review => (
             <Review key={review.id} review={review} reviews={reviews} />

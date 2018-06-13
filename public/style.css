@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'Pokemon';
+  src: url('font.ttf') format('truetype');
+}
+
 body {
-  font-family: "Arvo", serif;
+  font-family: 'Arvo', serif;
+  /* background: linear-gradient(#7dad71 25%, #fff); */
+  background-size: auto 100px;
+  background-repeat: no-repeat;
+  background-position-y: 200px;
 }
 
 a {
@@ -9,7 +18,31 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #000;
+  color: #2b58a1;
+}
+
+h1.font {
+  color: #ffcd00;
+  font-family: 'Pokemon';
+  -webkit-text-stroke: 1px #2b58a1;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+h2.font {
+  color: #ffcd00;
+  font-family: 'Pokemon';
+  -webkit-text-stroke: 1px #2b58a1;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+h3.font {
+  color: #ffcd00;
+  font-family: 'Pokemon';
+  -webkit-text-stroke: 1px #2b58a1;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 label {
@@ -27,19 +60,19 @@ form div {
 }
 .pokeCard {
   border: 5px solid #ffcd00;
-  border-radius: 15px;
+  border-radius: 10px;
   position: relative;
 }
 
 .pokeCard::after {
-  content: "";
+  content: '';
   z-index: -1;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url("pokemonCardBackgroundGray.png");
+  background-image: url('pokemonCardBackgroundGray.png');
   background-size: cover;
   opacity: 0.4;
 }
@@ -130,14 +163,14 @@ img.poke {
 
 .background {
   background: linear-gradient(rgba(20, 20, 20, 0.5), rgb(255, 255, 255)),
-    url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
+    url('http://i67.tinypic.com/2vd1ndg.png');
   background-attachment: fixed;
   background-size: cover;
 }
 
 .navbar {
   height: 60px;
-  background: linear-gradient(#356abd, rgb(255, 255, 255));
+  background: linear-gradient(#2b58a1, rgb(255, 255, 255));
 }
 
 .navbar a {
@@ -149,27 +182,33 @@ img.poke {
 }
 
 .header {
-  font-style: italic;
-  display: inline;
-  padding: 15px;
-}
-
-.page-header {
-  padding: 20px;
-
-  background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
-    url("https://i.pinimg.com/originals/06/5e/5e/065e5e9239f7d492dc3d64e57e84d6ed.jpg");
+  background-image: url('background.jpg');
   background-size: cover;
-  background-color: #f2f295;
-
-  width: 100%;
+  background-position: 0 63%;
+  margin-bottom: 50px;
+  height: 200px;
 }
 
-.page-header .logo {
+.header .logo {
   position: relative;
-  top: 50px;
-  left: 20px;
+  top: 140px;
+  left: 50px;
   z-index: 1;
+}
+
+.header .cloud1 {
+  background-image: url('cloud1.png');
+  background-size: contain;
+}
+
+.header .cloud2 {
+  background-image: url('cloud2.png');
+  background-size: contain;
+}
+
+.header .cloud3 {
+  background-image: url('cloud3.png');
+  background-size: cover;
 }
 
 .page-header link {
@@ -184,22 +223,33 @@ img.poke {
 .top-nav {
   position: absolute;
   right: 0px;
-  top: 83px;
+  top: 130px;
   z-index: 1;
 }
 
 .search-container {
-  margin: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .search {
+  border-radius: 10px;
   margin: 0 auto;
+  background-color: #7dad71;
+  width: 230px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  right: 50px;
 }
 
 .top-nav-button {
   border: none;
-  background-color: #356abd;
-  border-radius: 15px 15px 0 0;
+  background-color: #7dad71;
+  border-radius: 10px 10px 0 0;
   margin: 0 10px 0 10px;
   height: 60px;
   padding: 20px;
@@ -226,9 +276,8 @@ img.poke {
   font-size: 18px;
 }
 
-#Type {
-  font-size: 30px;
-  width: 100%;
+.btn-link {
+  color: #000;
 }
 
 .review {
@@ -243,22 +292,25 @@ img.poke {
 }
 
 .btn-info {
-  background-color: #356abd;
-  border: 1px solid white;
+  background-color: #2b58a1;
+  border: 1px solid #7dad71;
 }
 
 .btn-info:hover {
   background-color: #ffcd00;
-  border: 1px solid white;
+  border: 1px solid #7dad71;
 }
 
-.btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle {
+.btn-info:not(:disabled):not(.disabled).active,
+.btn-info:not(:disabled):not(.disabled):active,
+.show > .btn-info.dropdown-toggle {
   background-color: #ffcd00;
   border: 1px solid white;
 }
 
-.btn-info.focus, .btn-info:focus {
-  box-shadow: 0 0 0 0.2rem rgb(190, 190, 190)
+.btn-info.focus,
+.btn-info:focus {
+  box-shadow: 0 0 0 0.2rem rgb(190, 190, 190);
 }
 
 .margin-bottom {
@@ -272,10 +324,11 @@ img.poke {
 .order {
   margin-bottom: 50px;
   border-radius: 10px;
-  border: 1px solid lightgray;
+  background-color: white;
+  border: 1px solid #2b58a1;
 }
 
-.order p{
+.order p {
   margin-bottom: 0;
 }
 
@@ -283,15 +336,15 @@ img.poke {
   padding: 20px;
 }
 
-.order .specs{
-  background-color: #356abd;
-  border-radius:10px 10px 0px 0px;
+.order .specs {
+  background-color: #2b58a1;
+  border-radius: 10px 10px 0px 0px;
   padding: 10px;
   margin-bottom: 20px;
   color: white;
 }
 
-.order-img{
+.order-img {
   width: 100px;
   margin: 20px;
 }
@@ -300,12 +353,12 @@ img.poke {
   padding: 20px;
 }
 
-.progress{
+.progress {
   border-radius: 10px;
   height: 30px;
 }
 
-.progress-bar{
+.progress-bar {
   background-color: #ffcd00;
   width: 80%;
   font-size: 20px;
@@ -313,5 +366,6 @@ img.poke {
   border-radius: 10px;
 }
 
-
-
+.alignItems {
+  align-items: center;
+}
