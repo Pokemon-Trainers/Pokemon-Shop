@@ -34,7 +34,6 @@ class Cart extends Component {
   }
 
   render() {
-    console.log(this.props.cart);
     const filledCart = (
       <div>
         {this.props.cart.map(item => (

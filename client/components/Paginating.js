@@ -17,7 +17,6 @@ class Paginating extends Component {
       typeFilter,
       priceFilter
     } = this.props;
-    console.log(page);
     return (
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-center">
@@ -68,11 +67,6 @@ class Paginating extends Component {
 
 const mapState = (state, ownProps) => {
   let pageNum = ownProps.history.location.search.length - 1;
-  console.log("pageNum", ownProps.history.location.search[pageNum]);
-  console.log(
-    "pageNum - 1",
-    ownProps.history.location.search[pageNum - 1] * 10
-  );
   return {
     page:
       ownProps.typeFilter || ownProps.priceFilter
