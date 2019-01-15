@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import Searchbar from "./Searchbar";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import Searchbar from './Searchbar';
 
 const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
   return (
@@ -57,7 +57,7 @@ const Navbar = ({ handleSearchChange, handleClick, isLoggedIn, total }) => {
 
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   };
 };
 
@@ -65,7 +65,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
-    }
+    },
   };
 };
 
@@ -79,5 +79,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

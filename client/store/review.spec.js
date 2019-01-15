@@ -39,7 +39,6 @@ describe('thunk creators', () => {
       mockAxios.onGet('/api/review').replyOnce(200, fakeReviews);
       return store.dispatch(fetchReviews()).then(() => {
         const actions = store.getActions();
-        console.log(actions);
         expect(actions[0].type).to.be.equal('GET_ALL_REVIEWS');
         expect(actions[0].reviews).to.be.deep.equal(fakeReviews);
       });

@@ -34,7 +34,6 @@ class UserHome extends React.Component {
   }
 
   render() {
-    console.log(this.state.view);
     const { user, isAdmin } = this.props;
     return (
       <div>
